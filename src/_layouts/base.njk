@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Charset & responsive -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Title & SEO -->
+  <title>{{ title if title else "YanaLabs — Automatisation No-Code pour TPE/PME" }}</title>
+  <meta name="description" content="{{ description if description else 'Automatisation no-code pour gagner du temps et scaler votre business.' }}"/>
+  <meta name="robots" content="index, follow"/>
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://yanalabs.fr{{ page.url }}"/>
+
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="{{ title if title else 'YanaLabs — Automatisation No-Code' }}"/>
+  <meta property="og:description" content="{{ description if description else 'Gagnez du temps avec des automatisations no-code sur mesure.' }}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://yanalabs.fr{{ page.url }}"/>
+  <meta property="og:site_name" content="YanaLabs"/>
+  <meta property="og:image" content="https://yanalabs.fr/images/og-image.jpg"/>
+  <meta property="og:locale" content="fr_FR"/>
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="{{ title if title else 'YanaLabs' }}"/>
+  <meta name="twitter:description" content="{{ description if description else 'Automatisation no-code pour TPE/PME' }}"/>
+  <meta name="twitter:image" content="https://yanalabs.fr/images/og-image.jpg"/>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/Favicon.png"/>
+  <link rel="apple-touch-icon" href="/images/Favicon.png"/>
+
+  <!-- Performance (fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/style.css"/>
+
+  <!-- Performance boost -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+</head>
+<body>
+
+  <!-- ======================================================
+       NAVIGATION
+  ======================================================= -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a class="navbar-logo" href="#">
+        <img src="/images/logo-violet-final.png" alt="YanaLabs" height="58" />
+      </a>
+      <ul class="navbar-links">
+        <li><a href="/#notre-demarche">Notre démarche</a></li>
+        <li><a href="/#features">Services</a></li>
+        <li><a href="/#about">À propos</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/actualites/">Actualités</a></li>
+      </ul>
+      <a class="btn-nav" href="https://calendly.com/yanalabs/30min" target="_blank" rel="noopener">
+        <span>Je réserve mon appel découverte</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileClose" aria-label="Fermer">✕</button>
+    <a href="#notre-demarche">Notre démarche</a>
+    <a href="#features">Services</a>
+    <a href="#about">À propos</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://calendly.com/yanalabs/30min" target="_blank" class="btn btn-gradient">Nous contacter</a>
+  </div>
+  <main style="padding-top: 100px;">
+    {{ content | safe }}
+  </main>
+  <!-- ======================================================
+       FOOTER
+  ======================================================= -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <a class="footer-logo" href="#">
+            <img src="/images/logo-violet-final.png" alt="YanaLabs" />
+          </a>
+          <p class="footer-tagline">Votre agence d'automatisation préférée</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="/#notre-demarche">Notre démarche</a></li>
+          <li><a href="/#features">Services</a></li>
+          <li><a href="/#about">À propos</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/actualites/">Actualités</a></li>
+        </ul>
+        <span class="footer-copy">© 2026. Tous droits réservés.</span>
+      </div>
+      <div class="footer-bottom">
+        <a href="/legal/mentions-legales/">Mentions Légales</a> &nbsp;·&nbsp;
+        <a href="/legal/politique-confidentialite/">Politique de confidentialité</a> &nbsp;·&nbsp;
+        <a href="/legal/politique-cookies/">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "YanaLabs",
+    "url": "https://yanalabs.fr",
+    "logo": "https://yanalabs.fr/images/Favicon.png"
+  }
+  </script>
+</body>
+</html>

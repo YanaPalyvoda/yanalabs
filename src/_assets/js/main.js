@@ -173,7 +173,7 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
     const data = Object.fromEntries(new FormData(form));
 
     try {
-      await fetch('https://hook.eu1.make.com/https://hook.eu1.make.com/dbsob3hxaxff8flhljj66mk977oitkrg', {
+      await fetch('https://hook.eu1.make.com/dbsob3hxaxff8flhljj66mk977oitkrg', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -258,7 +258,7 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
     const data = Object.fromEntries(new FormData(form));
 
     try {
-      await fetch('VOTRE_URL_WEBHOOK', {
+      await fetch('https://hook.eu1.make.com/9uem47pfvdxfiu72q7vxq4t9yn1eotxj', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -275,7 +275,10 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
 /* --- SMOOTH SCROLL for anchors --------------------------- */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', function(e) {
-    const target = document.querySelector(this.getAttribute('href'));
+    const href = this.getAttribute('href');
+    // Ignore les liens /#section (navigation inter-pages)
+    if (href.startsWith('/#')) return;
+    const target = document.querySelector(href);
     if (target) {
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });

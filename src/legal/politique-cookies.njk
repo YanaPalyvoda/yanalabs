@@ -1,46 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Politique de cookies — YanaLabs</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .legal-page { padding: 160px 0 100px; min-height: 100vh; background: var(--color-bg); }
-    .legal-page h1 { font-size: 48px; font-weight: 500; letter-spacing: -0.04em; color: var(--color-primary); margin-bottom: 12px; }
-    .legal-page .legal-date { font-size: 14px; color: var(--color-accent-soft); margin-bottom: 48px; }
-    .legal-page h2 { font-size: 22px; font-weight: 600; color: var(--color-primary); margin: 36px 0 12px; }
-    .legal-page h3 { font-size: 17px; font-weight: 600; color: var(--color-primary); margin: 24px 0 8px; }
-    .legal-page p, .legal-page li { font-size: 15px; line-height: 1.75; color: var(--color-secondary); margin-bottom: 12px; }
-    .legal-page ul { padding-left: 24px; margin-bottom: 16px; }
-    .legal-page a { color: var(--color-accent); text-decoration: underline; }
-    .legal-page .legal-divider { border: none; border-top: 1px solid rgba(87,62,105,0.1); margin: 48px 0; }
-    .legal-inner { max-width: 800px; }
-  </style>
-</head>
-<body>
-  <nav class="navbar" id="navbar">
-    <div class="navbar-inner">
-      <a class="navbar-logo" href="index.html">
-        <img src="Images/logo-violet-final.png" alt="YanaLabs" height="50" />
-      </a>
-      <ul class="navbar-links">
-        <li><a href="index.html#notre-demarche">Notre démarche</a></li>
-        <li><a href="index.html#features">Services</a></li>
-        <li><a href="index.html#about">À propos</a></li>
-        <li><a href="index.html#faq">FAQ</a></li>
-        <li><a href="Actualités.html">Actualités</a></li>
-      </ul>
-      <a class="btn-nav" href="https://calendly.com/yanalabs/30min" target="_blank" rel="noopener">
-        <span>Je réserve mon appel découverte</span>
-      </a>
-    </div>
-  </nav>
-
-  <main class="legal-page">
+---
+layout: base.njk
+title: "Politique de cookies — YanaLabs"
+---
+  <div class="page-legal">
     <div class="container">
       <div class="legal-inner">
         <h1>Politique de cookies</h1>
@@ -94,33 +56,4 @@
 
       </div>
     </div>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div>
-          <a class="footer-logo" href="index.html">
-            <img src="Images/logo-violet-final.png" alt="YanaLabs" />
-          </a>
-          <p class="footer-tagline">Votre agence d'automatisation préférée</p>
-        </div>
-        <ul class="footer-links">
-          <li><a href="index.html#notre-demarche">Notre démarche</a></li>
-          <li><a href="index.html#features">Services</a></li>
-          <li><a href="index.html#about">À propos</a></li>
-          <li><a href="index.html#faq">FAQ</a></li>
-          <li><a href="Actualités.html">Actualités</a></li>
-        </ul>
-        <span class="footer-copy">© 2025. Tous droits réservés.</span>
-      </div>
-      <div class="footer-bottom">
-        <a href="mentions-legales.html">Mentions Légales</a> &nbsp;·&nbsp;
-        <a href="politique-confidentialite.html">Politique de confidentialité</a> &nbsp;·&nbsp;
-        <a href="politique-cookies.html">Cookies</a>
-      </div>
-    </div>
-  </footer>
-  <script src="js/main.js"></script>
-</body>
-</html>
+  </div>

@@ -1,0 +1,27 @@
+{
+  "name": "yanalabs",
+  "version": "1.0.0",
+  "description": "Copie fidèle du site [YanaLabs](https://breathtaking-ones-036619.framer.app), réalisée en HTML/CSS/JS vanilla.",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YanaPalyvoda/yanalabs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YanaPalyvoda/yanalabs/issues"
+  },
+  "homepage": "https://github.com/YanaPalyvoda/yanalabs#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.5"
+  },
+  "dependencies": {
+    "luxon": "^3.7.2"
+  }
+}
