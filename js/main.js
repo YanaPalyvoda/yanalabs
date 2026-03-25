@@ -67,32 +67,208 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
   card.dataset.delay = i * 80;
 });
 
-/* --- CONTACT FORM (demo handler) -------------------------- */
+/* ✅ CORRECTION — envoie vraiment au webhook */
 (function initForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
-  form.addEventListener('submit', (e) => {
+
+  /* ── Helpers ── */
+  function showError(input, className, message) {
+    input.style.border = '1.5px solid #ef4444';
+    let err = form.querySelector('.' + className);
+    if (!err) {
+      err = document.createElement('p');
+      err.className = className;
+      err.style.cssText = 'color:#ef4444;font-size:12px;margin-top:4px;';
+      input.parentElement.appendChild(err);
+    }
+    err.textContent = message;
+  }
+
+  function clearError(input, className) {
+    input.style.border = '';
+    const err = form.querySelector('.' + className);
+    if (err) err.remove();
+  }
+
+  /* ── Nettoyage en temps réel ── */
+  form.querySelectorAll('input, textarea').forEach(field => {
+    field.addEventListener('input', () => {
+      clearError(field, field.name + '-error');
+    });
+  });
+
+  /* ── Soumission ── */
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    let hasError = false;
+
+    /* 1. Nom */
+    const nom = form.querySelector('#nom');
+    if (!nom.value.trim()) {
+      showError(nom, 'nom-error', '⚠️ Le nom est obligatoire.');
+      hasError = true;
+    } else {
+      clearError(nom, 'nom-error');
+    }
+
+    /* 2. Prénom */
+    const prenom = form.querySelector('#prenom');
+    if (!prenom.value.trim()) {
+      showError(prenom, 'prenom-error', '⚠️ Le prénom est obligatoire.');
+      hasError = true;
+    } else {
+      clearError(prenom, 'prenom-error');
+    }
+
+    /* 3. Email */
+    const email = form.querySelector('#email');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.value.trim()) {
+      showError(email, 'email-error', '⚠️ L\'email est obligatoire.');
+      hasError = true;
+    } else if (!emailRegex.test(email.value.trim())) {
+      showError(email, 'email-error', '⚠️ Veuillez saisir un email valide.');
+      hasError = true;
+    } else {
+      clearError(email, 'email-error');
+    }
+
+    /* 4. Téléphone */
+    const phone = form.querySelector('#phone');
+    if (!phone.value.trim()) {
+      showError(phone, 'phone-error', '⚠️ Le numéro de téléphone est obligatoire.');
+      hasError = true;
+    } else {
+      clearError(phone, 'phone-error');
+    }
+
+    /* 5. Entreprise */
+    const entreprise = form.querySelector('#entreprise');
+    if (!entreprise.value.trim()) {
+      showError(entreprise, 'entreprise-error', '⚠️ Le nom de l\'entreprise est obligatoire.');
+      hasError = true;
+    } else {
+      clearError(entreprise, 'entreprise-error');
+    }
+
+    /* 6. Besoin */
+    const besoin = form.querySelector('#besoin');
+    if (!besoin.value.trim()) {
+      showError(besoin, 'besoin-error', '⚠️ Veuillez décrire votre besoin.');
+      hasError = true;
+    } else {
+      clearError(besoin, 'besoin-error');
+    }
+
+    /* ── Bloquer si erreur ── */
+    if (hasError) return;
+
+    /* ── Envoi webhook ── */
     const btn = form.querySelector('[type="submit"]');
-    btn.textContent = 'Envoyé ✅';
-    btn.style.background = 'linear-gradient(136deg, #6dd5a8, #2fa876)';
-    setTimeout(() => {
-      btn.textContent = 'Envoyer';
-      btn.style.background = '';
+    btn.textContent = 'Envoi en cours...';
+    btn.disabled = true;
+
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      await fetch('https://hook.eu1.make.com/https://hook.eu1.make.com/dbsob3hxaxff8flhljj66mk977oitkrg', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      btn.textContent = 'Envoyé ✅';
       form.reset();
-    }, 3500);
+    } catch (err) {
+      btn.textContent = 'Erreur, réessayez ❌';
+      btn.disabled = false;
+    }
   });
 })();
-
-/* --- NEWSLETTER FORM -------------------------------------- */
+/* ✅ CORRECTION initNewsletter */
 (function initNewsletter() {
   const form = document.getElementById('newsletterForm');
   if (!form) return;
-  form.addEventListener('submit', (e) => {
+
+  const btn        = form.querySelector('.newsletter-submit');
+  const emailInput = form.querySelector('input[type="email"]');
+  const gdpr       = document.getElementById('gdpr');
+
+  /* ── Helpers : afficher / cacher erreur ── */
+  function showError(element, className, message) {
+    element.style.border = '1.5px solid #ef4444';
+    element.style.accentColor = '#ef4444';
+    let err = form.querySelector('.' + className);
+    if (!err) {
+      err = document.createElement('p');
+      err.className = className;
+      err.style.cssText = 'color:#ef4444;font-size:12px;margin-top:6px;';
+      element.parentElement.insertAdjacentElement('afterend', err);
+    }
+    err.textContent = message;
+  }
+
+  function clearError(element, className) {
+    element.style.border = '';
+    element.style.accentColor = '';
+    const err = form.querySelector('.' + className);
+    if (err) err.remove();
+  }
+
+  /* ── Nettoyage en temps réel ── */
+  emailInput.addEventListener('input', () => clearError(emailInput, 'email-error'));
+  gdpr.addEventListener('change',      () => clearError(gdpr,       'gdpr-error'));
+
+  /* ── Soumission ── */
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = form.querySelector('.newsletter-submit');
-    btn.textContent = 'Inscrit ✅';
-    setTimeout(() => { btn.innerHTML = 'Je m\'inscrit <span class="newsletter-arrow">→</span>'; form.reset(); }, 3000);
+
+    let hasError = false;
+
+    /* 1. Vérification email */
+    const emailVal   = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailVal) {
+      showError(emailInput, 'email-error', '⚠️ L\'adresse email est obligatoire.');
+      hasError = true;
+    } else if (!emailRegex.test(emailVal)) {
+      showError(emailInput, 'email-error', '⚠️ Veuillez saisir une adresse email valide.');
+      hasError = true;
+    } else {
+      clearError(emailInput, 'email-error');
+    }
+
+    /* 2. Vérification RGPD */
+    if (!gdpr.checked) {
+      showError(gdpr, 'gdpr-error', '⚠️ Veuillez accepter les conditions pour continuer.');
+      hasError = true;
+    } else {
+      clearError(gdpr, 'gdpr-error');
+    }
+
+    /* 3. Bloquer si erreur */
+    if (hasError) return;
+
+    /* 4. Envoi webhook */
+    btn.textContent = 'Envoi en cours...';
+    btn.disabled    = true;
+
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      await fetch('VOTRE_URL_WEBHOOK', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      btn.innerHTML = 'Inscrit ✅';
+      form.reset();
+    } catch (err) {
+      btn.textContent = 'Erreur, réessayez ❌';
+      btn.disabled    = false;
+    }
   });
 })();
 
@@ -111,6 +287,15 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
+  /* --- CAS D'USAGE — variable on/off ----------------------- */
+const SHOW_CAS_USAGE = true; /* ← true = visible / false = caché */
+
+const casUsageSection = document.getElementById('cas-usage');
+  if (casUsageSection) {
+    if (!SHOW_CAS_USAGE) {
+      casUsageSection.classList.add('hidden');
+    }
+  }
 
   const steps = document.querySelectorAll(
     '.workflow-diagram .wf-node, .workflow-diagram .wf-connector-v, .workflow-diagram .wf-node-non'
