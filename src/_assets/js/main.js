@@ -291,7 +291,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
   gsap.registerPlugin(ScrollTrigger);
   /* --- CAS D'USAGE — variable on/off ----------------------- */
-const SHOW_CAS_USAGE = true; /* ← true = visible / false = caché */
+const SHOW_CAS_USAGE = false; /* ← true = visible / false = caché */
 
 const casUsageSection = document.getElementById('cas-usage');
   if (casUsageSection) {
