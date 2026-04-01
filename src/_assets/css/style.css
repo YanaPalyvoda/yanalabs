@@ -1044,6 +1044,11 @@ footer {
   font-size: 13px;
   color: var(--color-accent-soft);
 }
+.footer-bottom a {
+  color: var(--color-accent-soft);
+  transition: color var(--transition);
+}
+.footer-bottom a:hover { color: var(--color-primary); }
 
 /* --- SCROLL REVEAL ---------------------------------------- */
 .reveal {
@@ -1054,6 +1059,73 @@ footer {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+/* --- ACTUALITE --------------------------------------- */
+.actualites {
+  padding: 120px 0;
+  background: var(--color-bg-light);
+}
+.section-header { text-align: center; margin-bottom: 64px; }
+.section-header h2 {
+  font-size: 62px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+.section-header p {
+  font-size: 17px;
+  color: var(--color-accent-soft);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.step-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px 32px;
+  box-shadow: 0 2px 16px rgba(87,62,105,0.07);
+  border: 1px solid rgba(87,62,105,0.06);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+.step-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.step-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(87,62,105,0.11);
+}
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(159,128,218,0.12);
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-cta-purple);
+  margin-bottom: 28px;
+}
+.step-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-cta-purple);
+  margin-bottom: 12px;
+}
+.step-card p {
+  font-size: 15px;
+  color: var(--color-secondary);
+  line-height: 1.65;
 }
 
 /* --- RESPONSIVE ------------------------------------------ */
@@ -1107,6 +1179,25 @@ footer {
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .workflow-visual { height: 340px; }
   .contact-inner h2 { font-size: 32px; }
+  .footer-bottom {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(87,62,105,0.07);
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-accent-soft);
+  }
+  .footer-bottom a {
+    color: var(--color-accent-soft);
+    transition: color var(--transition);
+  }
+  .footer-bottom a:hover { color: var(--color-primary); }
+
+  .footer-bottom .footer-sep {      /* ← si tu as une classe sur les · */
+    display: none;
+  }
+  
+  
 }
 @media (max-width: 480px) {
   .container { padding: 0 20px; }

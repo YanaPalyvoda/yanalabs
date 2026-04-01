@@ -273,11 +273,26 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
 })();
 
 /* --- SMOOTH SCROLL for anchors --------------------------- */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
+// REMPLACER le bloc smooth scroll existant par :
+document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
   a.addEventListener('click', function(e) {
     const href = this.getAttribute('href');
-    // Ignore les liens /#section (navigation inter-pages)
-    if (href.startsWith('/#')) return;
+
+    // Liens type /#section
+    if (href.startsWith('/#')) {
+      const id = href.replace('/#', '#');
+      const target = document.querySelector(id);
+      // Si on est sur la page d'accueil et que la cible existe
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      // Sinon laisser naviguer normalement vers /#section
+      return;
+    }
+
+    // Liens type #section
+    if (href === '#') return;
     const target = document.querySelector(href);
     if (target) {
       e.preventDefault();
