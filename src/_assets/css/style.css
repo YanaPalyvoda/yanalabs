@@ -1201,7 +1201,7 @@ footer {
 }
 @media (max-width: 480px) {
   .container { padding: 0 20px; }
-  .hero { padding-top: 100px; padding-bottom: 60px; }
+  .hero { padding-top: 120px; padding-bottom: 60px; }
   .hero h1 { font-size: 30px; }
   .newsletter-content h2 {
     font-size: 28px;
