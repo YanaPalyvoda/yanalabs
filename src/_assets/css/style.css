@@ -1191,13 +1191,7 @@ footer {
     color: var(--color-accent-soft);
     transition: color var(--transition);
   }
-  .footer-bottom a:hover { color: var(--color-primary); }
-
-  .footer-bottom .footer-sep {      /* ← si tu as une classe sur les · */
-    display: none;
-  }
-  
-  
+  .footer-bottom a:hover { color: var(--color-primary); }  
 }
 @media (max-width: 480px) {
   .container { padding: 0 20px; }
