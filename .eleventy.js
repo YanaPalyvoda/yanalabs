@@ -7,6 +7,9 @@ module.exports = function(eleventyConfig) {
       .setLocale("fr")
       .toFormat("dd MMMM yyyy");
   });
+  eleventyConfig.addFilter("isoDate", (date) => {
+    return new Date(date).toISOString().slice(0, 10);
+  });
 
   eleventyConfig.addFilter("htmlDateString", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy-MM-dd");

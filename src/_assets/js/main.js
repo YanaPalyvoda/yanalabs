@@ -332,13 +332,44 @@ const casUsageSection = document.getElementById('cas-usage');
       ease: 'power2.out',
     }, '+=0.1');
   });
-
-  ScrollTrigger.create({
+  ScrollTrigger.create({ 
     trigger: '.workflow-diagram',
     start: 'top 70%',
-    onEnter:      () => tl.restart(),
-    onEnterBack:  () => tl.restart(),
-    onLeave:      () => tl.progress(0).pause(),
-    onLeaveBack:  () => tl.progress(0).pause(),
-  });
+    end: 'bottom top',
+    onEnter: () => tl.restart(),
+    onEnterBack: () => tl.restart(),
+    onLeave: () => tl.progress(0).pause(),
+    onLeaveBack: () => tl.progress(0).pause(),
+   });
+   module.exports = {
+    url: "https://yanalabs.fr"
+  };
+})();
+// src/_assets/js/main.js
+(function () {
+  function initAccordions() {
+    document.querySelectorAll('.accordion-trigger').forEach(function (btn) {
+      if (btn.dataset.init) return; // évite les doublons
+      btn.dataset.init = '1';
+
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.accordion-item');
+        var isOpen = item.classList.contains('open');
+
+        // Ferme tous les autres
+        document.querySelectorAll('.accordion-item.open').forEach(function (el) {
+          el.classList.remove('open');
+        });
+
+        // Ouvre celui cliqué (si il était fermé)
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAccordions);
+  } else {
+    initAccordions();
+  }
 })();
