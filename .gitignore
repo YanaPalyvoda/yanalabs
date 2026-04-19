@@ -2,3 +2,5 @@
 node_modules/
 dist/
 .DS_Store
+/articles/prompt.txt
+/articles/template_article.txt

@@ -345,31 +345,51 @@ const casUsageSection = document.getElementById('cas-usage');
     url: "https://yanalabs.fr"
   };
 })();
-// src/_assets/js/main.js
-(function () {
-  function initAccordions() {
-    document.querySelectorAll('.accordion-trigger').forEach(function (btn) {
-      if (btn.dataset.init) return; // évite les doublons
-      btn.dataset.init = '1';
+/* --- ARTICLE TOC : lien actif au scroll ------------------ */
+(function initArticleToc() {
+  const tocLinks = document.querySelectorAll('.article-toc a');
+  if (!tocLinks.length) return;
 
-      btn.addEventListener('click', function () {
-        var item = btn.closest('.accordion-item');
-        var isOpen = item.classList.contains('open');
+  const headings = document.querySelectorAll(
+    '.article-body h2[id], .article-body h3[id]'
+  );
 
-        // Ferme tous les autres
-        document.querySelectorAll('.accordion-item.open').forEach(function (el) {
-          el.classList.remove('open');
-        });
+  /* ✅ AJOUT : scroll manuel avec offset dynamique */
+  tocLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
 
-        // Ouvre celui cliqué (si il était fermé)
-        if (!isOpen) item.classList.add('open');
-      });
+      const targetId = this.getAttribute('href')?.replace('#', '');
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (!target) return;
+
+      // Récupère la hauteur réelle du header sticky
+      const header = document.querySelector('header, nav, .site-header, .navbar');
+      const headerHeight = header ? header.offsetHeight : 100;
+      const extraOffset = 96; // marge de confort
+
+      const top =
+        target.getBoundingClientRect().top +
+        window.scrollY -
+        headerHeight -
+        extraOffset;
+
+      window.scrollTo({ top, behavior: 'smooth' });
     });
-  }
+  });
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAccordions);
-  } else {
-    initAccordions();
-  }
+  /* IntersectionObserver pour le lien actif — inchangé */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(
+          `.article-toc a[href="#${entry.target.id}"]`
+        );
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-100px 0px -60% 0px' });
+
+  headings.forEach(h => io.observe(h));
 })();

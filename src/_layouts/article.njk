@@ -4,7 +4,6 @@ layout: base.njk
 <article class="article-page">
   <div class="container">
 
-    {# ——— BREADCRUMB SEO ——— #}
     <nav class="breadcrumb" aria-label="Fil d'Ariane">
       <a href="/">Accueil</a>
       <span>›</span>
@@ -13,64 +12,49 @@ layout: base.njk
       <span>{{ title }}</span>
     </nav>
 
-    {# ——— EN-TÊTE ARTICLE ——— #}
     <header class="article-header">
-      {% if categorie %}
-        <span class="badge">{{ categorie }}</span>
-      {% endif %}
+      {% if categorie %}<span class="badge">{{ categorie }}</span>{% endif %}
       <h1>{{ title }}</h1>
-      {% if description %}
-        <p class="article-description">{{ description }}</p>
-      {% endif %}
+      {% if description %}<p class="article-description">{{ description }}</p>{% endif %}
       <div class="article-meta">
-        <time datetime="{{ page.date | htmlDateString }}">
-          {{ page.date | readableDate }}
-        </time>
-        {% if temps_lecture %}
-          <span>·</span>
-          <span>{{ temps_lecture }} min de lecture</span>
-        {% endif %}
+        <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+        {% if temps_lecture %}<span>·</span><span>{{ temps_lecture }} min de lecture</span>{% endif %}
       </div>
     </header>
 
-    {# ——— IMAGE HERO ——— #}
     {% if image %}
       <div class="article-hero-image">
         <img src="{{ image }}" alt="{{ title }}" loading="eager"/>
       </div>
     {% endif %}
 
-    {# ——— CONTENU + SOMMAIRE ——— #}
     <div class="article-layout">
 
-      {# Sommaire — généré automatiquement depuis les titres H2 #}
       {% if sommaire %}
         <aside class="article-toc">
           <p class="toc-title">Sommaire</p>
           <ul>
             {% for item in sommaire %}
-              ><a href="#{{ item.slug }}">{{ item.titre }}</a></li>
+              <li><a href="#{{ item.slug }}">{{ item.titre }}</a></li>
             {% endfor %}
           </ul>
         </aside>
       {% endif %}
 
-      {# Corps de l'article #}
       <div class="article-body">
         {{ content | safe }}
 
-        {# ——— CTA FIN D'ARTICLE ——— #}
         <div class="article-cta">
           <h3>Prêt à automatiser votre activité ?</h3>
           <p>Réservez un audit gratuit et découvrez combien d'heures vous pouvez récupérer chaque semaine.</p>
-          <a href="https://calendly.com/yanalabs/30min"
-             target="_blank" rel="noopener"
-             class="btn btn-gradient">
+          <a href="https://calendly.com/yanalabs/30min" target="_blank" rel="noopener" class="btn btn-gradient">
             Je réserve mon appel découverte
           </a>
         </div>
 
-        {# ——— NAVIGATION PREV/NEXT ——— #}
+      </div>
+    </div>
+    {# ——— NAVIGATION PREV/NEXT ——— #}
         <nav class="article-nav">
           {%- set previousPost = collections.articles | getPreviousCollectionItem %}
           {%- set nextPost = collections.articles | getNextCollectionItem %}
