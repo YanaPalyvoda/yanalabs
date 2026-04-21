@@ -7,7 +7,7 @@ date: 2026-04-03
 tags: ["articles", "relance factures impayées automatique", "relance client automatique", "automatiser factures impayées PME", ]
 categorie: "Gain Temps"
 temps_lecture: 6
-image: "/images/articles/21-04-2026_Automatiser ses relances clients.webp"
+image: "/images/articles/21-04-2026_Automatiser_ses_relances_clients.webp"
 sommaire:
   - { titre: "Comment le problème des factures impayées se manifeste-t-il dans une PME ? ", slug: "section-1" }
   - { titre: "Comment mettre en place une relance automatique sans une ligne de code ? ", slug: "section-2" }
