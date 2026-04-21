@@ -4,15 +4,15 @@ date: 2026-03-25
 description: "Découvrez comment les artisans et PME du BTP utilisent Make et Airtable pour générer leurs devis automatiquement, relancer les impayés et ne plus perdre de temps sur l'administratif."
 categorie: "BTP"
 temps_lecture: 6
-image: /images/article1_btp.webp
+image: /images/articles/article1_btp.webp
 sommaire:
   - titre: "Le problème administratif dans le BTP"
     slug: "probleme-administratif-btp"
-  - titre: "1. La génération automatique de devis"
+  - titre: "La génération automatique de devis"
     slug: "generation-automatique-devis"
-  - titre: "2. La relance automatique des impayés"
+  - titre: "La relance automatique des impayés"
     slug: "relance-automatique-impayes"
-  - titre: "3. Le suivi client centralisé"
+  - titre: "Le suivi client centralisé"
     slug: "suivi-client-centralise"
   - titre: "Combien de temps peut-on vraiment gagner ?"
     slug: "temps-gagne"
@@ -124,7 +124,7 @@ Make synchronise automatiquement toutes ces informations dès qu'une action se p
 Voici une estimation réaliste pour une PME BTP de 3 à 10 personnes :
 
 | Tâche | Avant | Après | Gain/semaine |
-|---|---|---|---|
+|:-----------------------|:----------:|:----------:|:---------------:|
 | Génération de devis | 5h | 30 min | **4h30** |
 | Relances impayés | 3h | 0 | **3h** |
 | Saisie données clients | 2h | 0 | **2h** |

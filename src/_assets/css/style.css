@@ -1258,7 +1258,7 @@ footer {
 .breadcrumb a:hover { color: var(--color-primary); }
 
 .article-header {
-  max-width: 760px;
+  max-width: 89%;
   margin: 0 auto 48px;
   
 }
@@ -1429,12 +1429,12 @@ footer {
   box-shadow: var(--shadow-glass);
 }
 .stat-value {
-  font-size: 36px; font-weight: 700;
+  font-size: 28px; font-weight: 700;
   color: var(--color-accent);
   display: block; line-height: 1.1; margin-bottom: 6px;
 }
 .stat-label {
-  font-size: 14px; color: var(--color-accent-soft); line-height: 1.4;
+  font-size: 16px; color: var(--color-accent-soft); line-height: 1.4;
 }
 /* AVANT — n'existe pas dans style.css, à ajouter dans la section article */
 
@@ -1448,7 +1448,7 @@ footer {
 .table-wrap thead tr { background: #a78bfa; }
 .table-wrap thead th {
   padding: 16px 20px; text-align: left;
-  font-size: 14px; font-weight: 600; color: #fff; white-space: nowrap;
+  font-size: 16px; font-weight: 600; color: #fff; white-space: nowrap;
 }
 .table-wrap tbody tr { border-bottom: 1px solid rgba(87,62,105,0.07); transition: background var(--transition); }
 .table-wrap tbody tr:hover { background: var(--color-bg-light); }

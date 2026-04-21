@@ -67,7 +67,7 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
   card.dataset.delay = i * 80;
 });
 
-/* ✅ CORRECTION — envoie vraiment au webhook */
+/* --- FORMULAIRE CONTACT ---------------------------------- */
 (function initForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
@@ -135,13 +135,16 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
       clearError(email, 'email-error');
     }
 
-    /* 4. Téléphone */
+   /* 4. Téléphone */
     const phone = form.querySelector('#phone');
     if (!phone.value.trim()) {
       showError(phone, 'phone-error', '⚠️ Le numéro de téléphone est obligatoire.');
       hasError = true;
     } else {
       clearError(phone, 'phone-error');
+      // Formater le numéro avec +33 avant envoi
+      const cleaned = phone.value.trim().replace(/\s/g, '').replace(/^0/, '');
+      phone.value = '+33' + cleaned;
     }
 
     /* 5. Entreprise */
@@ -173,12 +176,15 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
     const data = Object.fromEntries(new FormData(form));
 
     try {
-      await fetch('https://hook.eu1.make.com/dbsob3hxaxff8flhljj66mk977oitkrg', {
+      const res = await fetch('https://hook.eu1.make.com/dbsob3hxaxff8flhljj66mk977oitkrg', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
+      // ✅ FIX : vérifier aussi les erreurs HTTP (4xx / 5xx)
+      if (!res.ok) throw new Error('HTTP ' + res.status);
       btn.textContent = 'Envoyé ✅';
+      btn.disabled = false; // ✅ FIX : réactiver le bouton après succès
       form.reset();
     } catch (err) {
       btn.textContent = 'Erreur, réessayez ❌';
@@ -186,14 +192,22 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
     }
   });
 })();
-/* ✅ CORRECTION initNewsletter */
+
+/* --- NEWSLETTER ------------------------------------------ */
 (function initNewsletter() {
   const form = document.getElementById('newsletterForm');
   if (!form) return;
 
-  const btn        = form.querySelector('.newsletter-submit');
-  const emailInput = form.querySelector('input[type="email"]');
+  // ✅ FIX : fallback sur [type="submit"] si .newsletter-submit est absent du HTML
+  const btn        = form.querySelector('.newsletter-submit') || form.querySelector('[type="submit"]') || form.querySelector('button');
+  // ✅ FIX : le champ s'appelle "newsletter-email" dans le HTML (pas "email")
+  const emailInput = form.querySelector('input[name="newsletter-email"]') || form.querySelector('input[type="email"]');
   const gdpr       = document.getElementById('gdpr');
+
+  if (!btn || !emailInput || !gdpr) {
+    console.warn('[Newsletter] Élément manquant dans le formulaire :', { btn, emailInput, gdpr });
+    return;
+  }
 
   /* ── Helpers : afficher / cacher erreur ── */
   function showError(element, className, message) {
@@ -258,12 +272,15 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
     const data = Object.fromEntries(new FormData(form));
 
     try {
-      await fetch('https://hook.eu1.make.com/9uem47pfvdxfiu72q7vxq4t9yn1eotxj', {
+      const res = await fetch('https://hook.eu1.make.com/9uem47pfvdxfiu72q7vxq4t9yn1eotxj', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
-      btn.innerHTML = 'Inscrit ✅';
+      // ✅ FIX : vérifier aussi les erreurs HTTP (4xx / 5xx)
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      btn.textContent = 'Inscrit ✅';
+      btn.disabled    = false; // ✅ FIX : réactiver le bouton après succès
       form.reset();
     } catch (err) {
       btn.textContent = 'Erreur, réessayez ❌';
@@ -273,7 +290,6 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
 })();
 
 /* --- SMOOTH SCROLL for anchors --------------------------- */
-// REMPLACER le bloc smooth scroll existant par :
 document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
   a.addEventListener('click', function(e) {
     const href = this.getAttribute('href');
@@ -300,15 +316,17 @@ document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
     }
   });
 });
+
 /* --- GSAP WORKFLOW SCROLL ANIMATION ----------------------- */
 (function initWorkflowAnimation() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
-  /* --- CAS D'USAGE — variable on/off ----------------------- */
-const SHOW_CAS_USAGE = false; /* ← true = visible / false = caché */
 
-const casUsageSection = document.getElementById('cas-usage');
+  /* --- CAS D'USAGE — variable on/off ----------------------- */
+  const SHOW_CAS_USAGE = false; /* ← true = visible / false = caché */
+
+  const casUsageSection = document.getElementById('cas-usage');
   if (casUsageSection) {
     if (!SHOW_CAS_USAGE) {
       casUsageSection.classList.add('hidden');
@@ -332,7 +350,8 @@ const casUsageSection = document.getElementById('cas-usage');
       ease: 'power2.out',
     }, '+=0.1');
   });
-  ScrollTrigger.create({ 
+
+  ScrollTrigger.create({
     trigger: '.workflow-diagram',
     start: 'top 70%',
     end: 'bottom top',
@@ -340,11 +359,10 @@ const casUsageSection = document.getElementById('cas-usage');
     onEnterBack: () => tl.restart(),
     onLeave: () => tl.progress(0).pause(),
     onLeaveBack: () => tl.progress(0).pause(),
-   });
-   module.exports = {
-    url: "https://yanalabs.fr"
-  };
+  });
+  // ✅ FIX : suppression de module.exports (invalide dans un navigateur)
 })();
+
 /* --- ARTICLE TOC : lien actif au scroll ------------------ */
 (function initArticleToc() {
   const tocLinks = document.querySelectorAll('.article-toc a');
