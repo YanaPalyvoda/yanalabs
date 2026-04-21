@@ -4,7 +4,7 @@ date: 2026-03-25
 description: "Découvrez comment les artisans et PME du BTP utilisent Make et Airtable pour générer leurs devis automatiquement, relancer les impayés et ne plus perdre de temps sur l'administratif."
 categorie: "BTP"
 temps_lecture: 6
-image: /images/articles/article1_btp.webp
+image: /images/article1_btp.webp
 sommaire:
   - titre: "Le problème administratif dans le BTP"
     slug: "probleme-administratif-btp"

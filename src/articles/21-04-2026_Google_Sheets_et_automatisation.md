@@ -7,7 +7,7 @@ date: 2026-04-21
 tags: ["articles", "automatisation", "google sheets", "gains temps", "no-code", ]
 categorie: "Gain Temps"
 temps_lecture: 5
-image: "/images/articles/21-04-2026_Google_Sheets_et_automatisation.webp"
+image: "/images/21-04-2026_Google_Sheets_et_automatisation.webp"
 sommaire:
   - { titre: "Comment le manque d’automatisation impacte-t-il votre PME et vos marges ? ", slug: "section-1" }
   - { titre: "Comment automatiser google sheets sans une ligne de code ? ", slug: "section-2" }
