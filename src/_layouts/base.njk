@@ -7,7 +7,7 @@
 
   <!-- Title & SEO -->
   <title>{{ title if title else "YanaLabs — Automatisation No-Code pour TPE/PME" }}</title>
-  <meta name="description" content="{{ description if description else 'Automatisation no-code pour gagner du temps et scaler votre business.' }}"/>
+  <meta name="description" content="{{ description if description else 'YanaLabs automatise vos tâches répétitives grâce au no-code (Make, Airtable). Solutions sur-mesure pour TPE et PME en Île-de-France. Audit gratuit et sans engagement.' }}"/>
   <meta name="robots" content="index, follow"/>
 
   <!-- Canonical -->
@@ -16,7 +16,7 @@
   <!-- Open Graph (Facebook, LinkedIn) -->
   <meta property="og:title" content="{{ title if title else 'YanaLabs — Automatisation No-Code' }}"/>
   <meta property="og:description" content="{{ description if description else 'Gagnez du temps avec des automatisations no-code sur mesure.' }}"/>
-  <meta property="og:type" content="website"/>
+  <meta property="og:type" content="{{ 'article' if layout == 'article.njk' else 'website' }}"/>
   <meta property="og:url" content="https://yanalabs.fr{{ page.url }}"/>
   <meta property="og:site_name" content="YanaLabs"/>
   <meta property="og:image" content="https://yanalabs.fr/images/og-image.jpg"/>
@@ -128,5 +128,169 @@
     "logo": "https://yanalabs.fr/images/Favicon.png"
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "YanaLabs",
+    "url": "https://yanalabs.fr",
+    "logo": "https://yanalabs.fr/images/Favicon.png",
+    "image": "https://yanalabs.fr/images/og-image.jpg",
+    "description": "YanaLabs automatise les tâches répétitives des TPE et PME grâce au no-code (Make, Airtable). Solutions sur-mesure en Île-de-France.",
+    "telephone": "+33-695580203",
+    "email": "automation@yanalabs.fr",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Neuilly-Plaisance",
+      "addressRegion": "Île-de-France",
+      "addressCountry": "FR"
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "Île-de-France"
+    },
+    "priceRange": "€€",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Automatisation No-Code",
+    "name": "Automatisation de tâches répétitives pour TPE/PME",
+    "provider": {
+      "@type": "Organization",
+      "name": "YanaLabs",
+      "url": "https://yanalabs.fr"
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "Île-de-France"
+    },
+    "description": "Automatisation sur-mesure de vos processus métier : gestion des prospects, envoi de devis, relances impayés, connexion d'outils (Gmail, Excel, CRM) et tableaux de bord centralisés.",
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "EUR",
+      "price": "0",
+      "description": "Audit gratuit et sans engagement"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Yana",
+    "jobTitle": "Fondatrice",
+    "image": "https://yanalabs.fr/images/aboutme.jpeg",
+    "url": "https://yanalabs.fr/#about",
+    "sameAs": [
+      "https://www.linkedin.com/in/yana-palyvoda"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "YanaLabs",
+      "url": "https://yanalabs.fr"
+    },
+    "knowsAbout": ["Automatisation no-code", "Make", "Airtable", "Transformation digitale TPE PME"],
+    "alumniOf": ["Enedis", "Crédit Agricole CIB"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Île-de-France",
+      "addressCountry": "FR"
+    }
+  }
+</script>
+  {% if faqPage %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Je n'y connais rien en informatique, est-ce que je vais savoir l'utiliser ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolument ! Nos solutions sont conçues pour être intuitives. Nous vous formons et restons disponibles pour toute question."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Et si j'ai un problème après la mise en place, je suis tout seul ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Non, vous bénéficiez d'un suivi personnalisé avec un mois de maintenance inclus et un support continu."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Est-ce que ça coûte cher de tout automatiser ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le coût est adapté à vos besoins. Le retour sur investissement est rapide grâce aux heures économisées chaque semaine."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien de temps ça va me prendre ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La mise en place prend 1 à 2 semaines. Ensuite, les automatisations tournent seules."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Est-ce que mes données clients sont en sécurité ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, nous utilisons uniquement des outils conformes RGPD. Vos données restent sous votre contrôle."
+        }
+      }
+    ]
+  }
+  </script>
+  {% endif %}
+  {% if layout == "article.njk" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ title }}",
+    "description": "{{ description }}",
+    "datePublished": "{{ page.date | htmlDateString }}",
+    "dateModified": "{{ page.date | htmlDateString }}",
+    "url": "https://yanalabs.fr{{ page.url }}",
+    "inLanguage": "fr-FR",
+    {% if image %}"image": "https://yanalabs.fr{{ image }}",{% endif %}
+    "keywords": "{{ categorie if categorie else 'automatisation no-code, TPE PME' }}",
+    "author": {
+      "@type": "Person",
+      "name": "Yana",
+      "url": "https://yanalabs.fr/#about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "YanaLabs",
+      "url": "https://yanalabs.fr",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://yanalabs.fr/images/Favicon.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://yanalabs.fr{{ page.url }}"
+    }
+  }
+</script>
+{% endif %}
 </body>
 </html>

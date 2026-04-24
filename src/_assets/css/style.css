@@ -1577,7 +1577,6 @@ footer {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-
   .article-toc {
     position: static;
   }
@@ -1624,5 +1623,45 @@ footer {
 
   .breadcrumb {
     flex-wrap: wrap;
+  }
+}
+/* ——— ARTICLE MOBILE FIXES ——— */
+@media (max-width: 768px) {
+  .article-page { padding: 20px 0 60px; }
+
+  .article-header,
+  .article-hero-image {
+    max-width: 100%;
+    padding: 0;
+    margin-bottom: 32px;
+  }
+
+  .article-cta { padding: 36px 24px; }
+  .article-cta h3 { font-size: 24px; }
+}
+
+@media (max-width: 600px) {
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .table-wrap thead th,
+  .table-wrap tbody td {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .article-layout {
+    gap: 24px;
+  }
+
+  .article-toc {
+    padding: 16px;
+  }
+
+  .article-body {
+    font-size: 16px;
   }
 }
