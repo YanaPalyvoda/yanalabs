@@ -123,6 +123,9 @@ Make synchronise automatiquement toutes ces informations dès qu'une action se p
 
 Voici une estimation réaliste pour une PME BTP de 3 à 10 personnes :
 
+<!-- Modifications 20260424 par Openclaw — tableau wrappé dans .table-wrap pour style + responsive mobile -->
+<div class="table-wrap">
+
 | Tâche | Avant | Après | Gain/semaine |
 |:-----------------------|:----------:|:----------:|:---------------:|
 | Génération de devis | 5h | 30 min | **4h30** |
@@ -130,6 +133,8 @@ Voici une estimation réaliste pour une PME BTP de 3 à 10 personnes :
 | Saisie données clients | 2h | 0 | **2h** |
 | Suivi chantiers | 2h | 30 min | **1h30** |
 | **Total** | **12h** | **1h** | **11h/semaine** |
+
+</div>
 
 11 heures récupérées chaque semaine, c'est plus d'un jour de travail entier remis au service de votre cœur de métier.
 

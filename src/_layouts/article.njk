@@ -24,7 +24,9 @@ layout: base.njk
 
     {% if image %}
       <div class="article-hero-image">
-        <img src="{{ image }}" alt="{{ title }}" loading="eager"/>
+        <!-- Modifications 20260424 par Openclaw -->
+        <!-- <img src="{{ image }}" alt="{{ title }}" loading="eager"/> -->
+        <img src="{{ image }}" alt="{{ title }}" loading="eager" decoding="async" />
       </div>
     {% endif %}
 
@@ -72,11 +74,14 @@ layout: base.njk
           {% endif %}
         </nav>
 
-      </div>
-    </div>
+    {# Modifications 20260424 par Openclaw — 2 </div> orphelins commentés (HTML cassé) #}
+    {# </div> #}
+    {# </div> #}
 
     {# ——— ARTICLES SIMILAIRES ——— #}
-    {% set similaires = collections.articles | reverse | limit(3) %}
+    {# Modifications 20260424 par Openclaw — filtre excludeUrl pour toujours avoir 3 articles #}
+    {# {% set similaires = collections.articles | reverse | limit(3) %} #}
+    {% set similaires = collections.articles | reverse | excludeUrl(page.url, 3) %}
     {% if similaires.length %}
       <section class="articles-similaires">
         <h2>Continuer la lecture</h2>

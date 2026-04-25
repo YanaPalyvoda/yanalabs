@@ -136,6 +136,8 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
     }
 
    /* 4. Téléphone */
+    // Modifications 20260424 par Openclaw — validation format + formatage séparé de la validation
+    /*
     const phone = form.querySelector('#phone');
     if (!phone.value.trim()) {
       showError(phone, 'phone-error', '⚠️ Le numéro de téléphone est obligatoire.');
@@ -145,6 +147,19 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
       // Formater le numéro avec +33 avant envoi
       const cleaned = phone.value.trim().replace(/\s/g, '').replace(/^0/, '');
       phone.value = '+33' + cleaned;
+    }
+    */
+    const phone = form.querySelector('#phone');
+    const phoneClean = phone.value.trim().replace(/\s/g, '');
+    const phoneRegex = /^0[1-9][0-9]{8}$/;
+    if (!phoneClean) {
+      showError(phone, 'phone-error', '⚠️ Le numéro de téléphone est obligatoire.');
+      hasError = true;
+    } else if (!phoneRegex.test(phoneClean)) {
+      showError(phone, 'phone-error', '⚠️ Format attendu : 06 12 34 56 78');
+      hasError = true;
+    } else {
+      clearError(phone, 'phone-error');
     }
 
     /* 5. Entreprise */
@@ -173,7 +188,11 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
     btn.textContent = 'Envoi en cours...';
     btn.disabled = true;
 
-    const data = Object.fromEntries(new FormData(form));
+    // Modifications 20260424 par Openclaw — formatage +33 en mémoire (ne modifie plus phone.value visible)
+    const rawPhone = form.querySelector('#phone').value.trim().replace(/\s/g, '').replace(/^0/, '');
+    const formData = new FormData(form);
+    formData.set('phone', '+33' + rawPhone);
+    const data = Object.fromEntries(formData);
 
     try {
       const res = await fetch('https://hook.eu1.make.com/dbsob3hxaxff8flhljj66mk977oitkrg', {
@@ -290,29 +309,56 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
 })();
 
 /* --- SMOOTH SCROLL for anchors --------------------------- */
+
+/* Retourne la distance entre le haut du viewport et le bas de la navbar fixe.
+   AVANT : on utilisait navbar.offsetHeight (~70px) sans tenir compte du top:24px CSS,
+   ce qui sous-estimait l'offset réel (~94px) et cachait 4px de contenu sous la navbar.
+   getBoundingClientRect().bottom donne directement la position réelle du bas de la navbar. */
+function getNavOffset() {
+  const navbar = document.querySelector('.navbar');
+  return navbar ? navbar.getBoundingClientRect().bottom + 20 : 120;
+}
+
 document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
   a.addEventListener('click', function(e) {
+    // Les liens du sommaire article ont leur propre handler (initArticleToc).
+    // Sans ce garde-fou, le smooth scroll applique sectionPadding=120 (fallback)
+    // sur un h2 qui n'a pas de padding → titre scroll à -2px (derrière la navbar).
+    if (this.closest('.article-toc')) return;
+
     const href = this.getAttribute('href');
 
-    // Liens type /#section
+    // Liens type /#section (menu principal → sections de la homepage)
+    // Calcul : on veut que le premier contenu de la section (après son padding-top)
+    // arrive exactement au bas de la navbar.
+    // → offset = navbarBottom - sectionPaddingTop  (souvent négatif : la section
+    //   monte légèrement au-dessus du viewport, son contenu tombe pile sous la navbar)
     if (href.startsWith('/#')) {
-      const id = href.replace('/#', '#');
+      const id = href.slice(1); // → "#section"
       const target = document.querySelector(id);
-      // Si on est sur la page d'accueil et que la cible existe
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const navbar = document.querySelector('.navbar');
+        const navbarBottom = navbar ? navbar.getBoundingClientRect().bottom : 94;
+        const sectionPadding = parseFloat(getComputedStyle(target).paddingTop) || 120;
+        const margin = 24; // espace entre la navbar et le premier contenu de la section
+        const top = target.getBoundingClientRect().top + window.scrollY - (navbarBottom - sectionPadding + margin);
+        window.scrollTo({ top, behavior: 'smooth' });
       }
       // Sinon laisser naviguer normalement vers /#section
       return;
     }
 
-    // Liens type #section
+    // Liens type #section (même page)
     if (href === '#') return;
     const target = document.querySelector(href);
     if (target) {
       e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const navbar = document.querySelector('.navbar');
+      const navbarBottom = navbar ? navbar.getBoundingClientRect().bottom : 94;
+      const sectionPadding = parseFloat(getComputedStyle(target).paddingTop) || 120;
+      const top = target.getBoundingClientRect().top + window.scrollY - (navbarBottom - sectionPadding) + 20;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   });
 });
@@ -363,7 +409,7 @@ document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
   // ✅ FIX : suppression de module.exports (invalide dans un navigateur)
 })();
 
-/* --- ARTICLE TOC : lien actif au scroll ------------------ */
+/* --- ARTICLE TOC : scroll dédié + lien actif ------------- */
 (function initArticleToc() {
   const tocLinks = document.querySelectorAll('.article-toc a');
   if (!tocLinks.length) return;
@@ -372,27 +418,23 @@ document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
     '.article-body h2[id], .article-body h3[id]'
   );
 
-  /* ✅ AJOUT : scroll manuel avec offset dynamique */
+  /* Scroll dédié aux titres article.
+     Calcul direct : titre positionné à navbar.bottom + 30px sous la navbar.
+     scrollIntoView ignoré car son support de scroll-margin-top est inconsistant. */
+  function scrollToArticleHeading(target) {
+    const navbar = document.querySelector('.navbar');
+    const navbarBottom = navbar ? navbar.getBoundingClientRect().bottom : 94;
+    const top = target.getBoundingClientRect().top + window.scrollY - navbarBottom - 60;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
   tocLinks.forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
-
       const targetId = this.getAttribute('href')?.replace('#', '');
       const target = targetId ? document.getElementById(targetId) : null;
       if (!target) return;
-
-      // Récupère la hauteur réelle du header sticky
-      const header = document.querySelector('header, nav, .site-header, .navbar');
-      const headerHeight = header ? header.offsetHeight : 100;
-      const extraOffset = 96; // marge de confort
-
-      const top =
-        target.getBoundingClientRect().top +
-        window.scrollY -
-        headerHeight -
-        extraOffset;
-
-      window.scrollTo({ top, behavior: 'smooth' });
+      scrollToArticleHeading(target);
     });
   });
 

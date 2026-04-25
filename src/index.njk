@@ -2,6 +2,8 @@
 layout: base.njk
 title: "YanaLabs — Automatisation No-Code pour TPE/PME"
 description: "Gagnez du temps sur vos tâches répétitives grâce à l'automatisation no-code."
+# Modifications 20260424 par Openclaw — active le schema FAQPage dans base.njk
+faqPage: true
 ---
 
   <!-- ====================================================
@@ -13,20 +15,35 @@ description: "Gagnez du temps sur vos tâches répétitives grâce à l'automati
         <div class="hero-radial-2"></div>
       </div>
       <div class="hero-content">
-        <span class="badge">⚡ Audit gratuit</span>
-        <h1>Automatisation No-Code pour TPE/PME — Gagnez du temps sur vos tâches répétitives&nbsp;!</h1>
+
+
+          <span class="badge">⚡ Audit gratuit</span>
+          <span class="hero-kicker">Automatisation No-Code pour TPE/PME</span>
+
+
+        <!-- Main title -->
+        <h1>
+          Gagnez du temps sur vos tâches répétitives
+        </h1>
+
+        <!-- Subtitle -->
         <p class="hero-subtitle">
-          Nous automatisons vos processus répétitifs pour que vous puissiez vous concentrer sur l'essentiel&nbsp;: développer votre activité.
+          Nous automatisons vos processus pour vous permettre de vous concentrer sur la croissance de votre activité.
         </p>
+
+        <!-- CTA -->
         <div class="hero-cta">
           <a href="https://calendly.com/yanalabs/30min" target="_blank" rel="noopener" class="btn btn-gradient">
-            Réserver un appel découverte
+            Obtenir mon plan d’automatisation gratuit
           </a>
         </div>
+
+        <!-- Trust -->
         <div class="hero-badges">
           <div class="hero-badge">✅ Solution sur-mesure</div>
           <div class="hero-badge">⏱️ Suivi personnalisé</div>
         </div>
+
       </div>
     </section>
 
@@ -315,7 +332,9 @@ description: "Gagnez du temps sur vos tâches répétitives grâce à l'automati
             <span class="badge">📅 Votre audit gratuit commence ici</span>
             <h2>Comment peut-on vous aider aujourd'hui&nbsp;?</h2>
           </div>
-          <form class="contact-form reveal" id="contactForm" action="https://hook.eu1.make.com/dbsob3hxaxff8flhljj66mk977oitkrg" method="POST" novalidate>
+          <!-- Modifications 20260424 par Openclaw — action= inutile (JS intercepte via e.preventDefault) -->
+          <!-- <form class="contact-form reveal" id="contactForm" action="https://hook.eu1.make.com/dbsob3hxaxff8flhljj66mk977oitkrg" method="POST" novalidate> -->
+          <form class="contact-form reveal" id="contactForm" novalidate>
 
             <div class="form-row">
               <div class="form-group">
@@ -465,7 +484,7 @@ description: "Gagnez du temps sur vos tâches répétitives grâce à l'automati
         <div class="newsletter-inner">
           <div class="newsletter-content reveal">
             <h2>Le numérique sans maux de tête</h2>
-            <p>L'actualité numérique, expliquée simplement. Un mail par mois pour décrypter les mots compliqués et découvrir des méthodes concrètes qui servent vraiment à votre activité.</p>
+            <p>Le numérique sans jargon.<br>Deux fois par mois, les nouveautés utiles pour les TPE/PME.</p>
           </div>
           <div class="newsletter-form-wrap reveal">
             <form id="newsletterForm" action="https://hook.eu1.make.com/9uem47pfvdxfiu72q7vxq4t9yn1eotxj" method="POST" novalidate>

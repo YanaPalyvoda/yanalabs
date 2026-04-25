@@ -1,3 +1,34 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+# Modifications 20260424 par Openclaw — headers de sécurité et cache
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# Modifications 20260424 par Openclaw — redirect 301 pour ancienne URL avec espace (SEO)
+[[redirects]]
+  from = "/articles/21-04-2026_Automatiser ses relances_clients/"
+  to = "/articles/21-04-2026_Automatiser_ses_relances_clients/"
+  status = 301
+  force = true

@@ -27,6 +27,32 @@ module.exports = function(eleventyConfig) {
   });
   eleventyConfig.addFilter("limit", (array, n) => array.slice(0, n));
 
+  // Modifications 20260424 par Openclaw — filtre pour articles similaires (exclut l'article courant)
+  eleventyConfig.addFilter("excludeUrl", (array, url, n = 3) =>
+    array.filter(item => item.url !== url).slice(0, n)
+  );
+
+  // Modifications 20260424 par Openclaw — collection déjà définie ailleurs, commentée pour éviter le conflit
+  // eleventyConfig.addCollection("articlesSorted", (collectionApi) =>
+  //   collectionApi.getFilteredByTag("articles")
+  //     .filter(p => p.date <= new Date())
+  //     .sort((a, b) => b.date - a.date)
+  // );
+
+  // Modifications 20260424 par Openclaw
+  // Filtre pour articles similaires : exclut l'article courant avant de limiter
+  eleventyConfig.addFilter("excludeUrl", (array, url, n = 3) =>
+    array.filter(item => item.url !== url).slice(0, n)
+  );
+
+  // Modifications 20260424 par Openclaw
+  // Collection articles triés par date décroissante, articles futurs exclus
+  eleventyConfig.addCollection("articlesSorted", (collectionApi) =>
+    collectionApi.getFilteredByTag("articles")
+      .filter(p => p.date <= new Date())
+      .sort((a, b) => b.date - a.date)
+  );
+
   // ── Passthrough ────────────────────────────────
   eleventyConfig.addPassthroughCopy({ "src/_assets/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/_assets/js": "js" });

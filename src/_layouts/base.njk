@@ -19,20 +19,32 @@
   <meta property="og:type" content="{{ 'article' if layout == 'article.njk' else 'website' }}"/>
   <meta property="og:url" content="https://yanalabs.fr{{ page.url }}"/>
   <meta property="og:site_name" content="YanaLabs"/>
-  <meta property="og:image" content="https://yanalabs.fr/images/og-image.jpg"/>
+  <!-- Modifications 20260424 par Openclaw -->
+  <!-- <meta property="og:image" content="https://yanalabs.fr/images/og-image.jpg"/> -->
+  <meta property="og:image" content="{{ 'https://yanalabs.fr' + image if image else 'https://yanalabs.fr/images/og-image.jpg' }}"/>
   <meta property="og:locale" content="fr_FR"/>
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="{{ title if title else 'YanaLabs' }}"/>
   <meta name="twitter:description" content="{{ description if description else 'Automatisation no-code pour TPE/PME' }}"/>
-  <meta name="twitter:image" content="https://yanalabs.fr/images/og-image.jpg"/>
+  <!-- Modifications 20260424 par Openclaw -->
+  <!-- <meta name="twitter:image" content="https://yanalabs.fr/images/og-image.jpg"/> -->
+  <meta name="twitter:image" content="{{ 'https://yanalabs.fr' + image if image else 'https://yanalabs.fr/images/og-image.jpg' }}"/>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/images/Favicon.png"/>
   <link rel="apple-touch-icon" href="/images/Favicon.png"/>
 
-  <!-- Performance (fonts) -->
+  <!-- Modifications 20260424 par Openclaw -->
+  <!-- Performance (fonts) — dns-prefetch doit précéder preconnect -->
+  <!-- Ancien ordre :
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  (dns-prefetch était en bas, après le CSS — ordre incorrect)
+  -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -41,10 +53,6 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="/css/style.css"/>
-
-  <!-- Performance boost -->
-  <link rel="dns-prefetch" href="//fonts.googleapis.com">
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
 </head>
 <body>
 
@@ -54,7 +62,9 @@
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
       <a class="navbar-logo" href="/">
-        <img src="/images/logo-violet-final.png" alt="YanaLabs" height="58" />
+        <!-- Modifications 20260424 par Openclaw -->
+        <!-- <img src="/images/logo-violet-final.png" alt="YanaLabs" height="58" /> -->
+        <img src="/images/logo-violet-final.png" alt="YanaLabs" height="50" />
       </a>
       <ul class="navbar-links">
         <li><a href="/#notre-demarche">Notre démarche</a></li>
@@ -79,7 +89,9 @@
     <a href="/#features">Services</a>
     <a href="/#about">À propos</a>
     <a href="/#faq">FAQ</a>
-    <a href="/actualites">Actualités</a>
+    <!-- Modifications 20260424 par Openclaw -->
+    <!-- <a href="/actualites">Actualités</a> -->
+    <a href="/actualites/">Actualités</a>
     <a href="https://calendly.com/yanalabs/30min" target="_blank" class="btn btn-gradient">Nous contacter</a>
   </div>
   <main>
@@ -266,7 +278,9 @@
     "headline": "{{ title }}",
     "description": "{{ description }}",
     "datePublished": "{{ page.date | htmlDateString }}",
-    "dateModified": "{{ page.date | htmlDateString }}",
+    {# Modifications 20260424 par Openclaw #}
+    {# "dateModified": "{{ page.date | htmlDateString }}", — remplacé par version dynamique avec champ `updated` #}
+    "dateModified": "{{ updated | htmlDateString if updated else page.date | htmlDateString }}",
     "url": "https://yanalabs.fr{{ page.url }}",
     "inLanguage": "fr-FR",
     {% if image %}"image": "https://yanalabs.fr{{ image }}",{% endif %}
