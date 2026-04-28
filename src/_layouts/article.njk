@@ -26,7 +26,14 @@ layout: base.njk
       <div class="article-hero-image">
         <!-- Modifications 20260424 par Openclaw -->
         <!-- <img src="{{ image }}" alt="{{ title }}" loading="eager"/> -->
-        <img src="{{ image }}" alt="{{ title }}" loading="eager" decoding="async" />
+        <img src="{{ image }}" alt="{{ title }}" loading="eager" decoding="async" fetchpriority="high" width="1376" height="768" />
+      </div>
+    {% endif %}
+
+    {% if resume %}
+      <div class="article-tldr">
+        <strong>En résumé</strong>
+        <p>{{ resume }}</p>
       </div>
     {% endif %}
 
@@ -45,6 +52,16 @@ layout: base.njk
 
       <div class="article-body">
         {{ content | safe }}
+
+        <div class="article-author-box">
+          <img src="/images/aboutme.jpeg" alt="Yana Palyvoda, fondatrice YanaLabs" width="72" height="72" loading="lazy" />
+          <div class="article-author-info">
+            <strong>Yana Palyvoda</strong>
+            <span>Fondatrice YanaLabs — Experte en automatisation no-code (Make, Airtable)</span>
+            <span>Ancienne consultante Enedis &amp; Crédit Agricole CIB</span>
+            <a href="https://www.linkedin.com/in/yana-palyvoda" target="_blank" rel="noopener">Voir le profil LinkedIn →</a>
+          </div>
+        </div>
 
         <div class="article-cta">
           <h3>Prêt à automatiser votre activité ?</h3>

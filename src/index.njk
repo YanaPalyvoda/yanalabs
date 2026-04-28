@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "YanaLabs — Automatisation No-Code pour TPE/PME"
-description: "Gagnez du temps sur vos tâches répétitives grâce à l'automatisation no-code."
+description: "YanaLabs automatise vos devis, relances et CRM grâce au no-code (Make, Airtable). Audit gratuit et sans engagement pour TPE/PME en Île-de-France. Résultats en 2 semaines."
 # Modifications 20260424 par Openclaw — active le schema FAQPage dans base.njk
 faqPage: true
 ---
@@ -122,76 +122,133 @@ faqPage: true
             </a>
           </div>
           <div class="feature-visual reveal">
-            <div class="workflow-diagram">
-              <!-- REMPLACER TOUT LE CONTENU INTÉRIEUR DU .workflow-diagram PAR : -->
 
-<div class="wf-bg-blob"></div>
+            <!-- Task card animée -->
+            <div class="task-card">
 
-<!-- Node 1: Trigger -->
-<div class="wf-node">
-  <div class="wf-node-icon wf-icon-purple">
-    <img src="/images/Icone-Form.png" alt="Formulaire" />
-  </div>
-  <div class="wf-node-text">
-    <span class="wf-node-title">Nouveau client inscrit</span>
-    <span class="wf-node-tag">trigger</span>
-  </div>
-</div>
-<div class="wf-connector-v"></div>
+              <div class="card-header">
+                <span class="card-title-text">Vos tâches du jour</span>
+                <span class="card-status">
+                  <span class="status-dot"></span>
+                  <span id="status-text">En cours</span>
+                </span>
+              </div>
 
-<!-- Node 2: Branch -->
-<div class="wf-node">
-  <div class="wf-node-icon wf-icon-violet">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M6 9v3a6 6 0 006 6h0"/><path d="M18 9v3"/></svg>
-  </div>
-  <div class="wf-node-text">
-    <span class="wf-node-title">Contact existant dans la base ?</span>
-    <span class="wf-node-tag">branch-1</span>
-  </div>
-</div>
-<div class="wf-connector-v"></div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" id="prog"></div>
+              </div>
 
-<!-- Non -->
-<div class="wf-node-non"><span>Non</span></div>
-<div class="wf-connector-v"></div>
+              <div class="tasks-list">
 
-<!-- Node 3: Créer nouveau client -->
-<div class="wf-node">
-  <div class="wf-node-icon wf-icon-color">
-    <img src="/images/Icone-Airtable.png" alt="Airtable" />
-  </div>
-  <div class="wf-node-text">
-    <span class="wf-node-title">Créer un nouveau client</span>
-    <span class="wf-node-tag">#new-leads</span>
-  </div>
-</div>
-<div class="wf-connector-v"></div>
+                <!-- Tâche 1 -->
+                <div class="task-row" id="row-0">
+                  <div class="flash-overlay" id="flash-0"></div>
+                  <div class="check-wrap">
+                    <div class="check-bg" id="bg-0"></div>
+                    <svg class="check-svg" id="chk-0" viewBox="0 0 22 22">
+                      <polyline points="5,11 9,15 17,7" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="task-info">
+                    <div class="task-name" id="name-0">Relancer prospect Dupont</div>
+                    <div class="task-sub">Email de relance envoyé automatiquement</div>
+                  </div>
+                  <span class="tag tag-auto">auto</span>
+                </div>
 
-<!-- Node 4: Rédiger un email -->
-<div class="wf-node">
-  <div class="wf-node-icon wf-icon-green">
-    <img src="/images/Icone-chatgpt.png" alt="ChatGPT" />
-  </div>
-  <div class="wf-node-text">
-    <span class="wf-node-title">Rédiger un email</span>
-    <span class="wf-node-tag">chatgpt</span>
-  </div>
-</div>
-<div class="wf-connector-v"></div>
+                <!-- Tâche 2 -->
+                <div class="task-row" id="row-1">
+                  <div class="flash-overlay" id="flash-1"></div>
+                  <div class="check-wrap">
+                    <div class="check-bg" id="bg-1"></div>
+                    <svg class="check-svg" id="chk-1" viewBox="0 0 22 22">
+                      <polyline points="5,11 9,15 17,7" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="task-info">
+                    <div class="task-name" id="name-1">Envoyer devis Martin</div>
+                    <div class="task-sub">Devis généré et transmis par email</div>
+                  </div>
+                  <span class="tag tag-auto">auto</span>
+                </div>
 
-<!-- Node 5: Email de bienvenue -->
-<div class="wf-node">
-  <div class="wf-node-icon wf-icon-blue">
-    <img src="/images/Icone-mail.png" alt="Mail" />
-  </div>
-  <div class="wf-node-text">
-    <span class="wf-node-title">Email de bienvenue</span>
-    <span class="wf-node-tag">Emailing</span>
-  </div>
-</div>
+                <!-- Tâche 3 -->
+                <div class="task-row" id="row-2">
+                  <div class="flash-overlay" id="flash-2"></div>
+                  <div class="check-wrap">
+                    <div class="check-bg" id="bg-2"></div>
+                    <svg class="check-svg" id="chk-2" viewBox="0 0 22 22">
+                      <polyline points="5,11 9,15 17,7" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="task-info">
+                    <div class="task-name" id="name-2">Relancer impayé — Facture #42</div>
+                    <div class="task-sub">Rappel de paiement envoyé au client</div>
+                  </div>
+                  <span class="tag tag-auto">auto</span>
+                </div>
 
+                <!-- Tâche 4 -->
+                <div class="task-row" id="row-3">
+                  <div class="flash-overlay" id="flash-3"></div>
+                  <div class="check-wrap">
+                    <div class="check-bg" id="bg-3"></div>
+                    <svg class="check-svg" id="chk-3" viewBox="0 0 22 22">
+                      <polyline points="5,11 9,15 17,7" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="task-info">
+                    <div class="task-name" id="name-3">Confirmer RDV lundi</div>
+                    <div class="task-sub">SMS de confirmation envoyé</div>
+                  </div>
+                  <span class="tag tag-auto">auto</span>
+                </div>
+
+                <!-- Tâche VOUS (non automatisée) -->
+                <div class="task-row">
+                  <div class="check-wrap">
+                    <div class="check-bg task-vous-circle"></div>
+                  </div>
+                  <div class="task-info">
+                    <div class="task-name task-vous-name">Rendez-vous avec client</div>
+                    <div class="task-sub">Votre expertise, votre valeur ajoutée</div>
+                  </div>
+                  <span class="tag tag-vous">vous</span>
+                </div>
+
+              </div>
+
+              <div class="card-footer">
+                <span class="footer-msg" id="footer-msg">
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8 4.5v4l2.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <span id="footer-text">Traitement en cours...</span>
+                </span>
+                <span class="footer-time" id="footer-time">00:00</span>
+              </div>
 
             </div>
+
+            <!-- Compteurs sous la card -->
+            <div class="task-counter-bar">
+              <div class="task-counter-item">
+                <span class="task-counter-num" id="cnt-auto">0</span>
+                <span class="task-counter-label">tâches traitées</span>
+              </div>
+              <div class="task-counter-sep"></div>
+              <div class="task-counter-item">
+                <span class="task-counter-num" id="cnt-time">0h</span>
+                <span class="task-counter-label">gagnées / semaine</span>
+              </div>
+              <div class="task-counter-sep"></div>
+              <div class="task-counter-item task-counter-item--you">
+                <span class="task-counter-num" id="cnt-you">0</span>
+                <span class="task-counter-label">actions de votre part</span>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -206,7 +263,7 @@ faqPage: true
             </a>
           </div>
           <div class="feature-visual reveal">
-            <img src="/images/Dashboard.webp" alt="Dashboard YanaLabs" loading="lazy" />
+            <img src="/images/Dashboard.webp" alt="Dashboard YanaLabs" loading="lazy"/>
           </div>
         </div>
 
@@ -222,14 +279,14 @@ faqPage: true
           </div>
           <div class="feature-visual reveal">
             <div class="tools-grid">
-              <div class="tool-card"><img src="/images/Icone-chatgpt.png" alt="ChatGPT" /></div>
-              <div class="tool-card"><img src="/images/Icone-Airtable.jpg" alt="Airtable" /></div>
-              <div class="tool-card"><img src="/images/Icone-notion.png" alt="Notion" /></div>
-              <div class="tool-card"><img src="/images/Icone-slak.webp" alt="Slack" /></div>
-              <div class="tool-card"><img src="/images/Icone-loom.png" alt="Loom" /></div>
-              <div class="tool-card"><img src="/images/Icone-google-meet.png" alt="Google-meet" /></div>
-              <div class="tool-card"><img src="/images/icone-linkedin.png" alt="Linkedin" /></div>
-              <div class="tool-card"><img src="/images/Icone-Miro.png" alt="Miro" /></div>
+              <div class="tool-card"><img src="/images/Icone-chatgpt.png" alt="ChatGPT" width="48" height="48" /></div>
+              <div class="tool-card"><img src="/images/Icone-Airtable.jpg" alt="Airtable" width="48" height="42" /></div>
+              <div class="tool-card"><img src="/images/Icone-notion.png" alt="Notion" width="48" height="48" /></div>
+              <div class="tool-card"><img src="/images/Icone-slak.webp" alt="Slack" width="48" height="48" /></div>
+              <div class="tool-card"><img src="/images/Icone-loom.png" alt="Loom" width="48" height="48" /></div>
+              <div class="tool-card"><img src="/images/Icone-google-meet.png" alt="Google Meet" width="48" height="40" /></div>
+              <div class="tool-card"><img src="/images/icone-linkedin.png" alt="LinkedIn" width="48" height="48" /></div>
+              <div class="tool-card"><img src="/images/Icone-Miro.png" alt="Miro" width="48" height="48" /></div>
             </div>
           </div>
         </div>
@@ -245,8 +302,8 @@ faqPage: true
 
         <div class="section-header reveal">
           <span class="badge">💡 Cas d'usage</span>
-          <h2>Ils ont automatisé, et ça change tout</h2>
-          <p>Découvrez des exemples concrets d'automatisations mises en place pour nos clients.</p>
+          <h2>Automatisation en pratique : des cas concrets</h2>
+          <p>Pas besoin d'être tech : découvrez des automatisations concrètes adaptées aux petites entreprises, prêtes à reproduire.</p>
         </div>
 
         <!-- ══════════════════════════════════════════
@@ -254,7 +311,7 @@ faqPage: true
         ══════════════════════════════════════════ -->
         <div class="cu-row">
           <div class="cu-content reveal">
-            <span class="cu-tag">Gestion clients</span>
+            <span class="badge">Gestion clients</span>
             <h2>Inscription automatique des nouveaux clients</h2>
             <p>Dès qu'un prospect remplit un formulaire, il est automatiquement
             ajouté au CRM, une tâche de suivi est créée et un email de
@@ -266,9 +323,73 @@ faqPage: true
             </ul>
           </div>
           <div class="cu-visual reveal">
-            <!-- WORKFLOW À DÉFINIR PLUS TARD -->
-            <div class="cu-workflow-placeholder">
-              <span>Workflow à venir</span>
+            <div class="workflow-diagram">
+
+        <div class="wf-bg-blob"></div>
+
+        <!-- Node 1: Trigger -->
+        <div class="wf-node">
+          <div class="wf-node-icon wf-icon-purple">
+            <img src="/images/Icone-Form.png" alt="Formulaire" width="36" height="36" />
+          </div>
+          <div class="wf-node-text">
+            <span class="wf-node-title">Nouveau client inscrit</span>
+            <span class="wf-node-tag">Trigger</span>
+          </div>
+        </div>
+        <div class="wf-connector-v"></div>
+
+        <!-- Node 2: Branch -->
+        <div class="wf-node">
+          <div class="wf-node-icon wf-icon-violet">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M6 9v3a6 6 0 006 6h0"/><path d="M18 9v3"/></svg>
+          </div>
+          <div class="wf-node-text">
+            <span class="wf-node-title">Client existe déjà dans la base ?</span>
+            <span class="wf-node-tag">Condition</span>
+          </div>
+        </div>
+        <div class="wf-connector-v"></div>
+
+        <!-- Non -->
+        <div class="wf-node-non"><span>Non</span></div>
+        <div class="wf-connector-v"></div>
+
+        <!-- Node 3: Créer nouveau client -->
+        <div class="wf-node">
+          <div class="wf-node-icon wf-icon-color">
+            <img src="/images/Icone-Airtable.png" alt="Airtable" width="36" height="24" />
+          </div>
+          <div class="wf-node-text">
+            <span class="wf-node-title">Créer un nouveau client</span>
+            <span class="wf-node-tag">Airtable</span>
+          </div>
+        </div>
+        <div class="wf-connector-v"></div>
+
+        <!-- Node 4: Rédiger un email -->
+        <div class="wf-node">
+          <div class="wf-node-icon wf-icon-green">
+            <img src="/images/Icone-chatgpt.png" alt="ChatGPT" width="36" height="36" />
+          </div>
+          <div class="wf-node-text">
+            <span class="wf-node-title">Rédiger un email</span>
+            <span class="wf-node-tag">Chatgpt</span>
+          </div>
+        </div>
+        <div class="wf-connector-v"></div>
+
+        <!-- Node 5: Email de bienvenue -->
+        <div class="wf-node">
+          <div class="wf-node-icon wf-icon-blue">
+            <img src="/images/Icone-mail.png" alt="Mail" width="36" height="36" />
+          </div>
+          <div class="wf-node-text">
+            <span class="wf-node-title">Email de bienvenue</span>
+            <span class="wf-node-tag">Emailing</span>
+          </div>
+        </div>
+
             </div>
           </div>
         </div>
@@ -278,7 +399,7 @@ faqPage: true
         ══════════════════════════════════════════ -->
         <div class="cu-row cu-row-reverse">
           <div class="cu-content reveal">
-            <span class="cu-tag">Facturation</span>
+            <span class="badge">Facturation</span>
             <h2>Relance automatique des impayés</h2>
             <p>Le système détecte les factures impayées et envoie des relances
             progressives et personnalisées par email, sans intervention humaine.</p>
@@ -289,9 +410,81 @@ faqPage: true
             </ul>
           </div>
           <div class="cu-visual reveal">
-            <!-- WORKFLOW À DÉFINIR PLUS TARD -->
-            <div class="cu-workflow-placeholder">
-              <span>Workflow à venir</span>
+            <div class="workflow-diagram">
+
+              <div class="wf-bg-blob"></div>
+
+              <!-- Node 1: Google Sheets -->
+              <div class="wf-node">
+                <div class="wf-node-icon wf-icon-color">
+                  <img src="/images/icone-googlesheet.webp" alt="Google Sheets" width="36" height="36" />
+                </div>
+                <div class="wf-node-text">
+                  <span class="wf-node-title">Récupération des factures impayées</span>
+                  <span class="wf-node-tag">Trigger</span>
+                </div>
+              </div>
+              <div class="wf-connector-v"></div>
+
+              <!-- Node 2: Make orchestration -->
+              <div class="wf-node">
+                <div class="wf-node-icon wf-icon-color">
+                  <img src="/images/Icone-make.png" alt="Make" width="36" height="36" />
+                </div>
+                <div class="wf-node-text">
+                  <span class="wf-node-title">Orchestration</span>
+                  <span class="wf-node-tag">Make</span>
+                </div>
+              </div>
+              <div class="wf-connector-v"></div>
+
+              <!-- Node 3: Gmail relance 1 -->
+              <div class="wf-node">
+                <div class="wf-node-icon wf-icon-color">
+                  <img src="/images/Icone-gmail.webp" alt="Gmail" width="36" height="36" />
+                </div>
+                <div class="wf-node-text">
+                  <span class="wf-node-title">1ère relance personnalisée</span>
+                  <span class="wf-node-tag">Gmail</span>
+                </div>
+              </div>
+              <div class="wf-connector-v"></div>
+
+              <!-- Node 4: Gmail relance 2 -->
+              <div class="wf-node">
+                <div class="wf-node-icon wf-icon-color">
+                  <img src="/images/Icone-gmail.webp" alt="Gmail" width="36" height="36" />
+                </div>
+                <div class="wf-node-text">
+                  <span class="wf-node-title">2ème relance</span>
+                  <span class="wf-node-tag">Gmail</span>
+                </div>
+              </div>
+              <div class="wf-connector-v"></div>
+
+              <!-- Node 5: Gmail relance 3 -->
+              <div class="wf-node">
+                <div class="wf-node-icon wf-icon-color">
+                  <img src="/images/Icone-gmail.webp" alt="Gmail" width="36" height="36" />
+                </div>
+                <div class="wf-node-text">
+                  <span class="wf-node-title">3ème relance</span>
+                  <span class="wf-node-tag">Gmail</span>
+                </div>
+              </div>
+              <div class="wf-connector-v"></div>
+
+              <!-- Node 6: Calendar -->
+              <div class="wf-node">
+                <div class="wf-node-icon wf-icon-color">
+                  <img src="/images/icone-calendar.png" alt="Agenda" width="36" height="36" />
+                </div>
+                <div class="wf-node-text">
+                  <span class="wf-node-title">Call avec client ajouté dans l'agenda</span>
+                  <span class="wf-node-tag">Calendar</span>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -321,6 +514,47 @@ faqPage: true
 
       </div>
     </section>
+    <!-- ====================================================
+         TÉMOIGNAGES
+         À compléter avec de vrais témoignages clients
+    ===================================================== -->
+    <section class="testimonials" id="temoignages">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="badge">💬 Témoignages</span>
+          <h2>Ce que disent nos clients</h2>
+          <p>Des entrepreneurs qui ont récupéré leur temps grâce à l'automatisation.</p>
+        </div>
+        <div class="testimonials-grid">
+
+          <div class="testimonial-card reveal">
+            <p class="testimonial-text">« On gérait les dossiers de nos stagiaires exactement comme ça : chaque rentrée, des heures perdues à relancer, vérifier, ressaisir. Yana a restructuré tout notre parcours d'inscription en no-code. Aujourd'hui une promotion gérée en moins de 2h. »</p>
+            <div class="testimonial-author">
+              <strong>Isabelle R.</strong>
+              <span>Responsable de centre de formation, Val-de-Marne</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <p class="testimonial-text">« Avant, je passais des soirées entières à relancer mes clients pour les factures impayées. J'oubliais des dossiers, certains retards duraient des mois. Yana a mis en place un système automatique de relances. Maintenant chaque client reçoit le bon message au bon moment, sans que je touche à rien. Je ne perds plus de temps à courir après l'argent. »</p>
+            <div class="testimonial-author">
+              <strong>Karim B.</strong>
+              <span>Artisan BTP, Seine-Saint-Denis</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal">
+            <p class="testimonial-text">« J'étais convaincu qu'il n'y avait rien à automatiser dans mon activité. En 30 minutes avec Yana, on a repéré 3 tâches chronophages. Aujourd'hui je récupère plus de 2 heures par semaine sans aucune compétence technique. »</p>
+            <div class="testimonial-author">
+              <strong>Marc T.</strong>
+              <span>Gérant, Entreprise du bâtiment, Val-de-Marne</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- ====================================================
          CONTACT FORM
     ===================================================== -->
@@ -392,13 +626,24 @@ faqPage: true
             <p>Et si l'automatisation devenait votre meilleur collaborateur&nbsp;?</p>
             <p>Beaucoup d'entrepreneurs perdent des heures sur des tâches répétitives faute d'un accompagnement concret. Je m'appelle Yana, experte en automatisation no-code basée en Île-de-France.</p>
             <p>Après avoir déployé des solutions au sein d'Enedis et du Crédit Agricole CIB, j'applique ces mêmes standards aux TPE et PME&nbsp;: des automatisations fiables, sur-mesure et conformes RGPD avec Make et Airtable, pendant que vous vous concentrez sur votre cœur de métier.</p>
-            <p class="about-signature">
-              <strong>Yana PALYVODA</strong> — Fondatrice YanaLabs, Île-de-France<br>
-              <a href="https://www.linkedin.com/in/yana-palyvoda" target="_blank" rel="noopener">Mon profil LinkedIn</a>
-            </p>
+
+            <!-- Badges de certification : retirer "about-certs--hidden" pour afficher -->
+            <div class="about-certs about-certs--hidden">
+              <img src="/images/cert-1.png" alt="Badge certification 1" width="80" height="80" loading="lazy" />
+              <img src="/images/cert-2.png" alt="Badge certification 2" width="80" height="80" loading="lazy" />
+              <img src="/images/cert-3.png" alt="Badge certification 3" width="80" height="80" loading="lazy" />
+              <img src="/images/cert-4.png" alt="Badge certification 4" width="80" height="80" loading="lazy" />
+            </div>
           </div>
           <div class="about-photo reveal">
-            <img src="/images/aboutme.jpeg" alt="Yana, fondatrice de YanaLabs — experte automatisation no-code Île-de-France" loading="lazy" />
+            <img src="/images/aboutme.jpeg" alt="Yana, fondatrice de YanaLabs — experte automatisation no-code Île-de-France" loading="lazy"/>
+            <div class="about-photo-caption">
+              <p class="about-photo-name"><strong>Yana PALYVODA</strong> — Fondatrice YanaLabs, Île-de-France</p>
+              <a href="https://www.linkedin.com/in/yana-palyvoda" target="_blank" rel="noopener">
+
+                Mon profil LinkedIn
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -468,7 +713,7 @@ faqPage: true
 
           <div class="faq-cta-block reveal">
             <p>Vous ne trouvez pas la réponse à vos questions&nbsp;?</p>
-            <a href="mailto:automation@yanalabs.fr" target="_blank" rel="noopener" class="btn btn-outline-gradient">
+            <a href="mailto:automation@yanalabs.fr" class="btn btn-outline-gradient">
               <span>Contactez nous</span>
             </a>
           </div>
@@ -496,7 +741,7 @@ faqPage: true
               </div>
               <div class="newsletter-gdpr">
                 <input type="checkbox" id="gdpr" name="gdpr" required />
-                <label for="gdpr">J'accepte de recevoir la newsletter et les actualités de Yana Labs. Je peux me désinscrire à tout moment via le lien présent dans chaque email.</label>
+                <label for="gdpr">J'accepte de recevoir la newsletter et les actualités de YanaLabs. Je peux me désinscrire à tout moment via le lien présent dans chaque email.</label>
               </div>
             </form>
           </div>

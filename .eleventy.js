@@ -26,6 +26,10 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy-MM-dd");
   });
   eleventyConfig.addFilter("limit", (array, n) => array.slice(0, n));
+  eleventyConfig.addFilter("wordCount", (content) => {
+    if (!content) return 0;
+    return content.replace(/<[^>]*>/g, " ").split(/\s+/).filter(Boolean).length;
+  });
 
   // Modifications 20260424 par Openclaw — filtre pour articles similaires (exclut l'article courant)
   eleventyConfig.addFilter("excludeUrl", (array, url, n = 3) =>

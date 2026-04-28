@@ -1,10 +1,15 @@
 ---
+layout: article.njk
 title: "Comment automatiser vos devis BTP et récupérer 5h par semaine"
+templateEngineOverride: md
 date: 2026-03-25
+updated: 2026-04-25
 description: "Découvrez comment les artisans et PME du BTP utilisent Make et Airtable pour générer leurs devis automatiquement, relancer les impayés et ne plus perdre de temps sur l'administratif."
+tags: ["articles", "automatisation", "BTP", "devis", "no-code"]
 categorie: "BTP"
 temps_lecture: 6
 image: /images/article1_btp.webp
+resume: "Les artisans et PME du BTP passent en moyenne 8 à 10 heures par semaine sur des tâches administratives. Avec Make et Airtable, il est possible d'automatiser la génération de devis, les relances d'impayés et le suivi client sans coder — et de récupérer 5 heures par semaine dès le premier mois."
 sommaire:
   - titre: "Le problème administratif dans le BTP"
     slug: "probleme-administratif-btp"
@@ -18,6 +23,15 @@ sommaire:
     slug: "temps-gagne"
   - titre: "Par où commencer ?"
     slug: "par-ou-commencer"
+faq:
+  - q: "Un artisan BTP sans compétences informatiques peut-il utiliser ces outils ?"
+    a: "Oui. Make et Airtable sont conçus pour être utilisés sans coder. YanaLabs assure la mise en place complète et forme vos équipes pour gérer les flux en autonomie dès la première semaine."
+  - q: "Combien de temps faut-il pour automatiser la génération de devis dans le BTP ?"
+    a: "La mise en place prend généralement 1 à 2 semaines selon la complexité de vos processus. Après déploiement, un devis est généré et envoyé en moins de 5 minutes contre 45 minutes à 1h30 en mode manuel."
+  - q: "Est-ce que l'automatisation fonctionne avec mes logiciels de facturation existants ?"
+    a: "Oui. Make s'intègre avec la plupart des logiciels de facturation utilisés dans le BTP (Batappli, EBP, Sage...) ainsi qu'avec Gmail, Outlook et les outils de signature électronique."
+  - q: "Combien de temps peut-on vraiment récupérer par semaine grâce à l'automatisation ?"
+    a: "En moyenne, les artisans et PME du BTP récupèrent 5 à 8 heures par semaine sur la génération de devis, les relances d'impayés et la ressaisie de données, selon le volume d'activité."
 ---
 
 <span id="probleme-administratif-btp"></span>

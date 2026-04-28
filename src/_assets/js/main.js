@@ -2,6 +2,11 @@
    YANALABS — main.js
    ============================================= */
 
+/* --- BFCACHE FIX ----------------------------------------- */
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) window.location.reload();
+});
+
 /* --- NAVBAR: Scroll shadow + Hamburger Menu -------------- */
 (function initNavbar() {
   const navbar = document.querySelector('.navbar');
@@ -308,6 +313,146 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
   });
 })();
 
+/* --- TASK CARD ANIMATION --------------------------------- */
+(function initTaskCard() {
+  const TASKS          = 4;
+  const TIME_PER_TASK  = 1100;
+  const PAUSE_AFTER    = 3200;
+  const HOURS_PER_TASK = 2;
+
+  // Si la card n'est pas dans la page, on sort
+  if (!document.getElementById('row-0')) return;
+
+  let autoCount     = 0;
+  let timeCount     = 0;
+  let elapsed       = 0;
+  let running       = false;
+  let timerInterval = null;
+
+  function fmt2(n) { return String(n).padStart(2, '0'); }
+
+  function animCounter(el, target, suffix, duration) {
+    if (!el) return;
+    const start     = parseInt(el.textContent) || 0;
+    const range     = target - start;
+    const startTime = performance.now();
+    (function tick(now) {
+      const t    = Math.min(1, (now - startTime) / duration);
+      const ease = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(start + range * ease) + (suffix || '');
+      if (t < 1) requestAnimationFrame(tick);
+      else el.classList.add('active');
+    })(performance.now());
+  }
+
+  function startTimer() {
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      elapsed++;
+      const el = document.getElementById('footer-time');
+      if (el) el.textContent = fmt2(Math.floor(elapsed / 60)) + ':' + fmt2(elapsed % 60);
+    }, 1000);
+  }
+
+  function checkTask(i) {
+    const row   = document.getElementById('row-'   + i);
+    const bg    = document.getElementById('bg-'    + i);
+    const chk   = document.getElementById('chk-'   + i);
+    const name  = document.getElementById('name-'  + i);
+    const flash = document.getElementById('flash-' + i);
+    if (!row) return;
+
+    row.classList.add('checking');
+
+    const rip = document.createElement('div');
+    rip.className = 'ripple';
+    row.appendChild(rip);
+    setTimeout(() => rip.remove(), 600);
+
+    flash.style.opacity = '0.07';
+    setTimeout(() => { flash.style.opacity = '0'; }, 250);
+
+    setTimeout(() => {
+      bg.classList.add('done');
+      chk.classList.add('visible');
+      name.classList.add('done');
+      row.classList.remove('checking');
+
+      const prog = document.getElementById('prog');
+      if (prog) prog.style.width = ((i + 1) / TASKS * 100) + '%';
+
+      autoCount++;
+      timeCount += HOURS_PER_TASK;
+      animCounter(document.getElementById('cnt-auto'), autoCount, '',  400);
+      animCounter(document.getElementById('cnt-time'), timeCount, 'h', 400);
+
+      const footerText = document.getElementById('footer-text');
+      if (i < TASKS - 1) {
+        if (footerText) footerText.textContent = (i + 1) + '/' + TASKS + ' tâches traitées';
+      } else {
+        const footerMsg = document.getElementById('footer-msg');
+        if (footerMsg) footerMsg.classList.add('done');
+        if (footerText) footerText.textContent = 'Toutes les tâches traitées ✓';
+        const statusText = document.getElementById('status-text');
+        if (statusText) statusText.textContent = 'Terminé';
+        clearInterval(timerInterval);
+        setTimeout(resetAll, PAUSE_AFTER);
+      }
+    }, 220);
+  }
+
+  function resetAll() {
+    for (let i = 0; i < TASKS; i++) {
+      const bg   = document.getElementById('bg-'   + i);
+      const chk  = document.getElementById('chk-'  + i);
+      const name = document.getElementById('name-' + i);
+      if (bg)   bg.classList.remove('done');
+      if (chk)  chk.classList.remove('visible');
+      if (name) name.classList.remove('done');
+    }
+    const prog       = document.getElementById('prog');
+    const footerMsg  = document.getElementById('footer-msg');
+    const footerText = document.getElementById('footer-text');
+    const footerTime = document.getElementById('footer-time');
+    const statusText = document.getElementById('status-text');
+    const cntAuto    = document.getElementById('cnt-auto');
+    const cntTime    = document.getElementById('cnt-time');
+    const cntYou     = document.getElementById('cnt-you');
+
+    if (prog)       prog.style.width        = '0%';
+    if (footerMsg)  footerMsg.classList.remove('done');
+    if (footerText) footerText.textContent  = 'Traitement en cours...';
+    if (footerTime) footerTime.textContent  = '00:00';
+    if (statusText) statusText.textContent  = 'En cours';
+    if (cntYou)     cntYou.textContent      = '0';
+    if (cntAuto)  { cntAuto.textContent     = '0'; cntAuto.classList.remove('active'); }
+    if (cntTime)  { cntTime.textContent     = '0h'; cntTime.classList.remove('active'); }
+
+    autoCount = 0;
+    timeCount = 0;
+    elapsed   = 0;
+    running   = false;
+
+    setTimeout(runSequence, 1000);
+  }
+
+  function runSequence() {
+    if (running) return;
+    running = true;
+    startTimer();
+
+    let delay = 800;
+    for (let i = 0; i < TASKS; i++) {
+      (function(idx) {
+        setTimeout(() => checkTask(idx), delay);
+      })(i);
+      delay += TIME_PER_TASK;
+    }
+  }
+
+  runSequence();
+})();
+
 /* --- SMOOTH SCROLL for anchors --------------------------- */
 
 /* Retourne la distance entre le haut du viewport et le bas de la navbar fixe.
@@ -370,7 +515,7 @@ document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
   gsap.registerPlugin(ScrollTrigger);
 
   /* --- CAS D'USAGE — variable on/off ----------------------- */
-  const SHOW_CAS_USAGE = false; /* ← true = visible / false = caché */
+  const SHOW_CAS_USAGE = true; /* ← true = visible / false = caché */
 
   const casUsageSection = document.getElementById('cas-usage');
   if (casUsageSection) {
@@ -379,33 +524,48 @@ document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
     }
   }
 
-  const steps = document.querySelectorAll(
-    '.workflow-diagram .wf-node, .workflow-diagram .wf-connector-v, .workflow-diagram .wf-node-non'
-  );
-  if (!steps.length) return;
+  const diagrams = document.querySelectorAll('.workflow-diagram');
+  if (!diagrams.length) return;
 
-  gsap.set(steps, { opacity: 0, y: 20 });
+  diagrams.forEach((diagram) => {
+    const steps = diagram.querySelectorAll('.wf-node, .wf-connector-v, .wf-node-non');
+    if (!steps.length) return;
 
-  const tl = gsap.timeline({ paused: true });
+    const tl = gsap.timeline({ paused: true });
 
-  steps.forEach((el) => {
-    tl.to(el, {
-      opacity: 1,
-      y: 0,
-      duration: 0.25,
-      ease: 'power2.out',
-    }, '+=0.1');
+    gsap.set(steps, { opacity: 0, y: 20 });
+
+    steps.forEach((el) => {
+      tl.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.25,
+        ease: 'power2.out',
+      }, '+=0.1');
+    });
+
+    /* Vérifie si le diagram est déjà visible dans le viewport au chargement */
+    function isInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom > 0;
+    }
+
+    ScrollTrigger.create({
+      trigger: diagram,
+      start: 'top 90%',
+      end: 'bottom top',
+      onEnter: () => tl.restart(),
+      onEnterBack: () => tl.restart(),
+      onLeave: () => { tl.progress(0).pause(); },
+      onLeaveBack: () => { tl.progress(0).pause(); },
+      onRefresh: (self) => {
+        if (isInViewport(diagram)) tl.restart();
+      }
+    });
   });
 
-  ScrollTrigger.create({
-    trigger: '.workflow-diagram',
-    start: 'top 70%',
-    end: 'bottom top',
-    onEnter: () => tl.restart(),
-    onEnterBack: () => tl.restart(),
-    onLeave: () => tl.progress(0).pause(),
-    onLeaveBack: () => tl.progress(0).pause(),
-  });
+  /* Refresh après que tout soit rendu */
+  window.addEventListener('load', () => ScrollTrigger.refresh());
   // ✅ FIX : suppression de module.exports (invalide dans un navigateur)
 })();
 
