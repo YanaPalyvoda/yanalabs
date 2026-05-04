@@ -10,13 +10,16 @@ eleventyExcludeFromCollections: true
     {% if not page.data.excludeFromSitemap and not page.data.noindex %}
     <url>
       <loc>https://yanalabs.fr{{ page.url }}</loc>
-      <lastmod>{{ page.date | isoDate }}</lastmod>
+      <lastmod>{{ page.data.updated | isoDate if page.data.updated else page.date | isoDate }}</lastmod>
       {% if page.url == "/" %}
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
       {% elif "/articles/" in page.url %}
-        <changefreq>never</changefreq>
+        <changefreq>yearly</changefreq>
         <priority>0.8</priority>
+      {% elif "/services/" in page.url %}
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
       {% elif page.url == "/actualites/" %}
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>

@@ -11,6 +11,8 @@
   --color-accent:       rgb(125, 95, 146);
   --color-purple-light: rgb(159, 128, 218);
   --color-accent-soft:  rgb(152, 128, 171);
+  /* Modifié par Claude Code le 20260503 — couleur footer avec contraste WCAG AA ≥ 4.5:1 sur fond blanc */
+  --color-footer-text:  rgb(107, 82, 128);
   --color-bg:           rgb(255, 255, 255);
   --color-bg-light:     rgb(247, 240, 250);
   --color-bg-radial1:   rgba(208, 208, 255, 0.5);
@@ -37,7 +39,8 @@ body {
   overflow-x: hidden;
 }
 
-img { max-width: 100%; display: block; }
+/* Modifié par Claude Code le 20260503 — height: auto garantit les proportions même avec des attributs width/height HTML explicites */
+img { max-width: 100%; height: auto; display: block; }
 a  { text-decoration: none; color: inherit; }
 
 /* --- UTILITY --------------------------------------------- */
@@ -285,7 +288,7 @@ a  { text-decoration: none; color: inherit; }
   margin-left: auto;
   margin-right: auto;
 }
-.hero-cta { margin-bottom: 64px; }
+.hero-cta { margin-bottom: 12px; }
 .hero-badges {
   display: flex;
   justify-content: center;
@@ -329,7 +332,7 @@ a  { text-decoration: none; color: inherit; }
 }
 .section-header p {
   font-size: 17px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   max-width: 580px;
   margin: 0 auto;
   line-height: 1.6;
@@ -388,7 +391,7 @@ a  { text-decoration: none; color: inherit; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: start;
-  gap: 80px;
+  gap: 60px;
   padding: 80px 0;
   border-bottom: 1px solid rgba(87,62,105,0.07);
 }
@@ -408,7 +411,7 @@ a  { text-decoration: none; color: inherit; }
 }
 .feature-content p {
   font-size: 16px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   line-height: 1.65;
   margin-bottom: 32px;
 }
@@ -458,6 +461,8 @@ a  { text-decoration: none; color: inherit; }
   align-items: stretch;
 }
 /* Shared node style */
+/* Modifié par Claude Code le 20260503 — box-shadow déplacé sur ::before car GSAP promeut .wf-node
+   sur le GPU (translate/rotate/scale:none), rendant box-shadow incompatible avec le compositing layer */
 .wf-node {
   background: #fff;
   border-radius: 14px;
@@ -465,16 +470,33 @@ a  { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: 0 2px 12px rgba(87,62,105,0.08);
   border: 1px solid rgba(255,255,255,0.9);
   width: 100%;
-  animation: wfPulse 4s ease-in-out infinite;
+  position: relative;
 }
-.wf-node:nth-child(2) { animation-delay: -1s; }
-.wf-node:nth-child(3) { animation-delay: -2s; }
+.wf-node::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(87,62,105,0.08);
+  pointer-events: none;
+}
+.wf-node::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(135,101,215,0.18);
+  opacity: 0;
+  animation: wfPulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+.wf-node:nth-child(2)::after { animation-delay: -1s; }
+.wf-node:nth-child(3)::after { animation-delay: -2s; }
 @keyframes wfPulse {
-  0%,100% { box-shadow: 0 2px 12px rgba(87,62,105,0.08); }
-  50%      { box-shadow: 0 4px 24px rgba(135,101,215,0.18); }
+  0%,100% { opacity: 0; }
+  50%      { opacity: 1; }
 }
 .wf-node-branch { width: 85%; }
 .wf-node-non {
@@ -507,7 +529,7 @@ a  { text-decoration: none; color: inherit; }
 /* Node text */
 .wf-node-text { display: flex; flex-direction: column; gap: 2px; }
 .wf-node-title { font-size: 14px; font-weight: 600; color: var(--color-primary); line-height: 1.2; }
-.wf-node-tag { font-size: 11px; color: var(--color-accent-soft); font-weight: 400; }
+.wf-node-tag { font-size: 11px; color: var(--color-footer-text); font-weight: 400; }
 /* Vertical connector */
 .wf-connector-v {
   width: 2px;
@@ -576,7 +598,7 @@ a  { text-decoration: none; color: inherit; }
 
 .card-status {
   font-size: 11px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   display: flex;
   align-items: center;
   gap: 5px;
@@ -600,11 +622,14 @@ a  { text-decoration: none; color: inherit; }
   background: var(--color-bg-light);
 }
 
+/* Modifié par Claude Code le 20260503 — width remplacé par scaleX (compositable GPU, width cause un layout recalcul) */
 .progress-bar-fill {
   height: 100%;
   background: linear-gradient(90deg, #16a34a, #22C55E);
-  width: 0%;
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tasks-list { padding: 4px 0; }
@@ -639,6 +664,7 @@ a  { text-decoration: none; color: inherit; }
   position: relative;
 }
 
+/* Modifié par Claude Code le 20260503 — border-color/background non compositables remplacés par ::before opacity */
 .check-bg {
   width: 22px;
   height: 22px;
@@ -647,12 +673,24 @@ a  { text-decoration: none; color: inherit; }
   position: absolute;
   inset: 0;
   background: white;
-  transition: border-color 0.3s, background 0.3s;
+  overflow: hidden;
+}
+
+.check-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #22C55E;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .check-bg.done {
   border-color: #22C55E;
-  background: #22C55E;
+}
+
+.check-bg.done::before {
+  opacity: 1;
 }
 
 .task-vous-circle {
@@ -683,7 +721,7 @@ a  { text-decoration: none; color: inherit; }
 }
 
 .task-name.done {
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   text-decoration: line-through;
 }
 
@@ -694,7 +732,7 @@ a  { text-decoration: none; color: inherit; }
 
 .task-sub {
   font-size: 11px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   margin-top: 2px;
 }
 
@@ -727,7 +765,7 @@ a  { text-decoration: none; color: inherit; }
 
 .footer-msg {
   font-size: 12px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -738,7 +776,7 @@ a  { text-decoration: none; color: inherit; }
 
 .footer-time {
   font-size: 11px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   font-variant-numeric: tabular-nums;
 }
 
@@ -785,7 +823,7 @@ a  { text-decoration: none; color: inherit; }
 
 .task-counter-label {
   font-size: 11px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   margin-top: 4px;
 }
 
@@ -857,7 +895,7 @@ a  { text-decoration: none; color: inherit; }
 }
 .cu-content p {
   font-size: 16px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   line-height: 1.65;
   margin-bottom: 24px;
 }
@@ -902,7 +940,7 @@ a  { text-decoration: none; color: inherit; }
 }
 .cu-workflow-placeholder span {
   font-size: 14px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   font-weight: 500;
 }
 
@@ -1017,7 +1055,7 @@ a  { text-decoration: none; color: inherit; }
   gap: 8px;
   margin-top: 16px;
   font-size: 14px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
 }
 
 /* --- ABOUT ----------------------------------------------- */
@@ -1181,7 +1219,7 @@ a  { text-decoration: none; color: inherit; }
 .accordion-body p {
   padding: 0 24px 20px;
   font-size: 15px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   line-height: 1.6;
 }
 .faq-contact-card {
@@ -1268,7 +1306,7 @@ a  { text-decoration: none; color: inherit; }
 }
 .newsletter-content p {
   font-size: 16px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   line-height: 1.6;
 }
 .newsletter-form-wrap {}
@@ -1322,7 +1360,7 @@ a  { text-decoration: none; color: inherit; }
   align-items: flex-start;
   gap: 10px;
   font-size: 12px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   line-height: 1.5;
 }
 .newsletter-gdpr input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; }
@@ -1341,9 +1379,10 @@ footer {
   gap: 24px;
 }
 .footer-logo img { height: 50px; width: auto; }
+/* Modifié par Claude Code le 20260503 — contraste WCAG AA (≥4.5:1) sur fond blanc */
 .footer-tagline {
   font-size: 14px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   margin-top: 6px;
 }
 .footer-links {
@@ -1354,13 +1393,13 @@ footer {
 }
 .footer-links a {
   font-size: 14px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   transition: color var(--transition);
 }
 .footer-links a:hover { color: var(--color-primary); }
 .footer-copy {
   font-size: 13px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
 }
 .footer-bottom {
   margin-top: 24px;
@@ -1368,10 +1407,10 @@ footer {
   border-top: 1px solid rgba(87,62,105,0.07);
   text-align: center;
   font-size: 13px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
 }
 .footer-bottom a {
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   transition: color var(--transition);
 }
 .footer-bottom a:hover { color: var(--color-primary); }
@@ -1422,7 +1461,7 @@ footer {
 }
 .section-header p {
   font-size: 17px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   max-width: 580px;
   margin: 0 auto;
   line-height: 1.6;
@@ -1522,24 +1561,12 @@ footer {
   .about-content h2 { font-size: 40px; }
   .newsletter-content h2 { font-size: 36px; }
   .steps-grid { grid-template-columns: 1fr; }
+  .steps-grid .step-card { grid-column: auto !important; }
   .form-row { grid-template-columns: 1fr; }
   .tools-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .workflow-visual { height: 340px; }
   .contact-inner h2 { font-size: 32px; }
-  .footer-bottom {
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(87,62,105,0.07);
-    text-align: center;
-    font-size: 13px;
-    color: var(--color-accent-soft);
-  }
-  .footer-bottom a {
-    color: var(--color-accent-soft);
-    transition: color var(--transition);
-  }
-  .footer-bottom a:hover { color: var(--color-primary); }  
 }
 @media (max-width: 480px) {
   .container { padding: 0 20px; }
@@ -1594,13 +1621,13 @@ footer {
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   margin-bottom: 40px;
   
 }
 
 .breadcrumb a {
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   transition: color var(--transition);
 }
 
@@ -1624,7 +1651,7 @@ footer {
 
 .article-description {
   font-size: 18px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   line-height: 1.6;
   margin-top: 16px;
 }
@@ -1634,7 +1661,7 @@ footer {
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   margin-top: 16px;
 }
 
@@ -1690,7 +1717,7 @@ footer {
 
 .article-toc a {
   font-size: 14px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   transition: color var(--transition);
   line-height: 1.4;
 }
@@ -1748,7 +1775,7 @@ footer {
   background: var(--color-bg-light);
   border-radius: 0 12px 12px 0;
   font-style: italic;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
 }
 
 .article-body code {
@@ -1789,7 +1816,7 @@ footer {
   display: block; line-height: 1.1; margin-bottom: 6px;
 }
 .stat-label {
-  font-size: 16px; color: var(--color-accent-soft); line-height: 1.4;
+  font-size: 16px; color: var(--color-footer-text); line-height: 1.4;
 }
 /* AVANT — n'existe pas dans style.css, à ajouter dans la section article */
 
@@ -1808,7 +1835,7 @@ footer {
 .table-wrap tbody tr { border-bottom: 1px solid rgba(87,62,105,0.07); transition: background var(--transition); }
 .table-wrap tbody tr:hover { background: var(--color-bg-light); }
 .table-wrap tbody tr:last-child { border-bottom: none; background: rgba(159,128,218,0.06); }
-.table-wrap tbody td { padding: 14px 20px; font-size: 15px; color: var(--color-accent-soft); }
+.table-wrap tbody td { padding: 14px 20px; font-size: 15px; color: var(--color-footer-text); }
 .table-wrap tbody tr:last-child td { color: var(--color-primary); font-weight: 600; }
 .gain { color: #10b981 !important; font-weight: 700 !important; }
 
@@ -1898,7 +1925,7 @@ footer {
 
 .article-nav-link span {
   font-size: 12px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -2076,7 +2103,7 @@ footer {
 }
 .article-author-info span {
   font-size: 14px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
   line-height: 1.5;
 }
 .article-author-info a {
@@ -2138,7 +2165,7 @@ footer {
 }
 .testimonial-author span {
   font-size: 13px;
-  color: var(--color-accent-soft);
+  color: var(--color-footer-text);
 }
 
 @media (max-width: 900px) {

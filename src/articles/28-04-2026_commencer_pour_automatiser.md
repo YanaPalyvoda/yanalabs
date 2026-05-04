@@ -1,9 +1,10 @@
 ---
 layout: article.njk
-title: "Par où commencer pour automatiser mon entreprise ?"
+title: "Automatiser son entreprise : par où commencer sans coder ?"
 templateEngineOverride: md
-description: "Découvrez par où commencer la transformation digitale de votre PME. Un guide clair, sans jargon, pour gagner du temps et automatiser sans coder."
+description: "Guide pratique pour automatiser votre TPE/PME sans coder. Outils no-code, premiers pas concrets et résultats en 2 semaines. Sans jargon technique."
 date: 2026-04-28
+updated: 2026-04-28
 tags: ["articles", "transformation digitale PME", "digitalisation TPE", "automatiser sans coder", "gain temps", ]
 categorie: "Gain Temps"
 temps_lecture: 8

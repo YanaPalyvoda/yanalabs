@@ -1,10 +1,10 @@
 ---
 layout: article.njk
-title: "Comment automatiser vos devis BTP et récupérer 5h par semaine"
+title: "Automatisation BTP : devis automatiques et 5h gagnées/semaine"
 templateEngineOverride: md
 date: 2026-03-25
 updated: 2026-04-25
-description: "Découvrez comment les artisans et PME du BTP utilisent Make et Airtable pour générer leurs devis automatiquement, relancer les impayés et ne plus perdre de temps sur l'administratif."
+description: "Artisans et PME du BTP : générez vos devis automatiquement avec Make et Airtable. Relances impayés incluses. Récupérez 5h par semaine dès le premier mois."
 tags: ["articles", "automatisation", "BTP", "devis", "no-code"]
 categorie: "BTP"
 temps_lecture: 6

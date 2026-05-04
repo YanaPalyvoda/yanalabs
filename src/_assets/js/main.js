@@ -379,7 +379,8 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
       row.classList.remove('checking');
 
       const prog = document.getElementById('prog');
-      if (prog) prog.style.width = ((i + 1) / TASKS * 100) + '%';
+      // Modifié par Claude Code le 20260503 — scaleX au lieu de width (compositable GPU)
+      if (prog) prog.style.transform = 'scaleX(' + ((i + 1) / TASKS) + ')';
 
       autoCount++;
       timeCount += HOURS_PER_TASK;
@@ -419,7 +420,8 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
     const cntTime    = document.getElementById('cnt-time');
     const cntYou     = document.getElementById('cnt-you');
 
-    if (prog)       prog.style.width        = '0%';
+    // Modifié par Claude Code le 20260503 — scaleX au lieu de width (compositable GPU)
+    if (prog)       prog.style.transform    = 'scaleX(0)';
     if (footerMsg)  footerMsg.classList.remove('done');
     if (footerText) footerText.textContent  = 'Traitement en cours...';
     if (footerTime) footerTime.textContent  = '00:00';
@@ -565,7 +567,23 @@ document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
   });
 
   /* Refresh après que tout soit rendu */
-  window.addEventListener('load', () => ScrollTrigger.refresh());
+  window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
+    // Si on arrive depuis une autre page avec un hash (#faq, #about…)
+    // on rescroll après que GSAP ait recalculé les positions
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        setTimeout(() => {
+          const navbar = document.querySelector('.navbar');
+          const navbarBottom = navbar ? navbar.getBoundingClientRect().bottom : 94;
+          const sectionPadding = parseFloat(getComputedStyle(target).paddingTop) || 120;
+          const top = target.getBoundingClientRect().top + window.scrollY - (navbarBottom - sectionPadding + 24);
+          window.scrollTo({ top, behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  });
   // ✅ FIX : suppression de module.exports (invalide dans un navigateur)
 })();
 

@@ -11,6 +11,9 @@
   <meta name="robots" content="{{ 'noindex, follow' if noindex else 'index, follow' }}"/>
   <meta name="author" content="{{ 'Yana Palyvoda — YanaLabs' if layout != 'article.njk' else 'Yana Palyvoda' }}" />
 
+  <!-- Google Search Console -->
+  <meta name="google-site-verification" content="4tieIsBN1eoDg9byDy2QbCu4C-a-igZP4kb3Ji6GqEc"/>
+
   <!-- Canonical -->
   <link rel="canonical" href="https://yanalabs.fr{{ page.url }}"/>
 
@@ -24,6 +27,9 @@
   <!-- <meta property="og:image" content="https://yanalabs.fr/images/og-image.jpg"/> -->
   <meta property="og:image" content="{{ 'https://yanalabs.fr' + image if image else 'https://yanalabs.fr/images/og-image.jpg' }}"/>
   <meta property="og:locale" content="fr_FR"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image:type" content="image/jpeg"/>
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image"/>
@@ -37,6 +43,10 @@
   <link rel="icon" type="image/png" href="/images/Favicon.png"/>
   <link rel="apple-touch-icon" href="/images/Favicon.png"/>
 
+  <!-- Modifié par Claude Code le 20260503 — CSS en premier pour découverte anticipée par le navigateur -->
+  <link rel="preload" href="/css/style.css" as="style"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+
   <!-- Modifications 20260424 par Openclaw -->
   <!-- Performance (fonts) — dns-prefetch doit précéder preconnect -->
   <!-- Ancien ordre :
@@ -47,15 +57,20 @@
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="//calendly.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/css/style.css"/>
+  <!-- Google Fonts - async pour ne pas bloquer le rendu (PageSpeed) -->
+  <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap">
+  </noscript>
 </head>
 <body>
 
@@ -67,13 +82,14 @@
       <a class="navbar-logo" href="/">
         <!-- Modifications 20260424 par Openclaw -->
         <!-- <img src="/images/logoNew.png" alt="YanaLabs" height="58" /> -->
-        <img src="/images/logoNew.png" alt="YanaLabs" width="111" height="50" />
+        <!-- Modifié par Claude Code le 20260503 — fetchpriority=high car c'est l'élément LCP -->
+        <img src="/images/logoNew.png" alt="YanaLabs" width="111" height="50" fetchpriority="high" />
       </a>
       <ul class="navbar-links">
         <li><a href="/#notre-demarche">Notre démarche</a></li>
-        <li><a href="/#features">Services</a></li>
         <li><a href="/#about">À propos</a></li>
         <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/services/">Services</a></li>
         <li><a href="/actualites/">Actualités</a></li>
       </ul>
       <a class="btn-nav" href="https://calendly.com/yanalabs/30min" target="_blank" rel="noopener">
@@ -89,9 +105,9 @@
   <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-menu-close" id="mobileClose" aria-label="Fermer">✕</button>
     <a href="/#notre-demarche">Notre démarche</a>
-    <a href="/#features">Services</a>
     <a href="/#about">À propos</a>
     <a href="/#faq">FAQ</a>
+    <a href="/services/">Services</a>
     <!-- Modifications 20260424 par Openclaw -->
     <!-- <a href="/actualites">Actualités</a> -->
     <a href="/actualites/">Actualités</a>
@@ -108,15 +124,15 @@
       <div class="footer-inner">
         <div>
           <a class="footer-logo" href="/">
-            <img src="/images/logoNew.png" alt="YanaLabs" />
+            <img src="/images/logoNew.png" alt="YanaLabs" width="111" height="50"/>
           </a>
           <p class="footer-tagline">Votre agence d'automatisation préférée</p>
         </div>
         <ul class="footer-links">
           <li><a href="/#notre-demarche">Notre démarche</a></li>
-          <li><a href="/#features">Services</a></li>
           <li><a href="/#about">À propos</a></li>
           <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/services/">Services</a></li>
           <li><a href="/actualites/">Actualités</a></li>
         </ul>
         <span class="footer-copy">© 2026. Tous droits réservés.</span>
@@ -131,9 +147,11 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="/js/main.js"></script>
+  <!-- Modifié par Claude Code le 20260503 — defer sur GSAP pour ne pas bloquer le rendu -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/js/main.js" defer></script>
+  <script defer data-domain="yanalabs.fr" src="https://plausible.io/js/script.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -154,7 +172,7 @@
     "@type": "Organization",
     "name": "YanaLabs",
     "url": "https://yanalabs.fr",
-    "logo": "https://yanalabs.fr/images/Favicon.png",
+    "logo": "https://yanalabs.fr/images/logoNew.png",
     "email": "automation@yanalabs.fr",
     "telephone": "+33-695580203",
     "foundingDate": "2025",
@@ -167,10 +185,11 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "ProfessionalService"],
+    "@id": "https://yanalabs.fr/#business",
     "name": "YanaLabs",
     "url": "https://yanalabs.fr",
-    "logo": "https://yanalabs.fr/images/Favicon.png",
+    "logo": "https://yanalabs.fr/images/logoNew.png",
     "image": "https://yanalabs.fr/images/og-image.jpg",
     "description": "YanaLabs automatise les tâches répétitives des TPE et PME grâce au no-code (Make, Airtable). Solutions sur-mesure en Île-de-France.",
     "telephone": "+33-695580203",
@@ -178,20 +197,39 @@
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Neuilly-Plaisance",
+      "postalCode": "93360",
       "addressRegion": "Île-de-France",
       "addressCountry": "FR"
     },
-    "areaServed": {
-      "@type": "State",
-      "name": "Île-de-France"
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 48.8637,
+      "longitude": 2.5125
     },
+    "areaServed": [
+      { "@type": "City", "name": "Paris" },
+      { "@type": "City", "name": "Neuilly-Plaisance" },
+      { "@type": "City", "name": "Vincennes" },
+      { "@type": "City", "name": "Montreuil" },
+      { "@type": "City", "name": "Créteil" },
+      { "@type": "City", "name": "Boulogne-Billancourt" },
+      { "@type": "City", "name": "Saint-Denis" },
+      { "@type": "AdministrativeArea", "name": "Île-de-France" }
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/company/yanalabs",
+      "https://www.linkedin.com/in/yana-palyvoda"
+    ],
     "priceRange": "€€",
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-      "opens": "09:00",
-      "closes": "18:00"
-    }
+    "currenciesAccepted": "EUR",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -223,7 +261,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Yana",
+    "name": "Yana Palyvoda",
     "jobTitle": "Fondatrice",
     "image": "https://yanalabs.fr/images/aboutme.jpeg",
     "url": "https://yanalabs.fr/#about",
@@ -252,10 +290,10 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Je n'y connais rien en informatique, est-ce que je vais savoir l'utiliser ?",
+        "name": "Faut-il des compétences techniques ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolument ! Nos solutions sont conçues pour être intuitives. Nous vous formons et restons disponibles pour toute question."
+          "text": "Aucune expertise technique n'est nécessaire. Nos solutions sont intuitives et prêtes à l'emploi. Vous bénéficiez d'une formation sur mesure et d'un accompagnement continu pour démarrer en toute sérénité."
         }
       },
       {
@@ -279,15 +317,15 @@
         "name": "Combien de temps ça va me prendre ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "La mise en place prend 1 à 2 semaines. Ensuite, les automatisations tournent seules."
+          "text": "La mise en place prend 1 à 3 semaines. Ensuite, les automatisations tournent seules."
         }
       },
       {
         "@type": "Question",
-        "name": "Est-ce que mes données clients sont en sécurité ?",
+        "name": "Par où commencer ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Oui, nous utilisons uniquement des outils conformes RGPD. Vos données restent sous votre contrôle."
+          "text": "La méthode est simple : repérer les actions répétées plusieurs fois par jour, les saisies d'informations identiques, et les étapes déclenchées à chaque fois par le même événement."
         }
       }
     ]
@@ -325,7 +363,7 @@
       "url": "https://yanalabs.fr",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://yanalabs.fr/images/Favicon.png"
+        "url": "https://yanalabs.fr/images/logoNew.png"
       }
     },
     "mainEntityOfPage": {

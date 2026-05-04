@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "eleventy --serve",
-    "build": "eleventy"
+    "build": "eleventy && node scripts/minify-css.js && node scripts/minify-js.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/YanaPalyvoda/yanalabs#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.5"
+    "@11ty/eleventy": "^3.1.5",
+    "clean-css": "^5.3.3",
+    "terser": "^5.46.2"
   },
   "dependencies": {
     "luxon": "^3.7.2",

@@ -31,11 +31,6 @@ module.exports = function(eleventyConfig) {
     return content.replace(/<[^>]*>/g, " ").split(/\s+/).filter(Boolean).length;
   });
 
-  // Modifications 20260424 par Openclaw — filtre pour articles similaires (exclut l'article courant)
-  eleventyConfig.addFilter("excludeUrl", (array, url, n = 3) =>
-    array.filter(item => item.url !== url).slice(0, n)
-  );
-
   // Modifications 20260424 par Openclaw — collection déjà définie ailleurs, commentée pour éviter le conflit
   // eleventyConfig.addCollection("articlesSorted", (collectionApi) =>
   //   collectionApi.getFilteredByTag("articles")
@@ -61,6 +56,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/_assets/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/_assets/js": "js" });
   eleventyConfig.addPassthroughCopy({ "src/images": "images" });
+  // Modifié par Claude Code le 20260503 — robots.txt non traité par templateFormats (.txt), passthrough requis
+  eleventyConfig.addPassthroughCopy("src/robots.txt");
 
   return {
     markdownTemplateEngine: "njk",   // ← était false, à changer !

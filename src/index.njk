@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "YanaLabs — Automatisation No-Code pour TPE/PME"
-description: "YanaLabs automatise vos devis, relances et CRM grâce au no-code (Make, Airtable). Audit gratuit et sans engagement pour TPE/PME en Île-de-France. Résultats en 2 semaines."
+title: "YanaLabs — Automatisation No-Code TPE/PME Île-de-France"
+description: "YanaLabs automatise vos devis, relances et CRM grâce au no-code (Make, Airtable). Audit gratuit et sans engagement pour TPE/PME en Île-de-France."
 # Modifications 20260424 par Openclaw — active le schema FAQPage dans base.njk
 faqPage: true
 ---
@@ -35,6 +35,11 @@ faqPage: true
         <div class="hero-cta">
           <a href="https://calendly.com/yanalabs/30min" target="_blank" rel="noopener" class="btn btn-gradient">
             Obtenir mon plan d’automatisation gratuit
+          </a>
+        </div>
+        <div style="margin-top: 0; margin-bottom: 48px;">
+          <a href="/services/" style="color: var(--color-text); opacity: 0.7; font-size: 0.95rem; text-decoration: underline;">
+            Découvrir nos services →
           </a>
         </div>
 
@@ -117,8 +122,8 @@ faqPage: true
             <span class="badge">⚡ Automatisation des tâches</span>
             <h2>Récupérez du temps pour l'essentiel</h2>
             <p>Automatisez tout ce qui ne nécessite pas votre expertise. Que ce soit pour gérer vos prospects, envoyer vos devis ou relancer vos impayés, nos solutions tournent en arrière-plan pour que vous restiez concentré sur votre métier.</p>
-            <a href="https://calendly.com/yanalabs/30min" target="_blank" rel="noopener" class="btn btn-outline-gradient">
-              <span>J'optimise mon temps</span>
+            <a href="/services/" class="btn btn-outline-gradient">
+              <span>Découvrir nos services →</span>
             </a>
           </div>
           <div class="feature-visual reveal">
@@ -263,7 +268,8 @@ faqPage: true
             </a>
           </div>
           <div class="feature-visual reveal">
-            <img src="/images/Dashboard.webp" alt="Dashboard YanaLabs" loading="lazy"/>
+            <!-- Modifié par Claude Code le 20260503 — ajout width/height pour prévenir le CLS -->
+            <img src="/images/Dashboard.webp" alt="Dashboard YanaLabs" width="2848" height="1600" loading="lazy"/>
           </div>
         </div>
 
@@ -279,14 +285,14 @@ faqPage: true
           </div>
           <div class="feature-visual reveal">
             <div class="tools-grid">
-              <div class="tool-card"><img src="/images/Icone-chatgpt.png" alt="ChatGPT" width="48" height="48" /></div>
-              <div class="tool-card"><img src="/images/Icone-Airtable.jpg" alt="Airtable" width="48" height="42" /></div>
-              <div class="tool-card"><img src="/images/Icone-notion.png" alt="Notion" width="48" height="48" /></div>
-              <div class="tool-card"><img src="/images/Icone-slak.webp" alt="Slack" width="48" height="48" /></div>
-              <div class="tool-card"><img src="/images/Icone-loom.png" alt="Loom" width="48" height="48" /></div>
-              <div class="tool-card"><img src="/images/Icone-google-meet.png" alt="Google Meet" width="48" height="40" /></div>
-              <div class="tool-card"><img src="/images/icone-linkedin.png" alt="LinkedIn" width="48" height="48" /></div>
-              <div class="tool-card"><img src="/images/Icone-Miro.png" alt="Miro" width="48" height="48" /></div>
+              <div class="tool-card"><img src="/images/Icone-chatgpt.png" alt="ChatGPT — IA intégrée dans les automatisations no-code" width="48" height="48" /></div>
+              <div class="tool-card"><img src="/images/Icone-Airtable.jpg" alt="Airtable — base de données no-code pour TPE et PME" width="48" height="42" /></div>
+              <div class="tool-card"><img src="/images/Icone-notion.png" alt="Notion — gestion de projet connectée aux automatisations" width="48" height="48" /></div>
+              <div class="tool-card"><img src="/images/Icone-slak.webp" alt="Slack — notifications automatiques dans les workflows no-code" width="48" height="48" /></div>
+              <div class="tool-card"><img src="/images/Icone-loom.png" alt="Loom — enregistrement vidéo intégré aux processus clients" width="48" height="48" /></div>
+              <div class="tool-card"><img src="/images/Icone-google-meet.png" alt="Google Meet — planification automatique de rendez-vous" width="48" height="40" /></div>
+              <div class="tool-card"><img src="/images/icone-linkedin.png" alt="LinkedIn — automatisation de prospection et publication de contenu" width="48" height="48" /></div>
+              <div class="tool-card"><img src="/images/Icone-Miro.png" alt="Miro — cartographie des processus à automatiser" width="48" height="48" /></div>
             </div>
           </div>
         </div>
@@ -330,7 +336,7 @@ faqPage: true
         <!-- Node 1: Trigger -->
         <div class="wf-node">
           <div class="wf-node-icon wf-icon-purple">
-            <img src="/images/Icone-Form.png" alt="Formulaire" width="36" height="36" />
+            <img src="/images/Icone-Form.png" alt="Formulaire — déclencheur d'automatisation Make no-code" width="36" height="36" />
           </div>
           <div class="wf-node-text">
             <span class="wf-node-title">Nouveau client inscrit</span>
@@ -358,7 +364,7 @@ faqPage: true
         <!-- Node 3: Créer nouveau client -->
         <div class="wf-node">
           <div class="wf-node-icon wf-icon-color">
-            <img src="/images/Icone-Airtable.png" alt="Airtable" width="36" height="24" />
+            <img src="/images/Icone-Airtable.png" alt="Airtable — stockage automatique des données clients no-code" width="36" height="24" />
           </div>
           <div class="wf-node-text">
             <span class="wf-node-title">Créer un nouveau client</span>
@@ -370,7 +376,7 @@ faqPage: true
         <!-- Node 4: Rédiger un email -->
         <div class="wf-node">
           <div class="wf-node-icon wf-icon-green">
-            <img src="/images/Icone-chatgpt.png" alt="ChatGPT" width="36" height="36" />
+            <img src="/images/Icone-chatgpt.png" alt="ChatGPT — traitement IA dans le workflow d'automatisation" width="36" height="36" />
           </div>
           <div class="wf-node-text">
             <span class="wf-node-title">Rédiger un email</span>
@@ -382,7 +388,7 @@ faqPage: true
         <!-- Node 5: Email de bienvenue -->
         <div class="wf-node">
           <div class="wf-node-icon wf-icon-blue">
-            <img src="/images/Icone-mail.png" alt="Mail" width="36" height="36" />
+            <img src="/images/Icone-mail.png" alt="Email — envoi automatique de notifications et relances clients" width="36" height="36" />
           </div>
           <div class="wf-node-text">
             <span class="wf-node-title">Email de bienvenue</span>
@@ -417,7 +423,7 @@ faqPage: true
               <!-- Node 1: Google Sheets -->
               <div class="wf-node">
                 <div class="wf-node-icon wf-icon-color">
-                  <img src="/images/icone-googlesheet.webp" alt="Google Sheets" width="36" height="36" />
+                  <img src="/images/icone-googlesheet.webp" alt="Google Sheets — synchronisation automatique des données PME" width="36" height="36" />
                 </div>
                 <div class="wf-node-text">
                   <span class="wf-node-title">Récupération des factures impayées</span>
@@ -429,7 +435,7 @@ faqPage: true
               <!-- Node 2: Make orchestration -->
               <div class="wf-node">
                 <div class="wf-node-icon wf-icon-color">
-                  <img src="/images/Icone-make.png" alt="Make" width="36" height="36" />
+                  <img src="/images/Icone-make.png" alt="Make — outil d'automatisation no-code pour TPE et PME" width="36" height="36" />
                 </div>
                 <div class="wf-node-text">
                   <span class="wf-node-title">Orchestration</span>
@@ -441,7 +447,7 @@ faqPage: true
               <!-- Node 3: Gmail relance 1 -->
               <div class="wf-node">
                 <div class="wf-node-icon wf-icon-color">
-                  <img src="/images/Icone-gmail.webp" alt="Gmail" width="36" height="36" />
+                  <img src="/images/Icone-gmail.webp" alt="Gmail — envoi automatique d'emails personnalisés no-code" width="36" height="36" />
                 </div>
                 <div class="wf-node-text">
                   <span class="wf-node-title">1ère relance personnalisée</span>
@@ -453,7 +459,7 @@ faqPage: true
               <!-- Node 4: Gmail relance 2 -->
               <div class="wf-node">
                 <div class="wf-node-icon wf-icon-color">
-                  <img src="/images/Icone-gmail.webp" alt="Gmail" width="36" height="36" />
+                  <img src="/images/Icone-gmail.webp" alt="Gmail — envoi automatique d'emails personnalisés no-code" width="36" height="36" />
                 </div>
                 <div class="wf-node-text">
                   <span class="wf-node-title">2ème relance</span>
@@ -465,7 +471,7 @@ faqPage: true
               <!-- Node 5: Gmail relance 3 -->
               <div class="wf-node">
                 <div class="wf-node-icon wf-icon-color">
-                  <img src="/images/Icone-gmail.webp" alt="Gmail" width="36" height="36" />
+                  <img src="/images/Icone-gmail.webp" alt="Gmail — envoi automatique d'emails personnalisés no-code" width="36" height="36" />
                 </div>
                 <div class="wf-node-text">
                   <span class="wf-node-title">3ème relance</span>
@@ -477,7 +483,7 @@ faqPage: true
               <!-- Node 6: Calendar -->
               <div class="wf-node">
                 <div class="wf-node-icon wf-icon-color">
-                  <img src="/images/icone-calendar.png" alt="Agenda" width="36" height="36" />
+                  <img src="/images/icone-calendar.png" alt="Google Agenda — planification automatique de rendez-vous clients" width="36" height="36" />
                 </div>
                 <div class="wf-node-text">
                   <span class="wf-node-title">Call avec client ajouté dans l'agenda</span>
@@ -629,14 +635,15 @@ faqPage: true
 
             <!-- Badges de certification : retirer "about-certs--hidden" pour afficher -->
             <div class="about-certs about-certs--hidden">
-              <img src="/images/cert-1.png" alt="Badge certification 1" width="80" height="80" loading="lazy" />
-              <img src="/images/cert-2.png" alt="Badge certification 2" width="80" height="80" loading="lazy" />
-              <img src="/images/cert-3.png" alt="Badge certification 3" width="80" height="80" loading="lazy" />
-              <img src="/images/cert-4.png" alt="Badge certification 4" width="80" height="80" loading="lazy" />
+              <img src="/images/cert-1.png" alt="Certification Make — expert automatisation no-code YanaLabs" width="80" height="80" loading="lazy" />
+              <img src="/images/cert-2.png" alt="Certification Airtable — expert base de données no-code YanaLabs" width="80" height="80" loading="lazy" />
+              <img src="/images/cert-3.png" alt="Certification no-code — Yana Palyvoda, YanaLabs Île-de-France" width="80" height="80" loading="lazy" />
+              <img src="/images/cert-4.png" alt="Certification automatisation — YanaLabs, solutions no-code PME" width="80" height="80" loading="lazy" />
             </div>
           </div>
           <div class="about-photo reveal">
-            <img src="/images/aboutme.jpeg" alt="Yana, fondatrice de YanaLabs — experte automatisation no-code Île-de-France" loading="lazy"/>
+            <!-- Modifié par Claude Code le 20260503 — ajout width/height pour prévenir le CLS -->
+            <img src="/images/aboutme.jpeg" alt="Yana Palyvoda, fondatrice de YanaLabs — experte automatisation no-code Île-de-France" width="992" height="1056" loading="lazy"/>
             <div class="about-photo-caption">
               <p class="about-photo-name"><strong>Yana PALYVODA</strong> — Fondatrice YanaLabs, Île-de-France</p>
               <a href="https://www.linkedin.com/in/yana-palyvoda" target="_blank" rel="noopener">
