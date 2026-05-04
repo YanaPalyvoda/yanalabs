@@ -153,13 +153,28 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="/js/main.js" defer></script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MX9DTPTKJY"></script>
+  <!-- Google Analytics 4 — chargé uniquement après consentement -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-MX9DTPTKJY');
+    function loadGA4() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-MX9DTPTKJY';
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-MX9DTPTKJY');
+    }
+    (function() {
+      var consent = localStorage.getItem('cookieConsent');
+      if (consent === 'accepted') { loadGA4(); }
+      else if (!consent) {
+        document.addEventListener('DOMContentLoaded', function() {
+          document.getElementById('cookie-banner').style.display = 'flex';
+        });
+      }
+    })();
   </script>
   <script type="application/ld+json">
   {
@@ -428,5 +443,28 @@
   </script>
   {% endif %}
 {% endif %}
+
+  <!-- Bandeau consentement cookies -->
+  <div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999; background:#fff; border-top:1px solid rgba(87,62,105,0.12); padding:20px 24px; box-shadow:0 -4px 24px rgba(87,62,105,0.1); align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+    <p style="margin:0; font-size:14px; color:var(--color-secondary); max-width:640px; line-height:1.6;">
+      Nous utilisons Google Analytics pour mesurer l'audience de notre site et améliorer votre expérience. Vos données sont anonymisées.
+      <a href="/legal/politique-cookies/" style="color:var(--color-cta-purple); text-decoration:underline;">En savoir plus</a>
+    </p>
+    <div style="display:flex; gap:12px; flex-shrink:0;">
+      <button id="cookie-reject" class="btn btn-outline" style="font-size:14px; padding:10px 20px;">Refuser</button>
+      <button id="cookie-accept" class="btn btn-gradient" style="font-size:14px; padding:10px 20px;">Accepter</button>
+    </div>
+  </div>
+  <script>
+    document.getElementById('cookie-accept').addEventListener('click', function() {
+      localStorage.setItem('cookieConsent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      loadGA4();
+    });
+    document.getElementById('cookie-reject').addEventListener('click', function() {
+      localStorage.setItem('cookieConsent', 'rejected');
+      document.getElementById('cookie-banner').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
