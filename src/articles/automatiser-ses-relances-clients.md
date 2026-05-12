@@ -4,7 +4,7 @@ title: "Relance client automatique : zéro impayé oublié sans coder"
 templateEngineOverride: md
 description: "Automatisez vos relances clients avec Make ou Airtable. Détectez les impayés et envoyez des relances personnalisées automatiquement, sans une ligne de code."
 date: 2026-04-03
-updated: 2026-04-25
+updated: 2026-05-02
 tags: ["articles", "relance factures impayées automatique", "relance client automatique", "automatiser factures impayées PME"]
 categorie: "Gain Temps"
 temps_lecture: 6

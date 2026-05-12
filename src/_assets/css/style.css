@@ -279,6 +279,7 @@ a  { text-decoration: none; color: inherit; }
   color: var(--color-primary);
   margin-bottom: 24px;
 }
+
 .hero-subtitle {
   font-size: 18px;
   color: var(--color-accent);
@@ -341,6 +342,149 @@ a  { text-decoration: none; color: inherit; }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+}
+/* services.njk only — 3 columns */
+.steps-grid--three {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 900px) {
+  .steps-grid--three { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .steps-grid--three { grid-template-columns: 1fr; }
+}
+/* Service detail pages only — 1 column */
+.steps-grid--one {
+  grid-template-columns: 1fr;
+}
+/* Notre Approche — Timeline horizontale (services.njk) */
+.timeline-h {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin: 0 auto 0;
+}
+.timeline-h::before {
+  content: '';
+  position: absolute;
+  top: 23px;
+  left: 24px;
+  right: 24px;
+  height: 2px;
+  background: linear-gradient(to right, var(--color-purple-light), rgba(159,128,218,0.2));
+  z-index: 0;
+}
+.timeline-h-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 0 16px;
+}
+.timeline-h-marker {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 16px rgba(87,62,105,0.25);
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+.timeline-h-content h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+.timeline-h-content p {
+  font-size: 15px;
+  color: var(--color-footer-text);
+  line-height: 1.5;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .timeline-h { flex-direction: column; align-items: stretch; gap: 0; }
+  .timeline-h::before {
+    left: 23px; top: 24px; right: auto; bottom: 24px;
+    width: 2px; height: auto;
+  }
+  .timeline-h-step {
+    flex-direction: row; align-items: flex-start;
+    text-align: left; gap: 20px; padding: 0 0 24px;
+  }
+  .timeline-h-marker { margin-bottom: 0; }
+  .timeline-h-content { padding-top: 10px; }
+}
+/* Comment ça marche — Timeline verticale (service detail pages) */
+.timeline {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 48px;
+  bottom: 48px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-purple-light), rgba(159,128,218,0.1));
+}
+.timeline-step {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  position: relative;
+}
+.timeline-step:last-child { margin-bottom: 0; }
+.timeline-marker {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 16px rgba(87,62,105,0.25);
+}
+.timeline-content {
+  flex: 1;
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 2px 16px rgba(87,62,105,0.07);
+  border: 1px solid rgba(87,62,105,0.06);
+}
+.timeline-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+.timeline-content p {
+  font-size: 16px;
+  color: var(--color-footer-text);
+  line-height: 1.6;
+  margin: 0;
 }
 .step-card {
   background: #fff;
@@ -1284,7 +1428,7 @@ a  { text-decoration: none; color: inherit; }
   inset: 0;
   /* Modifications 20260424 par Openclaw */
   /* background: url('https://framerusercontent.com/images/cDToKIOwSEHDKPcUKq3Rys9NqiE.png') center/cover; */
-  background: url('/images/newsletter-bg-pattern.png') center/cover;
+  background: url('/images/newsletter-bg-pattern.webp') center/cover;
   opacity: 0.25;
   pointer-events: none;
 }
@@ -1951,6 +2095,28 @@ footer {
   color: var(--color-primary);
   margin-bottom: 40px;
   text-align: center;
+}
+/* === CERTIFICATIONS PILLS === */
+.certifications {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.cert-pill {
+  border: 1.5px solid #5b3fa6;
+  color: #5b3fa6;
+  border-radius: 9999px;
+  padding: 4px 14px;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.cert-pill:hover {
+  background: #5b3fa6;
+  color: #fff;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 /* ——— RESPONSIVE ARTICLE ——— */
