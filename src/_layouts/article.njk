@@ -99,9 +99,9 @@ layout: base.njk
     {# </div> #}
 
     {# ——— ARTICLES SIMILAIRES ——— #}
-    {# Modifications 20260424 par Openclaw — filtre excludeUrl pour toujours avoir 3 articles #}
+    {# Modifications 20260424 par Openclaw — filtre excludeUrl pour toujours avoir 4 articles #}
     {# {% set similaires = collections.articles | reverse | limit(3) %} #}
-    {% set similaires = collections.articles | reverse | excludeUrl(page.url, 3) %}
+    {% set similaires = collections.articles | reverse | excludeUrl(page.url, 4) %}
     {% if similaires.length %}
       <section class="articles-similaires">
         <h2>Continuer la lecture</h2>

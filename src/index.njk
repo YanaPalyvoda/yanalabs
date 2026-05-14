@@ -496,6 +496,88 @@ faqPage: true
         </div>
 
         <!-- ══════════════════════════════════════════
+            CAS 3 — texte gauche / workflow droite
+        ══════════════════════════════════════════ -->
+        <div class="cu-row">
+          <div class="cu-content reveal">
+            <span class="badge">Standard Vocal</span>
+            <h2>Assistant Vocal : votre standard intelligent 24/7</h2>
+            <p>Dès qu'un appel arrive en votre absence, l'agent vocal prend le relais pour informer, filtrer et qualifier la demande sans aucune intervention de votre part.</p>
+            <ul class="cu-gains">
+              <li>⏱️ 4h économisées par semaine</li>
+              <li>✅ 100% de joignabilité</li>
+              <li>🚀 Qualification immédiate</li>
+            </ul>
+          </div>
+          <div class="cu-visual reveal">
+            <div class="workflow-diagram">
+
+              <div class="wf-bg-blob"></div>
+
+              <!-- Node 1: Décrochage instantané -->
+              <div class="wf-node">
+                <div class="wf-node-icon wf-icon-purple">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .82h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                </div>
+                <div class="wf-node-text">
+                  <span class="wf-node-title">Décrochage instantané</span>
+                  <span class="wf-node-tag">Trigger</span>
+                </div>
+              </div>
+              <div class="wf-connector-v"></div>
+
+              <!-- Node 2: Analyse de l'intention -->
+              <div class="wf-node">
+                <div class="wf-node-icon wf-icon-green">
+                  <img src="/images/Icone-chatgpt.png" alt="ChatGPT — analyse de l'intention vocale par IA" width="36" height="36" />
+                </div>
+                <div class="wf-node-text">
+                  <span class="wf-node-title">Analyse de l'intention</span>
+                  <span class="wf-node-tag">IA</span>
+                </div>
+              </div>
+              <div class="wf-connector-v"></div>
+
+              <!-- Node 3: Réponse interactive -->
+              <div class="wf-node">
+                <div class="wf-node-icon wf-icon-violet">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </div>
+                <div class="wf-node-text">
+                  <span class="wf-node-title">Réponse interactive</span>
+                  <span class="wf-node-tag">Agent Vocal</span>
+                </div>
+              </div>
+              <div class="wf-connector-v"></div>
+
+              <!-- Node 4: Collecte de données -->
+              <div class="wf-node">
+                <div class="wf-node-icon wf-icon-color">
+                  <img src="/images/Icone-Airtable.png" alt="Airtable — collecte et stockage des données prospects" width="36" height="24" />
+                </div>
+                <div class="wf-node-text">
+                  <span class="wf-node-title">Collecte de données</span>
+                  <span class="wf-node-tag">Airtable</span>
+                </div>
+              </div>
+              <div class="wf-connector-v"></div>
+
+              <!-- Node 5: Notification par SMS -->
+              <div class="wf-node">
+                <div class="wf-node-icon wf-icon-blue">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                </div>
+                <div class="wf-node-text">
+                  <span class="wf-node-title">Notification par SMS</span>
+                  <span class="wf-node-tag">SMS</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════
             ➕ TEMPLATE — Copier/coller pour ajouter un cas
             Alterner cu-row et cu-row-reverse
         ══════════════════════════════════════════
