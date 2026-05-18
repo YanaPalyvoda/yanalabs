@@ -4,7 +4,7 @@ title: "Devis automatique no-code : générez et envoyez en 5 minutes"
 templateEngineOverride: md
 description: "Générez et envoyez vos devis automatiquement avec Make et Airtable. Moins de 5 minutes par devis, sans coder."
 date: 2026-04-15
-updated: 2026-04-25
+updated: 2026-05-12
 tags: ["articles", "automatisation", "devis", "gain temps", "no-code"]
 categorie: "Devis Facturation"
 temps_lecture: 7

@@ -4,7 +4,7 @@ title: "Google Sheets et automatisation : en finir avec les tableaux Excel mis �
 templateEngineOverride: md
 description: "Gagnez du temps avec l’automatisation de Google Sheets. Découvrez comment passer d’un tableau mis à jour manuellement à une solution sans une ligne de code."
 date: 2026-04-21
-updated: 2026-11-05
+updated: 2026-11-14
 tags: ["articles", "automatisation", "google sheets", "gains temps", "no-code", ]
 categorie: "Gain Temps"
 temps_lecture: 5

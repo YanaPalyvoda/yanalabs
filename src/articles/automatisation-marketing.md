@@ -4,7 +4,7 @@ title: "Automatisation marketing : comment automatiser vos campagnes et génére
 templateEngineOverride: md
 description: "Découvrez comment l'automatisation marketing peut générer plus de leads sans une ligne de code, pour les équipes qui perdent du temps et les dirigeants non-techniques."
 date: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-13
 tags: ["articles", "automatisation", "marketing", "lead generation", "no-code", ]
 categorie: "Gain Temps"
 temps_lecture: 5

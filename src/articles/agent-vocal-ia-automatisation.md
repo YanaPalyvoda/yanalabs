@@ -4,7 +4,7 @@ title: "Agent vocal IA : Comment automatiser votre accueil téléphonique 24h/24
 templateEngineOverride: md
 description: "Comment automatiser son standard téléphonique avec l'IA et gagner du temps sans une ligne de code. Solution claire pour les équipes qui perdent du temps."
 date: 2026-05-14
-updated: 2026-05-14
+updated: 2026-05-18
 tags: ["articles", "IA", "Automatisation", "Gagner du temps", "Accueil téléphonique"]
 categorie: "Gain Temps"
 temps_lecture: 7
