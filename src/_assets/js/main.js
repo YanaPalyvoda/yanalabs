@@ -193,17 +193,20 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
     btn.textContent = 'Envoi en cours...';
     btn.disabled = true;
 
-    // Modifications 20260424 par Openclaw — formatage +33 en mémoire (ne modifie plus phone.value visible)
     const rawPhone = form.querySelector('#phone').value.trim().replace(/\s/g, '').replace(/^0/, '');
-    const formData = new FormData(form);
-    formData.set('phone', '+33' + rawPhone);
-    const data = Object.fromEntries(formData);
+    const params = new URLSearchParams({
+      nom:        form.querySelector('#nom').value.trim(),
+      prenom:     form.querySelector('#prenom').value.trim(),
+      email:      form.querySelector('#email').value.trim(),
+      phone:      '+33' + rawPhone,
+      entreprise: form.querySelector('#entreprise').value.trim(),
+      besoin:     form.querySelector('#besoin').value.trim()
+    });
 
     try {
       const res = await fetch('https://hook.eu1.make.com/dbsob3hxaxff8flhljj66mk977oitkrg', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: params
       });
       // ✅ FIX : vérifier aussi les erreurs HTTP (4xx / 5xx)
       if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -293,13 +296,15 @@ document.querySelectorAll('.step-card').forEach((card, i) => {
     btn.textContent = 'Envoi en cours...';
     btn.disabled    = true;
 
-    const data = Object.fromEntries(new FormData(form));
+    const params = new URLSearchParams({
+      email: emailInput.value.trim(),
+      gdpr:  gdpr.checked ? 'on' : ''
+    });
 
     try {
       const res = await fetch('https://hook.eu1.make.com/9uem47pfvdxfiu72q7vxq4t9yn1eotxj', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: params
       });
       // ✅ FIX : vérifier aussi les erreurs HTTP (4xx / 5xx)
       if (!res.ok) throw new Error('HTTP ' + res.status);
