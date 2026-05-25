@@ -1,0 +1,365 @@
+DIAGNOSTIC & CORRECTIONS — SCÉNARIO MAKE NEWSLETTER
+=====================================================
+Fichier : Newsletter – Génération & Envoi bi-mensuel.blueprint.json
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RÉSUMÉ DES PROBLÈMES IDENTIFIÉS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BUG 1 — Module 3 a le mauvais feeder (cause des doublons FranceNum)
+  Le TextAggregator "Agrégation des articles" (module 3) a feeder=1
+  au lieu de feeder=9. Il itère sur FranceNum Formations au lieu de
+  FranceNum Aides. Résultat : Formations en double, Aides jamais vues.
+
+BUG 2 — Module 37 envoie les URL des images au lieu des articles
+  Dans le mapper du module 37 (Bpifrance), l'URL envoyée à l'IA est
+  36.image.url (miniature Google News) au lieu de 36.url (article).
+  C'est la cause directe des liens qui ne correspondent pas aux articles.
+
+BUG 3 — Architecture des agrégateurs crée une duplication exponentielle
+  Chaque TextAggregator embed le texte COMPLET du précédent dans son
+  mapper pour CHAQUE article traité. Exemple :
+  - Module 3 : pour chacun des 5 articles Aides, il colle les 5 articles
+    Formations → 25 lignes au lieu de 10
+  - Module 14 : pour chacun des 5 articles Principal, il colle les 25
+    lignes précédentes → 125 lignes
+  - etc.
+  L'IA reçoit le même article des dizaines de fois dans le même texte.
+  C'est la cause principale des doublons et incohérences.
+
+BUG 4 — Modèle IA trop faible (gpt-5-nano)
+  Le SmallModel ne respecte pas fiablement toutes les instructions du
+  prompt (filtre géographique, déduplication, ordre des champs JSON).
+  D'où les articles hors Île-de-France qui passent quand même.
+
+BUG 5 — Module 31 maxRecords = 1
+  Airtable ne récupère qu'un seul abonné. Si vous avez plusieurs
+  inscrits, seul le premier reçoit la newsletter.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CORRECTIONS DÉTAILLÉES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+──────────────────────────────────────
+CORRECTION 1 — Module 3 : changer le feeder
+──────────────────────────────────────
+Dans Make, ouvrir le module 3 "Agrégation des articles".
+Changer le champ "Source module" de :
+  → RSS – FranceNum Formations [1]
+à :
+  → RSS – FranceNum Aides [9]
+
+
+──────────────────────────────────────
+CORRECTION 2 — Module 37 : corriger l'URL
+──────────────────────────────────────
+Dans Make, ouvrir le module 37 (TextAggregator Bpifrance).
+Remplacer dans le champ "Text" :
+
+AVANT :
+  ... + 36.image.url + ...
+
+APRÈS :
+  ... + 36.url + ...
+
+Mapper complet corrigé du module 37 :
+
+  Title: {{36.title}}. Text: {{36.description}}. Date: {{36.rssFields.pubdate}}. Url: {{36.url}}
+
+
+──────────────────────────────────────
+CORRECTION 3 — Supprimer les textes imbriqués dans chaque agrégateur
+──────────────────────────────────────
+Chaque TextAggregator doit contenir UNIQUEMENT les données de sa propre
+source RSS. Le texte des sources précédentes sera combiné plus loin,
+dans le module IA (voir Correction 4).
+
+MODULE 11 — TextAggregator FranceNum Formations
+  Mapper corrigé (déjà correct, ne pas toucher) :
+  Title: {{1.title}}. Text: {{1.description}}. Date: {{1.rssFields.pubdate}}. Url: {{1.url}}
+
+MODULE 3 — TextAggregator FranceNum Aides
+  Remplacer le mapper actuel par :
+  Title: {{9.title}}. Text: {{9.description}}. Date: {{9.rssFields.pubdate}}. Url: {{9.url}}
+  (supprimer le "Articles : {{11.text}}" à la fin)
+
+MODULE 14 — TextAggregator FranceNum Principal
+  Remplacer le mapper actuel par :
+  Title: {{12.title}}. Text: {{12.description}}. Date: {{12.rssFields.pubdate}}. Url: {{12.url}}
+  (supprimer le "Articles: {{3.text}}" à la fin)
+
+MODULE 20 — TextAggregator Blog du Modérateur
+  Remplacer le mapper actuel par :
+  Title: {{19.title}}. Text: {{19.description}}. Date: {{19.rssFields.pubdate}}. Url: {{19.url}}
+  (supprimer le "Articles: {{14.text}}" et la condition ifempty)
+
+MODULE 37 — TextAggregator Bpifrance
+  Remplacer le mapper actuel par (correction BUG 2 incluse) :
+  Title: {{36.title}}. Text: {{36.description}}. Date: {{36.rssFields.pubdate}}. Url: {{36.url}}
+  (supprimer le "Articles: {{20.text}}" et la condition ifempty)
+
+
+──────────────────────────────────────
+CORRECTION 4 — Module 35 (IA) : combiner les 5 sources proprement
+──────────────────────────────────────
+Dans le champ "Text" du module IA (module 35), remplacer la dernière
+ligne du prompt :
+
+  AVANT :
+  TEXTE BRUT DE LA NEWSLETTER : {{37.text}}
+
+  APRÈS :
+  TEXTE BRUT DE LA NEWSLETTER :
+
+  === SOURCE 1 : FranceNum Formations ===
+  {{11.text}}
+
+  === SOURCE 2 : FranceNum Aides ===
+  {{3.text}}
+
+  === SOURCE 3 : FranceNum Principal ===
+  {{14.text}}
+
+  === SOURCE 4 : Blog du Modérateur ===
+  {{20.text}}
+
+  === SOURCE 5 : Bpifrance / Google News ===
+  {{37.text}}
+
+Cela donne à l'IA une liste propre, sourcée, sans doublons.
+
+
+──────────────────────────────────────
+CORRECTION 5 — Changer le modèle IA
+──────────────────────────────────────
+Dans le module 35 "AI Ask", changer le modèle de :
+  SmallModel (gpt-5-nano)
+à :
+  LargeModel (gpt-4o ou équivalent Claude Sonnet)
+
+Le prompt est complexe (4 étapes, filtre géographique, 8 champs JSON).
+Un modèle faible ne suit pas toutes les règles de manière fiable.
+
+
+──────────────────────────────────────
+CORRECTION 6 — Module 31 : récupérer tous les abonnés
+──────────────────────────────────────
+Dans Make, le module 31 (Airtable – Récupération abonnés) a maxRecords=1.
+Pour envoyer à tous les abonnés :
+
+  Option A (simple) : augmenter maxRecords à 100 ou 500.
+  Le module 31 produira N bundles (1 par abonné).
+  Le module 27 (Gmail) s'exécutera N fois, une fois par abonné.
+
+  Option B (propre) : utiliser un module "Iterate" entre Airtable et Gmail
+  pour boucler proprement sur chaque abonné.
+
+  ⚠️ Attention : avec Gmail, l'envoi en masse peut déclencher les filtres
+  anti-spam. Au-delà de 50 abonnés, utiliser Brevo ou Mailchimp.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PROMPT IA CORRIGÉ (module 35 — champ "Text" complet)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Tu es un expert en veille IA et automatisation pour TPE/PME.
+Tu rédiges pour des dirigeants d'entreprises de 1 à 50 salariés, basés en
+Île-de-France, souvent seuls face aux décisions tech. Ils manquent de temps,
+de budget et de ressources IT. Chaque article sélectionné doit leur apporter
+une valeur immédiate, concrète et actionnable — pas de la théorie.
+
+Voici le texte brut d'une newsletter. Ton travail se déroule en 4 étapes :
+
+---
+ÉTAPE 1 — EXTRACTION
+Identifie et extrais tous les articles présents dans ce texte brut.
+Pour chaque article, retrouve :
+- titre : le titre de l'article
+- texte : le résumé/description de l'article
+- lien : l'URL associée (si présente)
+
+⚠️ DÉDUPLICATION DÈS L'EXTRACTION :
+- Si le même article apparaît plusieurs fois (même URL ou même titre),
+  ne l'extraire qu'une seule fois.
+- Si deux articles ont des URLs différentes mais traitent exactement
+  du même sujet, ne garder que le plus complet.
+
+---
+ÉTAPE 1.1 — RÉÉCRITURE
+Réécris le titre pour le rendre court, clair, percutant, orienté valeur
+entrepreneur TPE/PME.
+
+Reformule chaque texte en résumé fluide, orienté bénéfice lecteur,
+d'environ 4-5 phrases.
+
+Ton style :
+- Professionnel mais accessible, sans jargon inutile
+- Chaque résumé se termine TOUJOURS par une phrase commençant par :
+  "Ce que ça change concrètement pour vous / votre business :"
+- Phrases courtes, actives, énergiques
+- Pas d'introduction générale — on plonge directement dans les articles
+
+---
+ÉTAPE 2 — SÉLECTION
+Parmi tous les articles extraits, sélectionne les 6 maximum les PLUS
+PERTINENTS pour un chef d'entreprise TPE/PME d'Île-de-France qui
+s'intéresse à :
+- l'automatisation de processus métier
+- l'utilisation concrète de l'IA au quotidien
+- la productivité et le gain de temps
+- les outils pratiques et accessibles
+- la cybersécurité liée à l'IA
+
+RÈGLES DE SÉLECTION OBLIGATOIRES :
+
+✅ Sélectionne au moins un article provenant de blogdumoderateur.com
+
+✅ Justifie OBLIGATOIREMENT chaque article sélectionné en 1 phrase
+   claire — ce champ ne peut jamais être vide, null ou absent
+
+✅ Hiérarchise les articles du plus au moins pertinent pour une TPE/PME
+   francilienne (rang 1 = le plus utile et actionnable immédiatement)
+
+❌ FILTRE GÉOGRAPHIQUE — Exclure systématiquement :
+   - Les événements physiques locaux hors Île-de-France
+     (conférences, ateliers à Calais, Rennes, Bordeaux, etc.)
+   - Exception : si l'événement est accessible à distance
+     (webinaire, MOOC, ressource en ligne), il peut être conservé
+   - Si un article cite une région hors IDF, ne le sélectionner QUE si
+     l'enseignement est universel et directement transposable à
+     n'importe quelle TPE/PME
+
+❌ Exclure les articles trop théoriques, trop techniques ou sans
+   application concrète immédiate pour un dirigeant non-tech
+
+❌ ANTI-DOUBLONS — Règles strictes :
+   - Chaque URL doit être unique dans la sélection finale
+   - Si deux articles pointent vers le même lien, ne garder que le plus complet
+   - Si deux articles traitent du même sujet avec des URLs différentes,
+     ne garder que le plus pertinent pour une TPE/PME IDF
+   - Avant de finaliser la sélection, vérifier que les 6 articles ont
+     bien 6 URLs distinctes
+   - Si le texte brut contient le même article plusieurs fois,
+     ne le compter qu'une seule fois
+
+---
+ÉTAPE 3 — ENRICHISSEMENT
+Pour chacun des 6 articles sélectionnés, tu DOIS obligatoirement
+attribuer les 3 éléments suivants AVANT de passer à l'étape 4 :
+
+ÉLÉMENT A — EMOJI
+Choisis 1 emoji pertinent et accrocheur en lien avec le contenu
+de l'article.
+
+ÉLÉMENT B — CATEGORIE (CRITIQUE - NE JAMAIS OMETTRE)
+Le nom du champ JSON est EXACTEMENT : "categorie"
+⚠️ PAS "analyse", PAS "category", PAS "type", PAS "theme", PAS "tag"
+⚠️ UNIQUEMENT le mot : "categorie" — sans accent, sans majuscule
+
+Tu DOIS choisir UNE valeur parmi cette liste fermée de 8 options :
+  → "IA & Outils"            (article sur un outil IA)
+  → "Automatisation"         (article sur workflow, automatisation, gain de temps)
+  → "Cybersécurité"          (article sur sécurité, fraude, protection)
+  → "Business"               (article sur stratégie, marché, entreprise)
+  → "Productivité"           (article sur efficacité, organisation)
+  → "No-Code"                (article sur outils sans code)
+  → "Aide"                   (article sur ressources, accompagnement)
+  → "Apprendre & Progresser" (article sur formation, MOOC, tutoriel)
+
+⚠️ CE CHAMP EST OBLIGATOIRE. Une catégorie manquante = réponse invalide.
+⚠️ Toute valeur hors de cette liste = réponse invalide.
+
+ÉLÉMENT C — DATE
+Le nom du champ JSON est EXACTEMENT : "date_publication"
+Format YYYY-MM-DD strict. Exemple : 2026-05-18
+Basée sur la date de publication de l'article.
+
+---
+ÉTAPE 4 — FORMAT DE SORTIE
+
+⚠️ RÈGLES ABSOLUES :
+- Retourne UNIQUEMENT le JSON brut, sans aucun texte avant ou après
+- Pas de balises markdown, pas de ```json, pas d'explication
+- Le JSON doit être valide et parseable directement
+
+AVANT de retourner le JSON, vérifie mentalement pour chaque article :
+  ✓ "rang" est un entier entre 1 et 6 ?
+  ✓ "emoji" contient 1 emoji ?
+  ✓ "titre" est court et percutant ?
+  ✓ "categorie" — le champ se nomme EXACTEMENT "categorie" et contient
+    une valeur EXACTE parmi les 8 options de la liste ?
+  ✓ "date_publication" est au format YYYY-MM-DD ?
+  ✓ "resume" se termine par "Ce que ça change..." ?
+  ✓ "lien" est une URL complète vers un article (pas une image) ?
+  ✓ "justification" n'est pas vide ?
+Si une de ces vérifications échoue → corriger avant de retourner le JSON.
+
+Les 8 champs OBLIGATOIRES pour chaque article, dans cet ordre EXACT :
+  1. "rang"
+  2. "emoji"
+  3. "titre"
+  4. "categorie"
+  5. "date_publication"
+  6. "resume"
+  7. "lien"
+  8. "justification"
+
+Format attendu STRICT :
+
+[
+  {
+    "rang": 1,
+    "emoji": "🤖",
+    "titre": "Titre court et percutant",
+    "categorie": "IA & Outils",
+    "date_publication": "2026-05-18",
+    "resume": "Résumé fluide de 4-5 phrases orienté bénéfice. Ce que ça change concrètement pour vous / votre business : valeur actionnable et immédiate.",
+    "lien": "https://...",
+    "justification": "Pertinent car raison concrète liée aux besoins TPE/PME IDF."
+  }
+]
+
+❌ STRICTEMENT INTERDIT :
+- Omettre un champ parmi les 8, en particulier "categorie"
+- Nommer "categorie" autrement (analyse, category, type, theme, tag = invalide)
+- Changer l'ordre des 8 champs
+- Ajouter des champs supplémentaires non listés
+- Retourner du texte ou une explication hors du JSON
+- Utiliser un format de date autre que YYYY-MM-DD
+- Laisser "categorie" vide, null ou avec une valeur hors liste
+- Retourner deux articles avec le même "lien"
+- Retourner deux articles avec un "titre" identique ou quasi-identique
+- Utiliser une URL d'image comme valeur de "lien"
+
+---
+TEXTE BRUT DE LA NEWSLETTER :
+
+=== SOURCE 1 : FranceNum Formations ===
+{{11.text}}
+
+=== SOURCE 2 : FranceNum Aides ===
+{{3.text}}
+
+=== SOURCE 3 : FranceNum Principal ===
+{{14.text}}
+
+=== SOURCE 4 : Blog du Modérateur ===
+{{20.text}}
+
+=== SOURCE 5 : Bpifrance / Google News ===
+{{37.text}}
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ORDRE DE PRIORITÉ DES CORRECTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Correction 3 : vider les mappers des agrégateurs (supprime les doublons)
+2. Correction 4 : mettre à jour le prompt IA avec les 5 sources séparées
+3. Correction 1 : changer feeder du module 3 de 1 à 9
+4. Correction 2 : corriger image.url → url dans module 37
+5. Correction 5 : changer le modèle IA pour LargeModel
+6. Correction 6 : maxRecords Airtable (selon nombre d'abonnés)

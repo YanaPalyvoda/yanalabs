@@ -4,7 +4,8 @@ eleventyExcludeFromCollections: true
 ---
 
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   {% for page in collections.all %}
     {% if not page.data.excludeFromSitemap and not page.data.noindex %}
@@ -14,9 +15,21 @@ eleventyExcludeFromCollections: true
       {% if page.url == "/" %}
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
+        <image:image>
+          <image:loc>https://yanalabs.fr/images/og-image.webp</image:loc>
+          <image:title>YanaLabs — Automatisation No-Code TPE/PME Île-de-France</image:title>
+          <image:caption>Agence d'automatisation no-code Make et Airtable pour TPE/PME en Île-de-France</image:caption>
+        </image:image>
       {% elif "/articles/" in page.url %}
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
+        {% if page.data.image %}
+        <image:image>
+          <image:loc>https://yanalabs.fr{{ page.data.image }}</image:loc>
+          <image:title>{{ page.data.title }}</image:title>
+          {% if page.data.description %}<image:caption>{{ page.data.description }}</image:caption>{% endif %}
+        </image:image>
+        {% endif %}
       {% elif "/services/" in page.url %}
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>

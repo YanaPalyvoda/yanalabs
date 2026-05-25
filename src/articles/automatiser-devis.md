@@ -18,6 +18,18 @@ sommaire:
   - { titre: "Combien de temps peut-on gagner ?", slug: "section-5" }
   - { titre: "Par où commencer ?", slug: "section-6" }
   - { titre: "FAQ", slug: "faq" }
+howto:
+  name: "Comment générer un devis automatique sans coder"
+  totalTime: "PT4H"
+  steps:
+    - name: "Structurer les données dans Airtable"
+      text: "Créez une base Airtable avec vos prestations, tarifs et coordonnées clients. Chaque prestation a un prix unitaire paramétrable."
+    - name: "Créer le modèle de devis"
+      text: "Préparez un modèle PDF dans Make PDF ou Google Docs avec des variables dynamiques : nom client, prestations, montant total, date de validité."
+    - name: "Automatiser la génération avec Make"
+      text: "Configurez un scénario Make : quand un formulaire est soumis, les données se synchronisent dans Airtable, le PDF est généré et envoyé par email au client."
+    - name: "Tester et activer"
+      text: "Soumettez un devis test et vérifiez que le PDF part en moins de 5 minutes avec les bonnes informations. Activez le scénario en production."
 faq:
   - q: "L’automatisation des devis est-elle adaptée même si mes tarifs changent fréquemment ?"
     a: "Oui. En mettant en place des variables dynamiques pour les tarifs et les conditions, le devis reflète toujours les dernières données sans intervention manuelle. Il suffit de mettre à jour votre base de données de tarifs une seule fois."

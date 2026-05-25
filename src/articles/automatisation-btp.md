@@ -1,6 +1,6 @@
 ---
 layout: article.njk
-title: "Automatisation BTP : devis automatiques et 5h gagnées/semaine"
+title: "Automatisation BTP : devis auto et 5h gagnées/semaine"
 templateEngineOverride: md
 date: 2026-03-25
 updated: 2026-04-25
@@ -23,6 +23,18 @@ sommaire:
     slug: "temps-gagne"
   - titre: "Par où commencer ?"
     slug: "par-ou-commencer"
+howto:
+  name: "Comment automatiser la gestion administrative d'une entreprise du BTP"
+  totalTime: "PT5H"
+  steps:
+    - name: "Automatiser la génération des devis"
+      text: "Avec Airtable et Make, un devis est généré automatiquement depuis une fiche chantier : coordonnées client, prestations, montant — le PDF part en moins de 5 minutes."
+    - name: "Mettre en place les relances d'impayés"
+      text: "Configurez un scénario Make qui détecte les factures non réglées et envoie des relances personnalisées à J+7, J+14 et J+30 sans intervention manuelle."
+    - name: "Centraliser le suivi client dans Airtable"
+      text: "Regroupez l'historique de chaque client (devis, chantiers, factures, statuts) dans une seule base Airtable accessible depuis n'importe quel appareil sur chantier."
+    - name: "Connecter les outils existants"
+      text: "Make connecte Airtable à votre messagerie, Google Agenda et votre outil de signature électronique. Les données circulent automatiquement entre vos outils."
 faq:
   - q: "Un artisan BTP sans compétences informatiques peut-il utiliser ces outils ?"
     a: "Oui. Make et Airtable sont conçus pour être utilisés sans coder. YanaLabs assure la mise en place complète et forme vos équipes pour gérer les flux en autonomie dès la première semaine."

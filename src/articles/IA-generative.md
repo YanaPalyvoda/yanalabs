@@ -1,6 +1,6 @@
 ---
 layout: article.njk
-title: "IA générative : définition, outils et usages pour les entreprises"
+title: "IA générative : définition et usages pour les entreprises"
 templateEngineOverride: md
 description: "Découvrez ce qu’est l’IA générative, ses avantages et limites, et comment l’utiliser sans une ligne de code pour gagner du temps et booster votre activité."
 date: 2026-05-11

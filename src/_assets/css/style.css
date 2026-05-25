@@ -1545,8 +1545,27 @@ footer {
   font-size: 13px;
   color: var(--color-footer-text);
 }
-.footer-bottom {
+.footer-nap {
+  display: inline;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--color-footer-text);
+}
+.footer-nap strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.footer-nap a {
+  color: var(--color-footer-text);
+  transition: color var(--transition);
+}
+.footer-nap a:hover { color: var(--color-primary); }
+.footer-nap-row {
+  text-align: center;
   margin-top: 24px;
+}
+.footer-bottom {
+  margin-top: 8px;
   padding-top: 20px;
   border-top: 1px solid rgba(87,62,105,0.07);
   text-align: center;
@@ -1962,9 +1981,17 @@ footer {
 .stat-label {
   font-size: 16px; color: var(--color-footer-text); line-height: 1.4;
 }
-/* AVANT — n'existe pas dans style.css, à ajouter dans la section article */
-
-/* APRÈS — ajouter après .stat-label */
+.stat-card--highlight {
+  background: linear-gradient(135deg, var(--color-cta-purple) 0%, var(--color-primary) 100%);
+  border-color: transparent;
+  box-shadow: 0 4px 20px rgba(168,85,247,0.25);
+}
+.stat-card--highlight .stat-value {
+  color: #fff;
+}
+.stat-card--highlight .stat-label {
+  color: rgba(255,255,255,0.85);
+}
 .table-wrap {
   overflow-x: auto; margin: 24px 0 32px;
   border-radius: 16px;

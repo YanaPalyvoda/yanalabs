@@ -1,11 +1,9 @@
-{{! Modifié par Claude Code 04052026 }}
 ---
 layout: article.njk
 title: "{{{front_matter.title}}}"
 templateEngineOverride: md
 description: "{{{front_matter.description}}}"
 date: {{front_matter.date}}
-updated: {{front_matter.updated}}
 tags: [{{#front_matter.tags}}"{{.}}"{{^-last}}, {{/-last}}{{/front_matter.tags}}]
 categorie: "{{{front_matter.categorie}}}"
 temps_lecture: {{front_matter.temps_lecture}}
@@ -15,11 +13,6 @@ sommaire:
 {{#sommaire}}
   - { titre: "{{{titre}}}", slug: "{{{slug}}}" }
 {{/sommaire}}
-faq:
-{{#content.faq.items}}
-  - q: "{{{question}}}"
-    a: "{{{answer}}}"
-{{/content.faq.items}}
 ---
 
 {{{content.introduction}}}

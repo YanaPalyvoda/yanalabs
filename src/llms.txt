@@ -1,0 +1,51 @@
+# YanaLabs
+
+> YanaLabs est une agence d'automatisation no-code fondée en 2025, basée à Neuilly-Plaisance (Île-de-France, France). Spécialisée dans Make, Airtable et Zapier, elle aide les TPE et PME franciliennes à automatiser leurs workflows, générer leurs documents administratifs et créer du contenu grâce à l'IA générative — sans une ligne de code.
+
+## Informations générales
+
+- Fondatrice : Yana Palyvoda
+- Siège : Neuilly-Plaisance, 93360, Île-de-France, France
+- Téléphone : +33 6 95 58 02 03
+- Email : automation@yanalabs.fr
+- Site : https://yanalabs.fr
+- Zones desservies : Paris, Vincennes, Montreuil, Créteil, Boulogne-Billancourt, Saint-Denis, Neuilly-Plaisance, Île-de-France
+- Horaires : Lundi–Vendredi, 09h00–18h00
+- Outils maîtrisés : Make (ex-Integromat), Airtable, Zapier, n8n, ChatGPT API, Google Sheets, Notion
+
+## Services
+
+- [Automatisation des workflows et processus métier](https://yanalabs.fr/services/automatisation-workflows-processus/) : Automatisation des processus répétitifs — relances clients, transferts de données entre outils, notifications automatiques. Les workflows tournent 24h/24 sans intervention humaine.
+- [Génération automatisée de documents](https://yanalabs.fr/services/generation-documents/) : Génération et envoi automatique de devis, factures et contrats avec Make et Airtable. Moins de 5 minutes par document, zéro saisie manuelle.
+- [Génération de contenu et IA générative](https://yanalabs.fr/services/generation-contenu-ia/) : Création automatique de contenu professionnel (emails, posts LinkedIn, fiches produits) grâce à l'IA générative couplée à Make et Airtable.
+
+## Pages principales
+
+- [Accueil](https://yanalabs.fr/) : Présentation de YanaLabs, services d'automatisation no-code pour TPE/PME, témoignages clients, audit gratuit.
+- [Services](https://yanalabs.fr/services/) : Vue d'ensemble des 3 services proposés par YanaLabs.
+- [Actualités & Blog](https://yanalabs.fr/actualites/) : Articles guides sur l'automatisation no-code, l'IA générative et la productivité pour les PME.
+
+## Articles de blog
+
+- [Automatisation BTP : devis automatiques et 5h gagnées/semaine](https://yanalabs.fr/articles/automatisation-btp/) : Comment les artisans et PME du BTP peuvent automatiser leurs devis et relances impayés avec Make et Airtable.
+- [Relance client automatique : zéro impayé oublié sans coder](https://yanalabs.fr/articles/automatiser-ses-relances-clients/) : Détecter les factures impayées et envoyer des relances personnalisées automatiquement — 4h gagnées par semaine.
+- [Devis automatique no-code : générez et envoyez en 5 minutes](https://yanalabs.fr/articles/automatiser-devis/) : Générer et envoyer un devis complet en moins de 5 minutes grâce à Make et Airtable, sans compétences techniques.
+- [Automatiser son entreprise : par où commencer sans coder ?](https://yanalabs.fr/articles/par-ou-commencer-pour-automatiser/) : Guide pratique pour identifier les premières tâches à automatiser et démarrer en 2 semaines.
+- [Google Sheets et automatisation : en finir avec les tableaux mis à jour à la main](https://yanalabs.fr/articles/automatisation-Google-Sheets/) : Connecter Google Sheets à ses outils métier pour supprimer les mises à jour manuelles.
+- [Automatisation marketing : comment automatiser vos campagnes et générer plus de leads](https://yanalabs.fr/articles/automatisation-marketing/) : Automatiser la capture de leads, les séquences email et les posts réseaux sociaux sans coder.
+- [Les signes que votre PME a besoin d'automatisation](https://yanalabs.fr/articles/besoins-automatisation/) : Identifier les signaux d'alerte qui indiquent qu'une PME perd du temps sur des tâches automatisables.
+- [IA générative : définition, outils et usages pour les entreprises](https://yanalabs.fr/articles/IA-generative/) : Ce qu'est l'IA générative, ses avantages et ses limites, et comment l'utiliser sans coder.
+- [L'IA peut-elle vraiment remplacer un assistant administratif dans une PME ?](https://yanalabs.fr/articles/IA-peut-remplacer/) : Analyse concrète et chiffrée des tâches administratives que l'IA peut prendre en charge.
+- [Make vs Zapier : lequel choisir pour automatiser votre PME en 2026 ?](https://yanalabs.fr/articles/make-vs-zapier/) : Comparatif complet Make vs Zapier — coûts réels, RGPD, tableau de synthèse pour les PME françaises.
+- [Agent vocal IA : comment automatiser votre accueil téléphonique 24h/24 ?](https://yanalabs.fr/articles/agent-vocal-ia-automatisation/) : Mettre en place un agent vocal IA pour gérer les appels entrants automatiquement, sans standard humain.
+
+## Résultats clients typiques
+
+- Artisans BTP : 5h gagnées par semaine sur la gestion des devis
+- PME relances clients : 4h gagnées par semaine, délais de paiement réduits
+- Centres de formation : gestion d'une promotion d'inscription en moins de 2h (contre plusieurs jours)
+- Dirigeants TPE : 2h+ récupérées par semaine sans compétence technique
+
+## Ce que YanaLabs ne fait pas
+
+YanaLabs ne développe pas de logiciels sur mesure ni d'applications mobiles. Les solutions proposées reposent exclusivement sur des outils no-code existants (Make, Airtable, Zapier, n8n) assemblés et configurés selon les besoins du client.

@@ -1,6 +1,6 @@
 ---
 layout: article.njk
-title: "Make vs Zapier : Lequel choisir pour automatiser votre PME en 2026 ?"
+title: "Make vs Zapier 2026 : lequel choisir pour votre PME ?"
 templateEngineOverride: md
 description: "Make vs Zapier : arbitrage complet pour les PME et TPE en 2026. Découvrez les coûts réels, l'impact RGPD en France et notre tableau comparatif de synthèse."
 date: 2026-05-26

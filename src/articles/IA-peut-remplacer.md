@@ -1,6 +1,6 @@
 ---
 layout: article.njk
-title: "L’IA peut-elle vraiment remplacer un assistant administratif dans une PME ?"
+title: "L’IA peut-elle remplacer un assistant administratif ?"
 templateEngineOverride: md
 description: "Découvrez comment l’IA peut gagner du temps sans une ligne de code et aider les équipes qui perdent du temps dans une PME, avec des chiffres concrets."
 date: 2026-05-04

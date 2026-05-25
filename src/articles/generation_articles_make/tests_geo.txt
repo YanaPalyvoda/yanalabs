@@ -1,0 +1,144 @@
+TESTS GEO — YANALABS
+====================
+Après chaque déploiement, vérifier les points ci-dessous.
+
+
+ÉTAPE 0 — BUILD LOCAL
+----------------------
+source ~/.nvm/nvm.sh && nvm use 22
+npx @11ty/eleventy
+
+→ Aucune erreur dans le terminal avant de pusher.
+
+
+ÉTAPE 1 — URLS DIRECTES (30 secondes)
+---------------------------------------
+Ouvrir dans le navigateur :
+
+  https://yanalabs.fr/llms.txt
+  → Doit afficher le fichier texte brut (pas une page 404)
+
+  https://yanalabs.fr/manifest.json
+  → Doit afficher le JSON avec theme_color et icons
+
+  https://yanalabs.fr/sitemap.xml
+  → Chercher <image:image> dans le source de la page (Ctrl+U)
+
+
+ÉTAPE 2 — STRUCTURED DATA (HowTo + Review)
+--------------------------------------------
+Outil : https://search.google.com/test/rich-results
+
+Tests à effectuer :
+
+  URL 1 : https://yanalabs.fr/
+  → Doit détecter : AggregateRating (étoiles YanaLabs)
+
+  URL 2 : https://yanalabs.fr/articles/automatiser-devis/
+  → Doit détecter : HowTo (4 étapes)
+
+  URL 3 : https://yanalabs.fr/articles/automatiser-ses-relances-clients/
+  → Doit détecter : HowTo (4 étapes)
+
+  URL 4 : https://yanalabs.fr/articles/par-ou-commencer-pour-automatiser/
+  → Doit détecter : HowTo (4 étapes)
+
+  URL 5 : https://yanalabs.fr/articles/automatisation-btp/
+  → Doit détecter : HowTo (4 étapes)
+
+Si une erreur apparaît → cliquer sur l'erreur pour voir le champ JSON-LD
+qui pose problème.
+
+
+ÉTAPE 3 — MANIFEST / PWA
+--------------------------
+Dans Chrome sur https://yanalabs.fr :
+  DevTools (F12) → onglet Application → Manifest
+  → Vérifier : nom, theme_color #573e69, icônes 192px et 512px
+
+Ou coller l'URL dans :
+  https://web.dev/measure/
+  → Section PWA → doit passer "installable"
+
+
+ÉTAPE 4 — TITRES SEO (< 60 caractères)
+----------------------------------------
+Outil : https://www.seoptimer.com/meta-tag-checker
+
+Articles à vérifier (titres raccourcis) :
+
+  /articles/agent-vocal-ia-automatisation/
+  → Attendu : "Agent vocal IA : automatisez votre accueil 24h/24" (49c)
+
+  /articles/automatisation-btp/
+  → Attendu : "Automatisation BTP : devis auto et 5h gagnées/semaine" (53c)
+
+  /articles/automatisation-Google-Sheets/
+  → Attendu : "Google Sheets automatisé : fini les mises à jour manuelles" (58c)
+
+  /articles/automatisation-marketing/
+  → Attendu : "Automatisation marketing : générer plus de leads sans coder" (59c)
+
+  /articles/besoins-automatisation/
+  → Attendu : "5 signes que votre PME a besoin d'automatisation" (48c)
+
+  /articles/IA-generative/
+  → Attendu : "IA générative : définition et usages pour les entreprises" (57c)
+
+  /articles/IA-peut-remplacer/
+  → Attendu : "L'IA peut-elle remplacer un assistant administratif ?" (53c)
+
+  /articles/make-vs-zapier/
+  → Attendu : "Make vs Zapier 2026 : lequel choisir pour votre PME ?" (53c)
+
+
+ÉTAPE 5 — NAP FOOTER
+----------------------
+Ouvrir n'importe quelle page du site.
+Descendre en bas → vérifier que l'adresse apparaît :
+  YanaLabs — Île-de-France
+  contact@yanalabs.fr
+
+
+ÉTAPE 6 — LIGHTHOUSE GLOBAL
+-----------------------------
+Dans Chrome sur https://yanalabs.fr :
+  DevTools (F12) → onglet Lighthouse
+  Cocher : Performance, SEO, Best Practices, PWA
+  Cliquer : Analyze page load
+
+  Cibles :
+  SEO        → 90+
+  PWA        → badge installable
+  Best Practices → 90+
+
+
+ÉTAPE 7 — GOOGLE SEARCH CONSOLE
+---------------------------------
+Une fois le site déployé avec le sitemap image :
+  https://search.google.com/search-console/
+
+  → Sitemaps → soumettre https://yanalabs.fr/sitemap.xml
+  → Vérifier qu'aucune erreur n'est remontée
+  → Onglet "Expérience de la page" → vérifier les Core Web Vitals
+
+RESOUMETTRE LE SITEMAP (après modification)
+Si le sitemap a été modifié (ex : ajout des balises image),
+il faut le resoumettre manuellement pour accélérer l'indexation.
+Sans resoumission, Google recrawle seul mais ça peut prendre plusieurs semaines.
+
+  1. Aller sur https://search.google.com/search-console/
+  2. Menu gauche → Sitemaps
+  3. Si https://yanalabs.fr/sitemap.xml est déjà listé
+     → cliquer dessus → Resoumettre
+  4. Si pas encore listé
+     → coller l'URL dans le champ → valider
+  → Le statut passe à "Succès" en quelques minutes
+  → L'indexation des images prend quelques jours
+
+
+FRÉQUENCE RECOMMANDÉE
+----------------------
+Après chaque déploiement majeur : étapes 1, 2, 4
+Après ajout d'un nouvel article  : étape 2 (rich results pour cet article)
+Une fois par mois                : étapes 6 et 7

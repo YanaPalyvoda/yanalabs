@@ -39,9 +39,11 @@
   <!-- <meta name="twitter:image" content="https://yanalabs.fr/images/og-image.webp"/> -->
   <meta name="twitter:image" content="{{ 'https://yanalabs.fr' + image if image else 'https://yanalabs.fr/images/og-image.webp' }}"/>
 
-  <!-- Favicon -->
+  <!-- Favicon & PWA -->
   <link rel="icon" type="image/png" href="/images/Favicon.png"/>
-  <link rel="apple-touch-icon" href="/images/Favicon.png"/>
+  <link rel="apple-touch-icon" href="/images/icon-192.png"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="theme-color" content="#573e69"/>
 
   <!-- Modifié par Claude Code le 20260503 — CSS en premier pour découverte anticipée par le navigateur -->
   <link rel="preload" href="/css/style.css" as="style"/>
@@ -138,6 +140,17 @@
           <li><a href="/actualites/">Actualités</a></li>
         </ul>
         <span class="footer-copy">© 2026. Tous droits réservés.</span>
+      </div>
+      <div class="footer-nap-row">
+        <address class="footer-nap">
+          <strong>YanaLabs</strong>
+          <span class="footer-sep">·</span>
+          <span>Île-de-France</span>
+          <span class="footer-sep">·</span>
+          <a href="tel:+33695580203">+33 6 95 58 02 03</a>
+          <span class="footer-sep">·</span>
+          <a href="mailto:automation@yanalabs.fr">automation@yanalabs.fr</a>
+        </address>
       </div>
       <div class="footer-bottom">
         <a href="/legal/mentions-legales/">Mentions Légales</a>
@@ -462,6 +475,73 @@
   }
   </script>
   {% endif %}
+  {% if howto %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "{{ howto.name }}",
+    "description": "{{ description }}",
+    "totalTime": "{{ howto.totalTime }}",
+    "inLanguage": "fr-FR",
+    "author": {
+      "@type": "Person",
+      "name": "Yana Palyvoda",
+      "url": "https://yanalabs.fr/#about"
+    },
+    "step": [
+      {% for step in howto.steps %}
+      {
+        "@type": "HowToStep",
+        "position": {{ loop.index }},
+        "name": "{{ step.name }}",
+        "text": "{{ step.text }}"
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+  </script>
+  {% endif %}
+{% endif %}
+{% if reviewSchema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "YanaLabs",
+  "url": "https://yanalabs.fr",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "worstRating": "1",
+    "reviewCount": "3"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "datePublished": "2026-04-01",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Isabelle R." },
+      "reviewBody": "On gérait les dossiers de nos stagiaires exactement comme ça : chaque rentrée, des heures perdues à relancer, vérifier, ressaisir. Yana a restructuré tout notre parcours d'inscription en no-code. Aujourd'hui une promotion gérée en moins de 2h."
+    },
+    {
+      "@type": "Review",
+      "datePublished": "2026-03-15",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Karim B." },
+      "reviewBody": "Avant, je passais des soirées entières à relancer mes clients pour les factures impayées. J'oubliais des dossiers, certains retards duraient des mois. Yana a mis en place un système automatique de relances. Maintenant chaque client reçoit le bon message au bon moment, sans que je touche à rien."
+    },
+    {
+      "@type": "Review",
+      "datePublished": "2026-02-20",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "Marc T." },
+      "reviewBody": "J'étais convaincu qu'il n'y avait rien à automatiser dans mon activité. En 30 minutes avec Yana, on a repéré 3 tâches chronophages. Aujourd'hui je récupère plus de 2 heures par semaine sans aucune compétence technique."
+    }
+  ]
+}
+</script>
 {% endif %}
 
   <!-- Bandeau consentement cookies -->

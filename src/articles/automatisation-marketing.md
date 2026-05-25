@@ -1,6 +1,6 @@
 ---
 layout: article.njk
-title: "Automatisation marketing : comment automatiser vos campagnes et générer plus de leads"
+title: "Automatisation marketing : générer plus de leads sans coder"
 templateEngineOverride: md
 description: "Découvrez comment l'automatisation marketing peut générer plus de leads sans une ligne de code, pour les équipes qui perdent du temps et les dirigeants non-techniques."
 date: 2026-05-12

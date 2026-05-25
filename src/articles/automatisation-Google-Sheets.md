@@ -1,6 +1,6 @@
 ---
 layout: article.njk
-title: "Google Sheets et automatisation : en finir avec les tableaux Excel mis à jour à la main"
+title: "Google Sheets automatisé : fini les mises à jour manuelles"
 templateEngineOverride: md
 description: "Gagnez du temps avec l’automatisation de Google Sheets. Découvrez comment passer d’un tableau mis à jour manuellement à une solution sans une ligne de code."
 date: 2026-04-21

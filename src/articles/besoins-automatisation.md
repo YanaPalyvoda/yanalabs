@@ -1,6 +1,6 @@
 ---
 layout: article.njk
-title: "Les signes que votre PME a besoin d'automatisation et comment y remédier"
+title: "Les signes que votre PME a besoin d'automatisation"
 templateEngineOverride: md
 description: "Identifiez rapidement les signes d'un besoin d'automatisation et découvrez des mesures simples sans une ligne de code pour gagner du temps."
 date: 2026-05-04

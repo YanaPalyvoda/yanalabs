@@ -18,6 +18,18 @@ sommaire:
   - { titre: "Combien de temps peut-on gagner ?", slug: "section-5" }
   - { titre: "Par où commencer ?", slug: "section-6" }
   - { titre: "FAQ", slug: "faq" }
+howto:
+  name: "Comment démarrer l'automatisation de son entreprise sans coder"
+  totalTime: "PT2H"
+  steps:
+    - name: "Lister ses tâches répétitives"
+      text: "Notez toutes les tâches répétées plus d'une fois par semaine : saisie de données, envoi d'emails, relances, rapports, mises à jour manuelles."
+    - name: "Identifier la tâche la plus chronophage"
+      text: "Choisissez la tâche qui prend le plus de temps et suit toujours le même schéma. C'est votre premier candidat à l'automatisation."
+    - name: "Choisir le bon outil"
+      text: "Pour connecter plusieurs outils entre eux : Make. Pour centraliser et structurer des données : Airtable. Pour les automatisations simples en quelques minutes : Zapier."
+    - name: "Créer un premier scénario simple"
+      text: "Commencez par une automatisation en 2 étapes : un déclencheur (formulaire rempli, email reçu) et une action (enregistrement, notification). Testez, ajustez, activez."
 ---
 
 Vous êtes dirigeant d’une PME et vous vous demandez par où commencer pour automatiser votre entreprise. Mettre en place une transformation digitale peut sembler complexe, mais elle commence par des choix simples et sans jargon. Dans ce guide, vous allez découvrir une approche pratique, qui vous montre exactement comment gagner du temps, sans une ligne de code, et comment les équipes qui perdent du temps peuvent retrouver de l’efficacité jour après jour.

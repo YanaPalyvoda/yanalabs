@@ -18,6 +18,18 @@ sommaire:
   - { titre: "Combien de temps peut-on gagner ?", slug: "section-5" }
   - { titre: "Par où commencer ?", slug: "section-6" }
   - { titre: "FAQ", slug: "faq" }
+howto:
+  name: "Comment automatiser les relances clients sans coder"
+  totalTime: "PT3H"
+  steps:
+    - name: "Centraliser les factures dans Airtable"
+      text: "Créez une base Airtable avec vos clients et factures. Chaque facture comporte un statut (Payée / En attente) et une date d'échéance."
+    - name: "Connecter Airtable à Make"
+      text: "Dans Make, créez un scénario déclenché quotidiennement qui scanne les factures dont l'échéance est dépassée et le statut est En attente."
+    - name: "Configurer les messages de relance"
+      text: "Rédigez 2 à 3 modèles de messages personnalisés (J+7, J+14, J+30). Make injecte automatiquement le nom du client, le montant et la date d'échéance."
+    - name: "Activer et tester le scénario"
+      text: "Activez le scénario Make et simulez un cas test. En moins de 2 minutes, vérifiez que la relance part au bon destinataire avec les bonnes informations."
 faq:
   - q: "Comment l’automatisation des relances peut-elle s’intégrer à mon système de facturation actuel ?"
     a: "Elle se connecte sans effort via des connecteurs no-code comme Make ou Zapier. En moyenne, 1 à 2 heures suffisent pour configurer le premier parcours et tester le flux sur un échantillon de clients."
