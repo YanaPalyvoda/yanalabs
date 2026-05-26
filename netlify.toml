@@ -2,6 +2,12 @@
   command = "npm run build"
   publish = "dist"
 
+[[redirects]]
+  from = "https://www.yanalabs.fr/*"
+  to = "https://yanalabs.fr/:splat"
+  status = 301
+  force = true
+
 # Modifications 20260424 par Openclaw — headers de sécurité et cache
 [[headers]]
   for = "/*"

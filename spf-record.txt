@@ -1,0 +1,62 @@
+SPF RECORD — yanalabs.fr
+========================
+
+C'est quoi ?
+------------
+SPF (Sender Policy Framework) est un enregistrement DNS qui dit aux serveurs
+de messagerie du monde entier : "seuls ces serveurs sont autorises a envoyer
+des emails au nom de @yanalabs.fr".
+
+Sans SPF, n'importe qui peut envoyer un email en se faisant passer pour
+quelquechose@yanalabs.fr. Les boites mail de tes destinataires (Gmail,
+Outlook...) peuvent alors classer tes emails en spam, ou pire, des personnes
+malveillantes peuvent usurper ton adresse.
+
+
+Ton enregistrement SPF a ajouter
+---------------------------------
+Tu utilises Gmail (Google Workspace) pour envoyer tes emails.
+Ton domaine est gere chez OVH.
+
+Enregistrement a creer :
+
+  Type  : TXT
+  Nom   : @ (ou laisser vide selon OVH)
+  Valeur: v=spf1 include:netlify.com include:_spf.google.com ~all
+  TTL   : 3600 (ou "automatique")
+
+
+Comment l'ajouter chez OVH
+---------------------------
+  1. Connecte-toi sur https://www.ovh.com/manager
+  2. Va dans "Domaines" > yanalabs.fr > "Zone DNS"
+  3. Clique sur "Ajouter une entree"
+  4. Choisis le type "TXT"
+  5. Sous-domaine : laisse vide (ou "@")
+  6. Valeur : v=spf1 include:netlify.com include:_spf.google.com ~all
+  7. TTL : 3600
+  8. Valide et attends 1 a 24h de propagation DNS
+
+
+Ce que ca signifie
+------------------
+  v=spf1                       = Version SPF
+  include:netlify.com          = Netlify autorise a envoyer pour toi
+  include:_spf.google.com      = Gmail/Google Workspace autorise
+  ~all                         = Tout autre serveur = suspect (soft fail)
+
+
+DMARC (deja en place)
+---------------------
+Un enregistrement DMARC est deja present :
+  v=DMARC1; p=none; rua=mailto:automation@yanalabs.fr
+
+La politique actuelle est "p=none" (surveillance uniquement).
+Une fois le SPF ajoute et verifie (attendre quelques jours),
+tu pourras renforcer la protection en passant a "p=quarantine" :
+
+  v=DMARC1; p=quarantine; rua=mailto:automation@yanalabs.fr
+
+Pour verifier que le SPF est bien en place apres propagation :
+  https://mxtoolbox.com/spf.aspx
+  Entrer : yanalabs.fr
