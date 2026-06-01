@@ -551,23 +551,12 @@ document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
       }, '+=0.1');
     });
 
-    /* Vérifie si le diagram est déjà visible dans le viewport au chargement */
-    function isInViewport(el) {
-      const rect = el.getBoundingClientRect();
-      return rect.top < window.innerHeight && rect.bottom > 0;
-    }
-
     ScrollTrigger.create({
       trigger: diagram,
-      start: 'top 90%',
-      end: 'bottom top',
-      onEnter: () => tl.restart(),
-      onEnterBack: () => tl.restart(),
-      onLeave: () => { tl.progress(0).pause(); },
-      onLeaveBack: () => { tl.progress(0).pause(); },
-      onRefresh: (self) => {
-        if (isInViewport(diagram)) tl.restart();
-      }
+      start: 'top bottom',
+      onEnter:      () => tl.restart(),
+      onEnterBack:  () => tl.restart(),
+      onLeaveBack:  () => { tl.progress(0).pause(); },
     });
   });
 
