@@ -3,10 +3,10 @@ layout: article.njk
 title: "Qu'est-ce que le no-code ? Le guide simple pour les chefs d'entreprise non techniques"
 templateEngineOverride: md
 description: "Découvrez le no-code pour les dirigeants et comment gagner du temps sans une ligne de code. Guide simple pour les chefs d'entreprise en Île-de-France."
-date: 2026-06-01
+date: 2026-06-07
 tags: ["articles", "no-code", "automatisation", "gain temps", "PME", ]
 categorie: "Automatisation"
-temps_lecture: 0
+temps_lecture: 6
 image: "/images/nocode-entrepreneur.webp"
 resume: "Ce guide pratique explique le no-code pour les dirigeants non techniques. Découvrez comment des outils simples permettent de gagner du temps dès aujourd'hui, avec des chiffres issus de notre étude interne."
 sommaire:

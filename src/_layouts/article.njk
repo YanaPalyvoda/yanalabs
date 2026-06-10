@@ -54,6 +54,9 @@ layout: base.njk
       {% endif %}
 
       <div class="article-body">
+        {% if videoSrc %}
+          {% include "components/video-hero.njk" %}
+        {% endif %}
         {{ content | safe }}
 
         <div class="article-author-box">

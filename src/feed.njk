@@ -1,0 +1,27 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>YanaLabs — IA &amp; Automatisation pour TPE/PME</title>
+    <link>https://yanalabs.fr</link>
+    <description>Les guides pratiques pour gagner du temps grâce à l'IA et au numérique — sans jargon technique.</description>
+    <language>fr</language>
+    <atom:link href="https://yanalabs.fr/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>{{ collections.articlesSorted[0].date | htmlDateString }}</lastBuildDate>
+    {% for post in collections.articlesSorted | limit(10) %}
+    <item>
+      <title>{{ post.data.title | replace("&", "&amp;") }}</title>
+      <link>https://yanalabs.fr{{ post.url }}</link>
+      <guid isPermaLink="true">https://yanalabs.fr{{ post.url }}</guid>
+      <pubDate>{{ post.date | htmlDateString }}</pubDate>
+      {% if post.data.description %}<description>{{ post.data.description | replace("&", "&amp;") | replace("<", "&lt;") | replace(">", "&gt;") }}</description>{% endif %}
+      {% if post.data.resume %}<content:encoded><![CDATA[{{ post.data.resume }}]]></content:encoded>{% endif %}
+      {% if post.data.image %}<enclosure url="https://yanalabs.fr{{ post.data.image }}" type="image/webp" length="0"/>{% endif %}
+      {% if post.data.categorie %}<category>{{ post.data.categorie }}</category>{% endif %}
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

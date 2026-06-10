@@ -625,3 +625,28 @@ document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
 
   headings.forEach(h => io.observe(h));
 })();
+const video = document.getElementById('yanaVideo');
+const soundBtn = document.getElementById('soundBtn');
+const iconMuted = document.getElementById('iconMuted');
+const iconSound = document.getElementById('iconSound');
+
+if (soundBtn && video) {
+
+  // Bouton son visible immédiatement
+  soundBtn.classList.add('visible');
+
+  // Bouton son — toggle mute/unmute
+  soundBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    if (video.muted) {
+      iconMuted.style.display = 'block';
+      iconSound.style.display = 'none';
+      soundBtn.setAttribute('aria-label', 'Activer le son');
+    } else {
+      iconMuted.style.display = 'none';
+      iconSound.style.display = 'block';
+      soundBtn.setAttribute('aria-label', 'Couper le son');
+    }
+  });
+
+}
