@@ -26,9 +26,7 @@
   <meta property="og:type" content="{{ 'article' if layout == 'article.njk' else 'website' }}"/>
   <meta property="og:url" content="https://yanalabs.fr{{ page.url }}"/>
   <meta property="og:site_name" content="YanaLabs"/>
-  <!-- Modifications 20260424 par Openclaw -->
-  <!-- <meta property="og:image" content="https://yanalabs.fr/images/Favicon.png"/> -->
-  <meta property="og:image" content="{{ 'https://yanalabs.fr' + image if image else 'https://yanalabs.fr/images/Favicon.png' }}"/>
+  <meta property="og:image" content="{{ 'https://yanalabs.fr' + image if image else 'https://yanalabs.fr/images/og-image.png' }}"/>
   <meta property="og:locale" content="fr_FR"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
@@ -38,9 +36,7 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="{{ title if title else 'YanaLabs' }}"/>
   <meta name="twitter:description" content="{{ description if description else 'Automatisation no-code pour TPE/PME' }}"/>
-  <!-- Modifications 20260424 par Openclaw -->
-  <!-- <meta name="twitter:image" content="https://yanalabs.fr/images/Favicon.png"/> -->
-  <meta name="twitter:image" content="{{ 'https://yanalabs.fr' + image if image else 'https://yanalabs.fr/images/Favicon.png' }}"/>
+  <meta name="twitter:image" content="{{ 'https://yanalabs.fr' + image if image else 'https://yanalabs.fr/images/og-image.png' }}"/>
 
   <!-- Favicon & PWA -->
   <link rel="icon" type="image/png" href="/images/Favicon.png"/>
@@ -250,7 +246,7 @@
     "name": "YanaLabs",
     "url": "https://yanalabs.fr",
     "logo": "https://yanalabs.fr/images/logoNew.png",
-    "image": "https://yanalabs.fr/images/Favicon.png",
+    "image": "https://yanalabs.fr/images/og-image.png",
     "description": "YanaLabs automatise les tâches répétitives des TPE et PME grâce au no-code (Make, Airtable). Solutions sur-mesure en Île-de-France.",
     "telephone": "+33-695580203",
     "email": "automation@yanalabs.fr",
