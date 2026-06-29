@@ -7,11 +7,10 @@ noindex: true
     <div class="container">
       <div class="legal-inner">
         <h1>Politique de confidentialité</h1>
-        <p class="legal-date">Dernière mise à jour : juin 2026</p>
+        <p class="legal-date">Dernière mise à jour : juin 2025</p>
 
         <h2>1. Introduction</h2>
         <p>YanaLabs accorde une grande importance à la protection de vos données personnelles et au respect de votre vie privée. La présente politique de confidentialité vous informe sur la manière dont nous collectons, utilisons et protégeons vos données personnelles, conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés.</p>
-        <p>Cette politique couvre l'ensemble de nos canaux de contact : le site web, le formulaire de contact, la newsletter, ainsi que notre assistant vocal téléphonique (agent conversationnel basé sur l'intelligence artificielle).</p>
         <hr class="legal-divider" />
 
         <h2>2. Responsable du traitement</h2>
@@ -23,7 +22,6 @@ noindex: true
         <ul>
           <li><strong>Via le formulaire de contact :</strong> nom, prénom, adresse email, numéro de téléphone, nom de l'entreprise, description du besoin.</li>
           <li><strong>Via la newsletter :</strong> adresse email.</li>
-          <li><strong>Via l'assistant vocal téléphonique (agent IA) :</strong> le contenu de votre appel (enregistrement audio et/ou transcription écrite), votre numéro de téléphone (identifiant d'appel), ainsi que les informations que vous communiquez volontairement pendant l'échange.</li>
           <li><strong>Données de navigation :</strong> adresse IP anonymisée, type de navigateur, pages visitées, durée de visite (via Google Analytics 4, si consentement accordé).</li>
         </ul>
         <hr class="legal-divider" />
@@ -32,24 +30,19 @@ noindex: true
         <p>Vos données sont collectées pour les finalités suivantes :</p>
         <ul>
           <li>Répondre à vos demandes de contact et de renseignements ;</li>
-          <li>Assurer l'accueil téléphonique et répondre à vos questions via notre assistant vocal ;</li>
-          <li>Vous envoyer, à votre demande et avec votre accord, un SMS contenant le lien de prise de rendez-vous pour un audit gratuit ;</li>
-          <li>Améliorer la qualité de notre service et de notre assistant vocal ;</li>
           <li>Vous envoyer notre newsletter si vous y avez souscrit ;</li>
           <li>Améliorer nos services et notre site web ;</li>
           <li>Respecter nos obligations légales.</li>
         </ul>
-        <p>Concernant le numéro de téléphone communiqué ou utilisé lors d'un appel à l'assistant vocal : il est utilisé uniquement pour vous envoyer le SMS contenant le lien de rendez-vous, lorsque vous y avez explicitement consenti pendant l'appel. Il n'est pas utilisé à des fins de prospection non sollicitée.</p>
         <hr class="legal-divider" />
 
         <h2>5. Base légale du traitement</h2>
         <p>Le traitement de vos données repose sur :</p>
         <ul>
-          <li>Votre <strong>consentement</strong> pour la newsletter, les cookies d'analyse, et l'envoi du SMS de prise de rendez-vous ;</li>
-          <li>L'<strong>intérêt légitime</strong> de YanaLabs pour le traitement des demandes de contact, l'accueil téléphonique et l'amélioration de notre assistant vocal ;</li>
+          <li>Votre <strong>consentement</strong> pour la newsletter et les cookies d'analyse ;</li>
+          <li>L'<strong>intérêt légitime</strong> de YanaLabs pour le traitement des demandes de contact ;</li>
           <li>L'<strong>obligation légale</strong> pour certains traitements imposés par la loi.</li>
         </ul>
-        <p>Lors d'un appel à l'assistant vocal, vous êtes informé(e), dès le début de l'échange, que l'appel peut être enregistré et traité par une intelligence artificielle. En poursuivant l'appel, vous acceptez ce traitement. Vous pouvez à tout moment demander à ne pas être enregistré(e) ou à être mis(e) en relation avec un interlocuteur humain (par email ou téléphone).</p>
         <hr class="legal-divider" />
 
         <h2>6. Durée de conservation</h2>
@@ -57,9 +50,7 @@ noindex: true
         <ul>
           <li>Données de contact : 3 ans à compter du dernier contact ;</li>
           <li>Données newsletter : jusqu'à désinscription ;</li>
-          <li>Données de navigation : 13 mois maximum ;</li>
-          <li>Enregistrements et transcriptions des appels traités par l'assistant vocal : conservés le temps nécessaire au traitement de votre demande et à l'amélioration du service, puis supprimés ou anonymisés. Ces données sont hébergées chez notre prestataire ElevenLabs ;</li>
-          <li>SMS et journaux d'envoi : conservés par notre prestataire Twilio pour la durée nécessaire à l'acheminement et au suivi technique des messages.</li>
+          <li>Données de navigation : 13 mois maximum.</li>
         </ul>
         <hr class="legal-divider" />
 
@@ -71,23 +62,13 @@ noindex: true
           <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données ;</li>
           <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré ;</li>
           <li><strong>Droit d'opposition</strong> : vous opposer au traitement de vos données ;</li>
-          <li><strong>Droit à la limitation</strong> : demander la limitation du traitement ;</li>
-          <li><strong>Droit de ne pas faire l'objet d'une décision fondée exclusivement sur un traitement automatisé</strong> : vous pouvez à tout moment demander à parler à un interlocuteur humain plutôt qu'à l'assistant vocal.</li>
+          <li><strong>Droit à la limitation</strong> : demander la limitation du traitement.</li>
         </ul>
         <p>Pour exercer ces droits, contactez-nous à : <a href="mailto:automation@yanalabs.fr">automation@yanalabs.fr</a>. En cas de réclamation, vous pouvez saisir la <a href="https://www.cnil.fr" target="_blank" rel="nofollow noopener">CNIL</a>.</p>
         <hr class="legal-divider" />
 
-        <h2>8. Partage des données et sous-traitants</h2>
-        <p>Vos données ne sont jamais vendues à des tiers. Elles peuvent être transmises à des prestataires techniques (sous-traitants au sens du RGPD) dans le strict cadre de l'exécution de leurs services, ces derniers étant contractuellement tenus de les protéger.</p>
-        <p>Nos principaux sous-traitants sont :</p>
-        <ul>
-          <li><strong>Hébergement du site :</strong> Vercel Inc. / Netlify Inc.</li>
-          <li><strong>Mesure d'audience :</strong> Google Analytics 4 (sous réserve de consentement).</li>
-          <li><strong>Outil d'emailing / newsletter.</strong></li>
-          <li><strong>Assistant vocal téléphonique</strong> (traitement de l'appel par intelligence artificielle) : ElevenLabs.</li>
-          <li><strong>Téléphonie et envoi de SMS :</strong> Twilio.</li>
-        </ul>
-        <p>Ces prestataires peuvent, selon les cas, traiter des données en dehors de l'Union européenne ; le cas échéant, ces transferts sont encadrés par les garanties appropriées prévues par le RGPD (notamment les clauses contractuelles types).</p>
+        <h2>8. Partage des données</h2>
+        <p>Vos données ne sont jamais vendues à des tiers. Elles peuvent être transmises à des prestataires techniques (hébergeur, outil d'emailing) dans le strict cadre de l'exécution de leurs services, ces derniers étant contractuellement tenus de les protéger.</p>
         <hr class="legal-divider" />
 
         <h2>9. Sécurité</h2>

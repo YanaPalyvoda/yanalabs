@@ -1,0 +1,39 @@
+{# =====================================================================
+   COMPOSANT — AGENT VOCAL ANNA (YanaLabs)
+   À inclure dans src/_layouts/base.njk (voir guide).
+   Inclut : 1) un bouton d'appel FLOTTANT (image téléphone, vrai appel tel:)
+            2) le widget ElevenLabs (parler à Anna dans le navigateur)
+   ---------------------------------------------------------------------
+   AVANT DE PUBLIER :
+   - Remplacer AGENT_ID_A_REMPLACER par l'ID de votre agent ElevenLabs.
+   - Le numéro tel: utilise le numéro Twilio YanaLabs (+33939245394).
+   - Déposer votre image dans src/images/ (ex. telephone.png) et adapter
+     le src ci-dessous (chemin final : /images/telephone.png).
+===================================================================== #}
+
+{# 1) BOUTON D'APPEL FLOTTANT — l'image téléphone lance directement l'appel.
+
+   >>> ÉTAT ACTUEL : visible UNIQUEMENT sur téléphone mobile. <<<
+   (Caché sur tablette et ordinateur, car l'appel tel: n'y est pas fiable.)
+   Cette logique mobile-seulement est gérée par CSS — voir la règle
+   ".agent-call-float" et le @media (max-width: 600px) dans style.css.
+
+   POUR LE CACHER PARTOUT (y compris mobile) : ajoutez le mot "hidden"
+   sur la balise <a> ci-dessous (juste après title="Appeler Anna").
+   POUR LE RÉAFFICHER : retirez ce mot "hidden".
+
+   L'image SECOUE (effet sonnerie) au survol — voir .agent-phone-img dans style.css. #}
+<a href="tel:+33939245394"
+   id="agent-call-link"
+   class="agent-call-float"
+   rel="nofollow"
+   aria-label="Appeler Anna"
+   title="Appeler Anna">
+  <img class="agent-phone-img"
+       src="/images/telephone.svg"
+       alt="Appeler Anna" />
+</a>
+
+{# 2) WIDGET ELEVENLABS (parler à Anna dans le navigateur) #}
+<elevenlabs-convai agent-id="AGENT_ID_A_REMPLACER"></elevenlabs-convai>
+<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>

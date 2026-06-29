@@ -59,7 +59,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/videos": "videos" });
   // Modifié par Claude Code le 20260503 — robots.txt non traité par templateFormats (.txt), passthrough requis
   eleventyConfig.addPassthroughCopy("src/robots.txt");
-  eleventyConfig.addPassthroughCopy("src/llms.txt");
   eleventyConfig.addPassthroughCopy("src/manifest.json");
 
   return {
