@@ -3,7 +3,10 @@ permalink: /feed.xml
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>YanaLabs — Automatisation No-Code &amp; IA</title>
     <description>Le blog de l'automatisation pour les TPE et PME : Make, Airtable, IA et productivité.</description>
@@ -20,7 +23,14 @@ eleventyExcludeFromCollections: true
         <link>https://yanalabs.fr{{ post.url }}</link>
         <description>{{ post.data.description }}</description>
         <pubDate>{{ post.date | dateToRfc822 }}</pubDate>
-        <guid>https://yanalabs.fr{{ post.url }}</guid>
+        <guid isPermaLink="true">https://yanalabs.fr{{ post.url }}</guid>
+        
+        {# --- RESTAURATION DE L'IMAGE --- #}
+        {% if post.data.image %}
+          <enclosure url="https://yanalabs.fr{{ post.data.image }}" length="0" type="image/webp" />
+        {% endif %}
+
+        <dc:creator>YanaLabs</dc:creator>
       </item>
       {%- endif -%}
     {%- endfor %}
