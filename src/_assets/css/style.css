@@ -2754,3 +2754,17 @@ a:focus-visible {
   outline-offset: 4px;
   border-radius: 4px;
 }
+/* --- Liens dans les articles (SEO & Expérience Utilisateur) --- */
+.article-body a {
+  color: #8b5cf6;                /* Violet YanaLabs */
+  text-decoration: underline;
+  text-decoration-color: rgba(139, 92, 246, 0.3); /* Trait violet très clair */
+  text-underline-offset: 4px;    /* Espace entre le texte et le trait */
+  text-decoration-thickness: 1px; /* Épaisseur du trait minimale */
+  transition: all 0.2s ease;
+}
+
+.article-body a:hover {
+  text-decoration-color: #8b5cf6; /* Le trait devient foncé au survol */
+  background-color: rgba(139, 92, 246, 0.05); /* Léger fond au survol */
+}
