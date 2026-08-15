@@ -1,4 +1,45 @@
+# robots.txt — yanalabs.fr
+# Modifications 20260713 par Claude — sections explicites pour les crawlers IA (GEO) :
+# tous sont les bienvenus ; l'autorisation générale les couvre déjà, les sections
+# nommées rendent l'intention explicite et pérenne.
+
+# Moteurs de recherche et crawlers classiques
 User-agent: *
 Allow: /
+
+# Crawlers IA — entraînement et recherche générative
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Ressources dédiées aux LLM :
+# https://yanalabs.fr/llms.txt      (résumé structuré du site)
+# https://yanalabs.fr/llms-full.txt (contenu complet des articles)
 
 Sitemap: https://yanalabs.fr/sitemap.xml

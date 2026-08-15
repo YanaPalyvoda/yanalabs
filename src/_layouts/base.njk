@@ -26,17 +26,24 @@
   <meta property="og:type" content="{{ 'article' if layout == 'article.njk' else 'website' }}"/>
   <meta property="og:url" content="https://yanalabs.fr{{ page.url }}"/>
   <meta property="og:site_name" content="YanaLabs"/>
-  <meta property="og:image" content="{{ 'https://yanalabs.fr' + image if image else 'https://yanalabs.fr/images/og-image.png' }}"/>
+  {# Modifications 20260713 par Claude — og:image:type dynamique (les articles utilisent du webp,
+     le type était hardcodé image/png) + og:image:alt pour l'accessibilité des partages #}
+  {% set ogImagePath = image if image else '/images/og-image.png' %}
+  <meta property="og:image" content="https://yanalabs.fr{{ ogImagePath }}"/>
   <meta property="og:locale" content="fr_FR"/>
+  {% if not image %}
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
-  <meta property="og:image:type" content="image/png"/>
+  {% endif %}
+  <meta property="og:image:type" content="{{ 'image/webp' if '.webp' in ogImagePath else ('image/jpeg' if '.jp' in ogImagePath else 'image/png') }}"/>
+  <meta property="og:image:alt" content="{{ title if title else 'YanaLabs — Automatisation No-Code pour TPE/PME' }}"/>
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="{{ title if title else 'YanaLabs' }}"/>
   <meta name="twitter:description" content="{{ description if description else 'Automatisation no-code pour TPE/PME' }}"/>
   <meta name="twitter:image" content="{{ 'https://yanalabs.fr' + image if image else 'https://yanalabs.fr/images/og-image.png' }}"/>
+  <meta name="twitter:image:alt" content="{{ title if title else 'YanaLabs — Automatisation No-Code pour TPE/PME' }}"/>
 
   <!-- Favicon & PWA -->
   <link rel="icon" type="image/png" href="/images/Favicon.png"/>
@@ -48,32 +55,21 @@
   <link rel="preload" href="/css/style.css" as="style"/>
   <link rel="stylesheet" href="/css/style.css"/>
 
-  <!-- Modifications 20260424 par Openclaw -->
-  <!-- Performance (fonts) — dns-prefetch doit précéder preconnect -->
-  <!-- Ancien ordre :
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  (dns-prefetch était en bas, après le CSS — ordre incorrect)
-  -->
-  <link rel="dns-prefetch" href="//fonts.googleapis.com">
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <!-- Modifications 20260713 par Claude — sans JavaScript, les animations .reveal/.step-card
+       laissaient le contenu invisible (opacity:0). Fallback : tout afficher si JS désactivé. -->
+  <noscript>
+    <style>.reveal, .step-card { opacity: 1 !important; transform: none !important; }</style>
+  </noscript>
+
+  <!-- Modifications 20260713 par Claude — police Onest auto-hébergée (déclarée dans style.css) :
+       supprime 2 connexions externes sur le chemin critique + conformité RGPD/CNIL (plus d'IP transmise à Google).
+       Preload de la graisse la plus utilisée pour un affichage immédiat. -->
+  <link rel="preload" href="/fonts/onest-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
   <link rel="dns-prefetch" href="//calendly.com">
   <link rel="dns-prefetch" href="//www.googletagmanager.com">
   <link rel="dns-prefetch" href="//www.google-analytics.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
-  <!-- Google Fonts - async pour ne pas bloquer le rendu (PageSpeed) -->
-  <link rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap"
-        as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap">
-  </noscript>
 </head>
 <body>
 
@@ -209,92 +205,71 @@
       }
     })();
   </script>
+  <!-- Modifications 20260713 par Claude — entités socles fusionnées en @graph avec @id croisés
+       (consolidation d'entité pour Google Knowledge Graph et moteurs IA) ;
+       bloc Organization redondant supprimé, aggregateRating retiré (avis self-serving ignorés par Google) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "YanaLabs",
-    "url": "https://yanalabs.fr",
-    "description": "Agence d'automatisation no-code pour TPE/PME en Île-de-France",
-    "inLanguage": "fr-FR",
-    "publisher": {
-      "@type": "Organization",
-      "name": "YanaLabs"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "YanaLabs",
-    "url": "https://yanalabs.fr",
-    "logo": "https://yanalabs.fr/images/logoNew.png",
-    "email": "automation@yanalabs.fr",
-    "telephone": "+33-695580203",
-    "foundingDate": "2025",
-    "sameAs": [
-      "https://www.linkedin.com/company/yanalabs",
-      "https://www.linkedin.com/in/yana-palyvoda"
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "ProfessionalService"],
-    "@id": "https://yanalabs.fr/#business",
-    "name": "YanaLabs",
-    "url": "https://yanalabs.fr",
-    "logo": "https://yanalabs.fr/images/logoNew.png",
-    "image": "https://yanalabs.fr/images/og-image.png",
-    "description": "YanaLabs automatise les tâches répétitives des TPE et PME grâce au no-code (Make, Airtable). Solutions sur-mesure en Île-de-France.",
-    "telephone": "+33-695580203",
-    "email": "automation@yanalabs.fr",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Neuilly-Plaisance",
-      "postalCode": "93360",
-      "addressRegion": "Île-de-France",
-      "addressCountry": "FR"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 48.8637,
-      "longitude": 2.5125
-    },
-    "areaServed": [
-      { "@type": "City", "name": "Paris" },
-      { "@type": "City", "name": "Neuilly-Plaisance" },
-      { "@type": "City", "name": "Vincennes" },
-      { "@type": "City", "name": "Montreuil" },
-      { "@type": "City", "name": "Créteil" },
-      { "@type": "City", "name": "Boulogne-Billancourt" },
-      { "@type": "City", "name": "Saint-Denis" },
-      { "@type": "AdministrativeArea", "name": "Île-de-France" }
-    ],
-    "sameAs": [
-      "https://www.linkedin.com/company/yanalabs",
-      "https://www.linkedin.com/in/yana-palyvoda"
-    ],
-    "priceRange": "€€",
-    "currenciesAccepted": "EUR",
-    "openingHoursSpecification": [
+    "@graph": [
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-        "opens": "09:00",
-        "closes": "18:00"
-      }
-    ]{% if reviewSchema %},
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "bestRating": "5",
-      "worstRating": "1",
-      "reviewCount": "3"
-    },
-    "review": [
+        "@type": "WebSite",
+        "@id": "https://yanalabs.fr/#website",
+        "name": "YanaLabs",
+        "url": "https://yanalabs.fr",
+        "description": "Agence d'automatisation no-code pour TPE/PME en Île-de-France",
+        "inLanguage": "fr-FR",
+        "publisher": { "@id": "https://yanalabs.fr/#business" }
+      },
+      {
+        "@type": ["LocalBusiness", "ProfessionalService", "Organization"],
+        "@id": "https://yanalabs.fr/#business",
+        "name": "YanaLabs",
+        "url": "https://yanalabs.fr",
+        "logo": "https://yanalabs.fr/images/logoNew.png",
+        "image": "https://yanalabs.fr/images/og-image.png",
+        "description": "YanaLabs automatise les tâches répétitives des TPE et PME grâce au no-code (Make, Airtable). Solutions sur-mesure en Île-de-France.",
+        "telephone": "+33-695580203",
+        "email": "automation@yanalabs.fr",
+        "foundingDate": "2025",
+        "founder": { "@id": "https://yanalabs.fr/#person" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Neuilly-Plaisance",
+          "postalCode": "93360",
+          "addressRegion": "Île-de-France",
+          "addressCountry": "FR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 48.8637,
+          "longitude": 2.5125
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Paris" },
+          { "@type": "City", "name": "Neuilly-Plaisance" },
+          { "@type": "City", "name": "Vincennes" },
+          { "@type": "City", "name": "Montreuil" },
+          { "@type": "City", "name": "Créteil" },
+          { "@type": "City", "name": "Boulogne-Billancourt" },
+          { "@type": "City", "name": "Saint-Denis" },
+          { "@type": "AdministrativeArea", "name": "Île-de-France" }
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/company/yanalabs",
+          "https://www.linkedin.com/in/yana-palyvoda"
+        ],
+        "priceRange": "€€",
+        "currenciesAccepted": "EUR",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        ]{% if reviewSchema %},
+        "review": [
       {
         "@type": "Review",
         "datePublished": "2026-04-01",
@@ -316,7 +291,28 @@
         "author": { "@type": "Person", "name": "Marc T." },
         "reviewBody": "J'étais convaincu qu'il n'y avait rien à automatiser dans mon activité. En 30 minutes avec Yana, on a repéré 3 tâches chronophages. Aujourd'hui je récupère plus de 2 heures par semaine sans aucune compétence technique."
       }
-    ]{% endif %}
+        ]{% endif %}
+      },
+      {
+        "@type": "Person",
+        "@id": "https://yanalabs.fr/#person",
+        "name": "Yana Palyvoda",
+        "jobTitle": "Fondatrice",
+        "image": "https://yanalabs.fr/images/aboutme.webp",
+        "url": "https://yanalabs.fr/#about",
+        "sameAs": [
+          "https://www.linkedin.com/in/yana-palyvoda"
+        ],
+        "worksFor": { "@id": "https://yanalabs.fr/#business" },
+        "knowsAbout": ["Automatisation no-code", "Make", "Airtable", "Transformation digitale TPE PME"],
+        "alumniOf": ["Enedis", "Crédit Agricole CIB"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Île-de-France",
+          "addressCountry": "FR"
+        }
+      }
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -325,11 +321,7 @@
     "@type": "Service",
     "serviceType": "Automatisation No-Code",
     "name": "Automatisation de tâches répétitives pour TPE/PME",
-    "provider": {
-      "@type": "Organization",
-      "name": "YanaLabs",
-      "url": "https://yanalabs.fr"
-    },
+    "provider": { "@id": "https://yanalabs.fr/#business" },
     "areaServed": {
       "@type": "State",
       "name": "Île-de-France"
@@ -344,31 +336,6 @@
     }
   }
   </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Yana Palyvoda",
-    "jobTitle": "Fondatrice",
-    "image": "https://yanalabs.fr/images/aboutme.webp",
-    "url": "https://yanalabs.fr/#about",
-    "sameAs": [
-      "https://www.linkedin.com/in/yana-palyvoda"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "YanaLabs",
-      "url": "https://yanalabs.fr"
-    },
-    "knowsAbout": ["Automatisation no-code", "Make", "Airtable", "Transformation digitale TPE PME"],
-    "alumniOf": ["Enedis", "Crédit Agricole CIB"],
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "Île-de-France",
-      "addressCountry": "FR"
-    }
-  }
-</script>
   {% if faqPage %}
   <script type="application/ld+json">
   {
@@ -424,15 +391,15 @@
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "{{ title }}",
-    "description": "{{ description }}",
+    "headline": {{ title | jsonify | safe }},
+    "description": {{ description | jsonify | safe }},
     "datePublished": "{{ page.date | htmlDateString }}",
     "dateModified": "{{ updated | htmlDateString if updated else page.date | htmlDateString }}",
     "url": "https://yanalabs.fr{{ page.url }}",
     "inLanguage": "fr-FR",
-    "articleSection": "{{ categorie if categorie else 'Automatisation No-Code' }}",
+    "articleSection": {{ (categorie if categorie else 'Automatisation No-Code') | jsonify | safe }},
     "wordCount": {{ content | wordCount }},
-    "keywords": "{{ tags | join(', ') if tags else (categorie if categorie else 'automatisation no-code, TPE PME') }}",
+    "keywords": {{ (tags | join(', ') if tags else (categorie if categorie else 'automatisation no-code, TPE PME')) | jsonify | safe }},
     {% if image %}"image": "https://yanalabs.fr{{ image }}",{% endif %}
     "speakable": {
       "@type": "SpeakableSpecification",
@@ -440,12 +407,14 @@
     },
     "author": {
       "@type": "Person",
+      "@id": "https://yanalabs.fr/#person",
       "name": "Yana Palyvoda",
       "url": "https://yanalabs.fr/#about",
       "sameAs": "https://www.linkedin.com/in/yana-palyvoda"
     },
     "publisher": {
       "@type": "Organization",
+      "@id": "https://yanalabs.fr/#business",
       "name": "YanaLabs",
       "url": "https://yanalabs.fr",
       "logo": {
@@ -479,7 +448,7 @@
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "{{ title }}",
+        "name": {{ title | jsonify | safe }},
         "item": "https://yanalabs.fr{{ page.url }}"
       }
     ]
@@ -494,10 +463,10 @@
       {% for item in faq %}
       {
         "@type": "Question",
-        "name": "{{ item.q }}",
+        "name": {{ item.q | jsonify | safe }},
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "{{ item.a }}"
+          "text": {{ item.a | jsonify | safe }}
         }
       }{% if not loop.last %},{% endif %}
       {% endfor %}
@@ -510,12 +479,13 @@
   {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "{{ howto.name }}",
-    "description": "{{ description }}",
+    "name": {{ howto.name | jsonify | safe }},
+    "description": {{ description | jsonify | safe }},
     "totalTime": "{{ howto.totalTime }}",
     "inLanguage": "fr-FR",
     "author": {
       "@type": "Person",
+      "@id": "https://yanalabs.fr/#person",
       "name": "Yana Palyvoda",
       "url": "https://yanalabs.fr/#about"
     },
@@ -524,8 +494,8 @@
       {
         "@type": "HowToStep",
         "position": {{ loop.index }},
-        "name": "{{ step.name }}",
-        "text": "{{ step.text }}"
+        "name": {{ step.name | jsonify | safe }},
+        "text": {{ step.text | jsonify | safe }}
       }{% if not loop.last %},{% endif %}
       {% endfor %}
     ]

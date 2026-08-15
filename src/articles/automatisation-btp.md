@@ -3,7 +3,7 @@ layout: article.njk
 title: "Automatisation BTP : devis auto et 5h gagnées/semaine"
 templateEngineOverride: md
 date: 2026-03-25
-updated: 2026-04-25
+updated: 2026-07-13
 description: "Artisans et PME du BTP : générez vos devis automatiquement avec Make et Airtable. Relances impayés incluses. Récupérez 5h par semaine dès le premier mois."
 tags: ["articles", "automatisation", "BTP", "devis", "no-code"]
 categorie: "BTP"
@@ -90,6 +90,8 @@ Avec un scénario Make connecté à Airtable et un outil comme Documint ou Panda
 - **Délai d'envoi :** 24h → immédiat
 - **Taux de signature :** +25% grâce à la rapidité de réponse
 
+Pour la méthode détaillée étape par étape, consultez notre guide du [devis automatique no-code](/articles/automatiser-devis/) ou découvrez notre service de [génération automatisée de documents](/services/generation-documents/).
+
 ---
 
 <span id="relance-automatique-impayes"></span>
@@ -115,6 +117,8 @@ Chaque email est **personnalisé** avec le nom du client, le numéro de facture 
 - **3h récupérées par semaine** sur le suivi de facturation
 - Zéro oubli, zéro gêne à relancer
 
+Le fonctionnement complet (scénarios J+7, J+14, J+30, modèles de messages) est détaillé dans notre guide de la [relance client automatique](/articles/automatiser-ses-relances-clients/).
+
 ---
 
 <span id="suivi-client-centralise"></span>
@@ -133,7 +137,7 @@ Impossible de savoir en un coup d'œil où en est chaque prospect ou chantier.
 
 ### La solution automatisée
 
-Un tableau de bord Airtable connecté à vos outils existants centralise tout :
+Un [tableau de bord Airtable](/articles/tableau-de-bord-automatique-pme/) connecté à vos outils existants centralise tout :
 
 - **Prospects** issus de votre formulaire de contact
 - **Devis** envoyés et leur statut (en attente, signé, refusé)

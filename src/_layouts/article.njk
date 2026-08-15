@@ -28,7 +28,6 @@ layout: base.njk
     {% if image %}
       <div class="article-hero-image">
         <!-- Modifications 20260424 par Openclaw -->
-        <!-- <img src="{{ image }}" alt="{{ title }}" loading="eager"/> -->
         <img src="{{ image }}" alt="{{ title }}" loading="eager" decoding="async" fetchpriority="high" width="1376" height="768" />
       </div>
     {% endif %}
@@ -63,7 +62,7 @@ layout: base.njk
           <img src="/images/aboutme.webp" alt="Yana Palyvoda, fondatrice YanaLabs" width="72" height="72" loading="lazy" />
           <div class="article-author-info">
             <strong>Yana Palyvoda</strong>
-            <span>Fondatrice YanaLabs — Experte en automatisation no-code (Make, Airtable)</span>
+            <span>Fondatrice YanaLabs — Experte en automatisation no-code (Make, Airtable )</span>
             <span>Ancienne consultante Enedis &amp; Crédit Agricole CIB</span>
             <a href="https://www.linkedin.com/in/yana-palyvoda" target="_blank" rel="nofollow noopener">Voir le profil LinkedIn →</a>
           </div>
@@ -79,38 +78,34 @@ layout: base.njk
 
       </div>
     </div>
-    {# ——— NAVIGATION PREV/NEXT ——— #}
-        <nav class="article-nav">
-          {%- set previousPost = collections.articles | getPreviousCollectionItem %}
-          {%- set nextPost = collections.articles | getNextCollectionItem %}
-          {% if previousPost %}
-            <a href="{{ previousPost.url }}" class="article-nav-link prev">
-              <span>← Article précédent</span>
-              <strong>{{ previousPost.data.title }}</strong>
-            </a>
-          {% endif %}
-          {% if nextPost %}
-            <a href="{{ nextPost.url }}" class="article-nav-link next">
-              <span>Article suivant →</span>
-              <strong>{{ nextPost.data.title }}</strong>
-            </a>
-          {% endif %}
-        </nav>
 
-    {# Modifications 20260424 par Openclaw — 2 </div> orphelins commentés (HTML cassé) #}
-    {# </div> #}
-    {# </div> #}
+    {# ——— NAVIGATION PREV/NEXT ——— #}
+    <nav class="article-nav">
+      {%- set previousPost = collections.articles | getPreviousCollectionItem %}
+      {%- set nextPost = collections.articles | getNextCollectionItem %}
+      {% if previousPost %}
+        <a href="{{ previousPost.url }}" class="article-nav-link prev">
+          <span>← Article précédent</span>
+          <strong>{{ previousPost.data.title }}</strong>
+        </a>
+      {% endif %}
+      {% if nextPost %}
+        <a href="{{ nextPost.url }}" class="article-nav-link next">
+          <span>Article suivant →</span>
+          <strong>{{ nextPost.data.title }}</strong>
+        </a>
+      {% endif %}
+    </nav>
 
     {# ——— ARTICLES SIMILAIRES ——— #}
-    {# Modifications 20260424 par Openclaw — filtre excludeUrl pour toujours avoir 4 articles #}
-    {# {% set similaires = collections.articles | reverse | limit(3) %} #}
-    {% set similaires = collections.articles | reverse | excludeUrl(page.url, 4) %}
+    {% set similaires = collections.articles | reverse | excludeUrl(page.url, 4 ) %}
     {% if similaires.length %}
       <section class="articles-similaires">
         <h2>Continuer la lecture</h2>
         <div class="steps-grid">
           {% for post in similaires %}
-            {% if post.url != page.url %}
+            {# MODIFICATION ICI : On vérifie que l'article n'est pas celui en cours ET qu'il n'est pas futur #}
+            {% if post.url != page.url and post.date <= now %}
               <a href="{{ post.url }}" class="step-card" style="text-decoration:none;">
                 <time style="font-size:12px; color:var(--color-accent-soft); display:block; margin-bottom:8px;">
                   {{ post.date | readableDate }}

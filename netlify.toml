@@ -35,10 +35,59 @@
   [headers.values]
     Cache-Control = "public, max-age=2592000"
 
-# Modifications 20260424 par Openclaw — redirect 301 pour ancienne URL avec espace (SEO)
+# Modifications 20260713 par Claude — polices auto-hébergées, cache 1 an
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Modifications 20260719 par Claude — 301 des anciens slugs datés vers les nouveaux slugs (SEO)
 [[redirects]]
-  from = "/articles/21-04-2026_Automatiser ses relances_clients/"
-  to = "/articles/21-04-2026_Automatiser_ses_relances_clients/"
+  from = "/articles/21-04-2026_Automatiser ses relances_clients/*"
+  to = "/articles/automatiser-ses-relances-clients/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/articles/21-04-2026_Automatiser_ses_relances_clients/*"
+  to = "/articles/automatiser-ses-relances-clients/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/articles/21-04-2026_Devis/*"
+  to = "/articles/automatiser-devis/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/articles/21-04-2026_Google_Sheets_et_automatisation/*"
+  to = "/articles/automatisation-google-sheets/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/articles/28-04-2026_commencer_pour_automatiser/*"
+  to = "/articles/par-ou-commencer-pour-automatiser/"
+  status = 301
+  force = true
+
+# 301 anciennes URLs des pages légales (sans le préfixe /legal/)
+[[redirects]]
+  from = "/politique-confidentialite/*"
+  to = "/legal/politique-confidentialite/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/mentions-legales/*"
+  to = "/legal/mentions-legales/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/politique-cookies/*"
+  to = "/legal/politique-cookies/"
   status = 301
   force = true
 

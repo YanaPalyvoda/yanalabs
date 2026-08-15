@@ -8,3 +8,12 @@ dist/
 /articles/promptNew.txt
 /articles/template_articleNew.txt
 rapport-seo-geo.txt
+clients/
+*.bak
+SKILL-yanalabs-article-corrige.md
+plan-action-offsite-seo-geo.md
+plan-de-tests-seo-geo.md
+src/images/telephoneOLD.svg
+
+# Articles en attente de validation (non prêts à commit)
+*-TMP.md

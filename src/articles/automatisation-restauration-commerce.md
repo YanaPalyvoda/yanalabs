@@ -4,6 +4,7 @@ title: "Automatiser sa restauration ou son commerce : réservations, avis et sto
 templateEngineOverride: md
 description: "Restaurants et commerces de proximité : automatisez vos réservations, la collecte d'avis Google, les rappels anti no-show et le suivi des stocks. Outils et prix vérifiés, sans coder. Guide 2026."
 date: 2026-07-07
+updated: 2026-08-04
 tags: ["articles", "automatisation restaurant", "automatisation commerce de proximité", "réservation en ligne restaurant", "réduire no-show restaurant"]
 categorie: "Gain Temps"
 temps_lecture: 8
@@ -150,7 +151,7 @@ Au-delà de la réservation, la gestion quotidienne mobilise du temps : suivre l
 - **Suivi des stocks et alertes** : en connectant votre caisse à un tableur ou à Airtable via Make, vous obtenez un suivi à jour et des alertes automatiques de réapprovisionnement quand un produit passe sous un seuil.
 - **Commandes fournisseurs facilitées** : un modèle de commande peut se pré-remplir automatiquement à partir des niveaux de stock, prêt à valider.
 - **Programme de fidélité automatique** : enregistrement des passages, points cumulés, offre d'anniversaire envoyée automatiquement — sans carte cartonnée ni suivi manuel.
-- **Relance des clients inactifs** : un message automatique part vers les clients qui ne sont pas revenus depuis un certain temps, avec une offre de retour.
+- **Relance des clients inactifs** : un message automatique part vers les clients qui ne sont pas revenus depuis un certain temps, avec une offre de retour — la même mécanique que la [relance client automatique](/articles/automatiser-ses-relances-clients/) côté facturation.
 
 ### <span class="tag tag-result">Résultat concret</span>
 
@@ -179,8 +180,8 @@ L'offre est abondante et les modèles tarifaires varient beaucoup : abonnement f
 
 - **Une solution de réservation restaurant** — Plusieurs acteurs proposent réservation en ligne, rappels anti no-show et intégration à Google. Les modèles diffèrent : **abonnement fixe sans commission** (par exemple Kouver, **à partir d'environ 89 € HT/mois**) ou **commission au couvert** (modèle de type marketplace, intéressant pour l'audience mais coûteux à fort volume). Choisissez selon votre volume de couverts.
 - **Un outil de collecte d'avis** — Pour automatiser les demandes d'avis Google par SMS/email après le passage. Souvent intégré aux solutions de caisse ou de réservation.
-- **Make ou Zapier — Le liant entre vos outils.** Pour connecter caisse, agenda, tableur et messagerie, et automatiser stocks, fidélité et relances. **Make à partir de 9 €/mois.**
-- **Google Business Profile — Gratuit.** Votre fiche Google, socle de la visibilité locale et de la réservation, est gratuite et indispensable à tenir à jour.
+- **Make ou Zapier — Le liant entre vos outils.** Pour connecter caisse, agenda, tableur et messagerie, et automatiser stocks, fidélité et relances ([comparatif Make vs Zapier](/articles/make-vs-zapier/)). **Make à partir de 9 €/mois.**
+- **[Google Business Profile](https://www.google.com/intl/fr_fr/business/) — Gratuit.** Votre fiche Google, socle de la visibilité locale et de la réservation, est gratuite et indispensable à tenir à jour.
 
 ### <span class="tag tag-result">Résultat concret</span>
 
@@ -219,6 +220,8 @@ L'offre est abondante et les modèles tarifaires varient beaucoup : abonnement f
     <div class="step-body"><h4>Automatiser avis et fidélité</h4><p>Programmez la demande d'avis Google après chaque passage, puis connectez vos outils via Make pour gérer stocks et fidélité. Les automatisations s'ajoutent une à une, à votre rythme.</p></div>
   </div>
 </div>
+
+Pour ne plus rater d'appels pendant le service, découvrez aussi l'[agent vocal IA qui répond 24h/24](/articles/agent-vocal-ia-automatisation/), et parcourez notre service d'[automatisation des workflows](/services/automatisation-workflows-processus/). Beaucoup de réservations et de questions clients arrivent aussi par messagerie : notre guide sur le [chatbot WhatsApp IA](/articles/chatbot-whatsapp-ia-service-client/) montre comment automatiser ce canal sans coder.
 
 Chez YanaLabs, nous aidons restaurants et commerces de proximité — en Île-de-France comme ailleurs — à connecter leurs outils et à automatiser réservations, avis et fidélité, avec un audit de 30 minutes offert pour identifier les automatisations les plus rentables pour votre activité.
 
