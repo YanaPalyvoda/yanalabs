@@ -137,7 +137,7 @@ Impossible de savoir en un coup d'œil où en est chaque prospect ou chantier.
 
 ### La solution automatisée
 
-Un [tableau de bord Airtable](/articles/tableau-de-bord-automatique-pme/) connecté à vos outils existants centralise tout :
+Un tableau de bord Airtable <!-- lien à réactiver une fois publié : /articles/tableau-de-bord-automatique-pme/ --> connecté à vos outils existants centralise tout :
 
 - **Prospects** issus de votre formulaire de contact
 - **Devis** envoyés et leur statut (en attente, signé, refusé)

@@ -121,7 +121,7 @@ Sophie, dirigeante de PME en Île-de-France, veut publier des vidéos régulièr
 
 ## Qu'est-ce que la création vidéo IA ? <a id="definition"></a>
 
-**La création vidéo IA désigne l'utilisation d'outils basés sur l'intelligence artificielle pour automatiser tout ou partie de la production vidéo** : montage, sous-titres, voix off, génération de séquences à partir d'un texte, [publication automatisée sur les réseaux sociaux](/articles/automatiser-reseaux-sociaux/). Ces outils se divisent en deux familles :
+**La création vidéo IA désigne l'utilisation d'outils basés sur l'intelligence artificielle pour automatiser tout ou partie de la production vidéo** : montage, sous-titres, voix off, génération de séquences à partir d'un texte, publication automatisée sur les réseaux sociaux <!-- lien à réactiver une fois publié : /articles/automatiser-reseaux-sociaux/ -->. Ces outils se divisent en deux familles :
 
 - **Les outils de montage assisté par IA** (Canva Pro, CapCut) : ils accélèrent la post-production d'une vidéo déjà tournée — modèles animés, sous-titres en un clic, recadrage automatique pour Instagram Reels ou LinkedIn.
 - **Les générateurs vidéo IA** (Veo 3, InVideo AI, Lumen5) : ils créent une vidéo de zéro depuis un texte ou un script, avec visuels générés, voix off synthétique et animation, sans caméra.

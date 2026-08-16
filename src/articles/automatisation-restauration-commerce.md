@@ -221,7 +221,7 @@ L'offre est abondante et les modèles tarifaires varient beaucoup : abonnement f
   </div>
 </div>
 
-Pour ne plus rater d'appels pendant le service, découvrez aussi l'[agent vocal IA qui répond 24h/24](/articles/agent-vocal-ia-automatisation/), et parcourez notre service d'[automatisation des workflows](/services/automatisation-workflows-processus/). Beaucoup de réservations et de questions clients arrivent aussi par messagerie : notre guide sur le [chatbot WhatsApp IA](/articles/chatbot-whatsapp-ia-service-client/) montre comment automatiser ce canal sans coder.
+Pour ne plus rater d'appels pendant le service, découvrez aussi l'[agent vocal IA qui répond 24h/24](/articles/agent-vocal-ia-automatisation/), et parcourez notre service d'[automatisation des workflows](/services/automatisation-workflows-processus/). Beaucoup de réservations et de questions clients arrivent aussi par messagerie : notre guide sur le chatbot WhatsApp IA <!-- lien à réactiver une fois publié : /articles/chatbot-whatsapp-ia-service-client/ --> montre comment automatiser ce canal sans coder.
 
 Chez YanaLabs, nous aidons restaurants et commerces de proximité — en Île-de-France comme ailleurs — à connecter leurs outils et à automatiser réservations, avis et fidélité, avec un audit de 30 minutes offert pour identifier les automatisations les plus rentables pour votre activité.
 

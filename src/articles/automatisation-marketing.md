@@ -153,7 +153,7 @@ Un gain total de 4,2 heures par semaine se traduit par une capacité à lancer 2
   </div>
 </div>
 
-Pour aller plus loin : notre guide de l'[automatisation de la prospection commerciale](/articles/automatiser-prospection-commerciale/) complète cette approche côté vente, et notre service de [génération de contenu par IA](/services/generation-contenu-ia/) industrialise la production de vos emails et posts. Pour le volet visibilité, voyez aussi comment [automatiser vos réseaux sociaux avec l'IA](/articles/automatiser-reseaux-sociaux/).
+Pour aller plus loin : notre guide de l'[automatisation de la prospection commerciale](/articles/automatiser-prospection-commerciale/) complète cette approche côté vente, et notre service de [génération de contenu par IA](/services/generation-contenu-ia/) industrialise la production de vos emails et posts. Pour le volet visibilité, voyez aussi comment automatiser vos réseaux sociaux avec l'IA <!-- lien à réactiver une fois publié : /articles/automatiser-reseaux-sociaux/ -->.
 
 Chez YanaLabs, nous commençons toujours par un audit gratuit de 30 minutes pour identifier précisément où vous perdez le plus de temps — et vous proposer un plan d'action concret et chiffré.
 

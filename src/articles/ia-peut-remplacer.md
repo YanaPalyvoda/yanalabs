@@ -48,7 +48,7 @@ L’IA peut automatiser les tâches répétitives et standardisées, libérant d
 
 - Analyser et prioriser les tâches récurrentes pour les automatiser progressivement, afin de libérer 2 à 3 heures par semaine dès le premier mois.
 - Mettre en place des templates intelligents pour les courriers, les devis et les rapports, afin de réduire les erreurs et les temps de rédaction.
-- Utiliser des assistants virtuels pour [le tri automatique des emails](/articles/automatiser-gestion-emails/) et la planification des rendez-vous, en évitant les doubles saisies.
+- Utiliser des assistants virtuels pour le tri automatique des emails <!-- lien à réactiver une fois publié : /articles/automatiser-gestion-emails/ --> et la planification des rendez-vous, en évitant les doubles saisies.
 
 ### <span class="tag tag-result">Résultat concret</span>
 
@@ -181,7 +181,7 @@ Le temps gagné se convertit en capacité opérationnelle. Plus d’absences de 
   </div>
 </div>
 
-Et si votre standard téléphonique déborde aussi, découvrez comment un [agent vocal IA](/articles/agent-vocal-ia-automatisation/) prend le relais 24h/24, ou explorez notre service d'[automatisation des workflows](/services/automatisation-workflows-processus/). Pour aller plus loin que l'assistance ponctuelle, voyez ce qu'un [agent IA autonome](/articles/agent-ia-pme/) peut déléguer de bout en bout. Le même principe s'applique au recrutement : découvrez comment [automatiser le tri des CV et l'onboarding](/articles/automatiser-recrutement-pme/) en PME.
+Et si votre standard téléphonique déborde aussi, découvrez comment un [agent vocal IA](/articles/agent-vocal-ia-automatisation/) prend le relais 24h/24, ou explorez notre service d'[automatisation des workflows](/services/automatisation-workflows-processus/). Pour aller plus loin que l'assistance ponctuelle, voyez ce qu'un agent IA autonome <!-- lien à réactiver une fois publié : /articles/agent-ia-pme/ --> peut déléguer de bout en bout. Le même principe s'applique au recrutement : découvrez comment [automatiser le tri des CV et l'onboarding](/articles/automatiser-recrutement-pme/) en PME.
 
 Chez YanaLabs, nous commençons toujours par un audit de 30 minutes offert pour identifier précisément où vous perdez le plus de temps — et vous proposer un plan d'action concret et chiffré.
 

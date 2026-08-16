@@ -166,7 +166,7 @@ Le gain total hebdomadaire est conséquent et se traduit par plus de temps dédi
   </div>
 </div>
 
-L'étape suivante logique : transformer vos feuilles synchronisées en [tableau de bord automatique](/articles/tableau-de-bord-automatique-pme/) pour piloter votre PME en temps réel, avec notre service d'[automatisation des workflows](/services/automatisation-workflows-processus/).
+L'étape suivante logique : transformer vos feuilles synchronisées en tableau de bord automatique <!-- lien à réactiver une fois publié : /articles/tableau-de-bord-automatique-pme/ --> pour piloter votre PME en temps réel, avec notre service d'[automatisation des workflows](/services/automatisation-workflows-processus/).
 
 Chez YanaLabs, nous commençons toujours par un audit gratuit de 30 minutes pour identifier précisément où vous perdez le plus de temps — et vous proposer un plan d'action concret et chiffré.
 
