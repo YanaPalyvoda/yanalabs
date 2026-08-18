@@ -41,6 +41,13 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Ajouté par Claude — Content-Type correct pour la vCard NFC (déclenche "Ajouter aux contacts" au tap)
+[[headers]]
+  for = "/contact.vcf"
+  [headers.values]
+    Content-Type = "text/vcard; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
 # Modifications 20260719 par Claude — 301 des anciens slugs datés vers les nouveaux slugs (SEO)
 [[redirects]]
   from = "/articles/21-04-2026_Automatiser ses relances_clients/*"
